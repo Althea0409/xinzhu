@@ -157,5 +157,52 @@ route: {
 
 ---
 
-### 6. zzz
+### 6. 修改侧边菜单栏顺序
+
+找到路径：
+
+```
+src/
+  router/
+    elegant/
+      routes.ts
+      ...
+```
+
+在 `routes.ts` 文件中定位到以下的代码：
+
+```ts
+export const generatedRoutes: GeneratedRoute[] = [
+   // ...
+  {
+    name: 'chatbot',
+    path: '/chatbot',
+    component: 'layout.base$view.chatbot',
+    meta: {
+      title: 'chatbot',
+      i18nKey: 'route.chatbot',
+      icon: 'mdi:robot-excited-outline',
+      order: 7 // 修改这里
+    }
+  },
+  {
+    name: 'home',
+    path: '/home',
+    component: 'layout.base$view.home',
+    meta: {
+      title: 'home',
+      i18nKey: 'route.home',
+      icon: 'mdi:monitor-dashboard',
+      order: 0 // 修改这里
+    }
+  },
+  // ...
+]
+```
+
+添加并修改 `order` 的属性值，即可修改顺序（从小到大 --> 从上到下）
+
+---
+
+### 7. xxx
 
