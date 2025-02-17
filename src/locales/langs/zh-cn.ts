@@ -156,13 +156,21 @@ const local: App.I18n.Schema = {
       resetSuccessMsg: '重置成功'
     }
   },
+  // 路由名称
   route: {
     login: '登录',
     403: '无权限',
     404: '页面不存在',
     500: '服务器错误',
     'iframe-page': '外链页面',
-    home: '首页'
+    home: '首页',
+    system1: '系统 1',
+    system2: '系统 2',
+    system3: '系统 3',
+    system4: '系统 4',
+    system5: '系统 5',
+    system6: '系统 6',
+    chatbot: '对话'
   },
   page: {
     login: {

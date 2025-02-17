@@ -40,6 +40,17 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'chatbot',
+    path: '/chatbot',
+    component: 'layout.base$view.chatbot',
+    meta: {
+      title: 'chatbot',
+      i18nKey: 'route.chatbot',
+      icon: 'mdi:robot-excited-outline',
+      order: 7
+    }
+  },
+  {
     name: 'home',
     path: '/home',
     component: 'layout.base$view.home',
@@ -47,7 +58,7 @@ export const generatedRoutes: GeneratedRoute[] = [
       title: 'home',
       i18nKey: 'route.home',
       icon: 'mdi:monitor-dashboard',
-      order: 1
+      order: 0
     }
   },
   {
@@ -73,6 +84,66 @@ export const generatedRoutes: GeneratedRoute[] = [
       i18nKey: 'route.login',
       constant: true,
       hideInMenu: true
+    }
+  },
+  {
+    name: 'system1',
+    path: '/system1',
+    component: 'layout.base$view.system1',
+    meta: {
+      title: 'system1',
+      i18nKey: 'route.system1',
+      order: 1
+    }
+  },
+  {
+    name: 'system2',
+    path: '/system2',
+    component: 'layout.base$view.system2',
+    meta: {
+      title: 'system2',
+      i18nKey: 'route.system2',
+      order: 2
+    }
+  },
+  {
+    name: 'system3',
+    path: '/system3',
+    component: 'layout.base$view.system3',
+    meta: {
+      title: 'system3',
+      i18nKey: 'route.system3',
+      order: 3
+    }
+  },
+  {
+    name: 'system4',
+    path: '/system4',
+    component: 'layout.base$view.system4',
+    meta: {
+      title: 'system4',
+      i18nKey: 'route.system4',
+      order: 4
+    }
+  },
+  {
+    name: 'system5',
+    path: '/system5',
+    component: 'layout.base$view.system5',
+    meta: {
+      title: 'system5',
+      i18nKey: 'route.system5',
+      order: 5
+    }
+  },
+  {
+    name: 'system6',
+    path: '/system6',
+    component: 'layout.base$view.system6',
+    meta: {
+      title: 'system6',
+      i18nKey: 'route.system6',
+      order: 6
     }
   }
 ];

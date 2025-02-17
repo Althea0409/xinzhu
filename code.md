@@ -103,4 +103,59 @@ export const themeSettings: App.Theme.ThemeSetting = {
 其他主题配置也可以在此文件中，根据需要修改。
 
 ---
-### 4. 修改
+### 4. 创建路由
+
+在终端执行 `pnpm gen-route` 命令，可以快速创建路由文件
+
+**路由名称的命名规则**
+
+- 一级路由: `demo`, `demo-page`, `route1`
+
+	> 名称为小写加连字符`-`的形式
+
+- 二级路由: `demo2_child`, `demo2-page_child`, `route2_child`
+
+	> 路由的层级用下划线`_`分隔，两边仍然遵守一级路由的命名规则
+
+- 三级及三级以上路由: `demo3_child_child`, `demo3-page_child_child_child`
+
+---
+
+### 5. 修改侧边栏菜单名称
+
+找到路径：
+
+```
+src/
+  locales/
+    langs/
+      zh-cn.ts
+      ...
+```
+
+在 `zh-cn.ts` 文件中定位到以下的代码：
+
+```ts
+route: {
+    login: '登录',
+    403: '无权限',
+    404: '页面不存在',
+    500: '服务器错误',
+    'iframe-page': '外链页面',
+    home: '首页',
+    system1: '系统 1',
+    system2: '系统 2',
+    system3: '系统 3',
+    system4: '系统 4',
+    system5: '系统 5',
+    system6: '系统 6',
+    chatbot: '对话'
+  },
+```
+
+按照格式  `路由名: '想改成的名称'`  修改即可。
+
+---
+
+### 6. zzz
+
