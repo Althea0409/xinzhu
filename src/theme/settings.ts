@@ -1,89 +1,105 @@
-/** Default theme settings */
+/* 默认主题设置 */
 export const themeSettings: App.Theme.ThemeSetting = {
-  themeScheme: 'light',
-  grayscale: false,
-  colourWeakness: false,
-  recommendColor: true,
-  themeColor: '#3b82f6',
+  themeScheme: 'light', // 主题模式：亮色
+  grayscale: false, // 灰度模式
+  colourWeakness: false, // 色弱模式
+  recommendColor: true, // 应用推荐算法的颜色
+  themeColor: '#3b82f6', // 主题色
   otherColor: {
-    info: '#2080f0',
-    success: '#52c41a',
-    warning: '#faad14',
-    error: '#f5222d'
+    // 其他颜色
+    info: '#2080f0', // 信息色
+    success: '#52c41a', // 成功色
+    warning: '#faad14', // 警告色
+    error: '#f5222d' // 错误色
   },
-  isInfoFollowPrimary: true,
-  resetCacheStrategy: 'close',
+  isInfoFollowPrimary: true, // 信息色是否跟随主题色
+  resetCacheStrategy: 'close', // 缓存重置策略
   layout: {
-    mode: 'vertical',
-    scrollMode: 'content',
-    reverseHorizontalMix: false
+    // 布局设置
+    mode: 'vertical', // 布局模式：垂直
+    scrollMode: 'content', // 滚动模式
+    reverseHorizontalMix: false // 水平混合反转
   },
   page: {
-    animate: true,
-    animateMode: 'fade-slide'
+    // 页面设置
+    animate: true, // 开启动画
+    animateMode: 'fade-slide' // 动画模式
   },
   header: {
-    height: 56,
+    // 头部设置
+    height: 56, // 高度
     breadcrumb: {
-      visible: true,
-      showIcon: true
+      // 面包屑
+      visible: true, // 显示
+      showIcon: true // 显示图标
     },
     multilingual: {
-      visible: true
+      // 多语言
+      visible: false // 显示
     }
   },
   tab: {
-    visible: true,
-    cache: true,
-    height: 44,
-    mode: 'chrome'
+    // 标签页设置
+    visible: true, // 显示
+    cache: true, // 缓存
+    height: 44, // 高度
+    mode: 'chrome' // 模式
   },
-  fixedHeaderAndTab: true,
+  fixedHeaderAndTab: true, // 固定头部和标签页
   sider: {
-    inverted: false,
-    width: 220,
-    collapsedWidth: 64,
-    mixWidth: 90,
-    mixCollapsedWidth: 64,
-    mixChildMenuWidth: 200
+    // 侧边栏设置
+    inverted: false, // 反转色
+    width: 220, // 宽度
+    collapsedWidth: 64, // 收缩宽度
+    mixWidth: 90, // 混合宽度
+    mixCollapsedWidth: 64, // 混合收缩宽度
+    mixChildMenuWidth: 200 // 混合子菜单宽度
   },
   footer: {
-    visible: true,
-    fixed: false,
-    height: 48,
-    right: true
+    // 页脚设置
+    visible: false, // 显示
+    fixed: false, // 固定
+    height: 48, // 高度
+    right: true // 右对齐
   },
   watermark: {
-    visible: false,
-    text: 'SoybeanAdmin'
+    // 水印设置
+    visible: false, // 显示
+    text: 'TeachAI' // 文本
   },
   tokens: {
+    // 主题令牌
     light: {
+      // 亮色主题
       colors: {
-        container: 'rgb(255, 255, 255)',
-        layout: 'rgb(247, 250, 252)',
-        inverted: 'rgb(0, 20, 40)',
-        'base-text': 'rgb(31, 31, 31)'
+        // 颜色
+        container: 'rgb(255, 255, 255)', // 容器色
+        layout: 'rgb(242, 246, 253)', // 布局色 235,242,254
+        inverted: 'rgb(0, 20, 40)', // 反转色
+        'base-text': 'rgb(31, 31, 31)' // 基础文本色
       },
       boxShadow: {
+        // 阴影
         header: '0 1px 2px rgb(0, 21, 41, 0.08)',
         sider: '2px 0 8px 0 rgb(29, 35, 41, 0.05)',
         tab: '0 1px 2px rgb(0, 21, 41, 0.08)'
       }
     },
     dark: {
+      // 暗色主题
       colors: {
-        container: 'rgb(28, 28, 28)',
-        layout: 'rgb(18, 18, 18)',
-        'base-text': 'rgb(224, 224, 224)'
+        // 颜色
+        container: 'rgb(28, 28, 28)', // 容器色
+        layout: 'rgb(18, 18, 18)', // 布局色
+        'base-text': 'rgb(224, 224, 224)' // 基础文本色
       }
     }
   }
 };
 
 /**
- * Override theme settings
+ * 覆盖主题设置
  *
- * If publish new version, use `overrideThemeSettings` to override certain theme settings
+ * 如果发布新版本，使用 `overrideThemeSettings` 来覆盖某些主题设置
  */
 export const overrideThemeSettings: Partial<App.Theme.ThemeSetting> = {};

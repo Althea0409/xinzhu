@@ -1,6 +1,6 @@
 const local: App.I18n.Schema = {
   system: {
-    title: 'EduVerse 智构万象',
+    title: 'English 系统中文名',
     updateTitle: '系统版本更新通知',
     updateContent: '检测到系统有新版本发布，是否立即刷新页面？',
     updateConfirm: '立即刷新',
@@ -164,12 +164,12 @@ const local: App.I18n.Schema = {
     500: '服务器错误',
     'iframe-page': '外链页面',
     home: '首页',
-    system1: '系统 1',
-    system2: '系统 2',
-    system3: '系统 3',
-    system4: '系统 4',
-    system5: '系统 5',
-    system6: '系统 6',
+    system1: '课程规划与设计',
+    system2: '教学资源生成',
+    system3: '课堂互动与实施',
+    system4: '作业与测评',
+    system5: '学期分析与干预',
+    system6: '教师发展支持',
     chatbot: '对话'
   },
   page: {
@@ -222,7 +222,7 @@ const local: App.I18n.Schema = {
     home: {
       branchDesc:
         '为了方便大家开发和更新合并，我们对main分支的代码进行了精简，只保留了首页菜单，其余内容已移至example分支进行维护。预览地址显示的内容即为example分支的内容。',
-      greeting: '早安，{userName}, 今天又是充满活力的一天!',
+      greeting: '早安，{userName}, 欢迎使用XXX系统!',
       weatherDesc: '今日多云转晴，20℃ - 25℃!',
       projectCount: '项目数',
       todo: '待办',
@@ -240,7 +240,7 @@ const local: App.I18n.Schema = {
       projectNews: {
         title: '项目动态',
         moreNews: '更多动态',
-        desc1: 'Soybean 在2021年5月28日创建了开源项目 soybean-admin!',
+        desc1: '{userName} 在2021年5月28日创建了开源项目 soybean-admin!',
         desc2: 'Yanbowe 向 soybean-admin 提交了一个bug，多标签栏不会自适应。',
         desc3: 'Soybean 准备为 soybean-admin 的发布做充分的准备工作!',
         desc4: 'Soybean 正在忙于为soybean-admin写项目说明文档！',

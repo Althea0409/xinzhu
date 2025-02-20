@@ -46,7 +46,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'chatbot',
       i18nKey: 'route.chatbot',
-      icon: 'mdi:robot-excited-outline',
+      icon: 'mdi:robot-happy-outline',
       order: 7
     }
   },
@@ -93,6 +93,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'system1',
       i18nKey: 'route.system1',
+      icon: 'mdi:human-male-board',
       order: 1
     }
   },
@@ -103,6 +104,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'system2',
       i18nKey: 'route.system2',
+      icon: 'mdi:book-education-outline',
       order: 2
     }
   },
@@ -113,6 +115,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'system3',
       i18nKey: 'route.system3',
+      icon: 'mdi:comment-text-multiple-outline',
       order: 3
     }
   },
@@ -123,6 +126,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'system4',
       i18nKey: 'route.system4',
+      icon: 'mdi:clipboard-edit-outline',
       order: 4
     }
   },
@@ -133,6 +137,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'system5',
       i18nKey: 'route.system5',
+      icon: 'mdi:chart-box-multiple-outline',
       order: 5
     }
   },
@@ -143,6 +148,7 @@ export const generatedRoutes: GeneratedRoute[] = [
     meta: {
       title: 'system6',
       i18nKey: 'route.system6',
+      icon: 'mdi:account-star-outline',
       order: 6
     }
   }
