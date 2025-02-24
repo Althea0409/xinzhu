@@ -1,4 +1,4 @@
-/* fade */
+/* 设置过渡效果 */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease-in-out;

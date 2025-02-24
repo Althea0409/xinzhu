@@ -206,3 +206,40 @@ export const generatedRoutes: GeneratedRoute[] = [
 
 ### 7. xxx
 
+找到路径：
+
+```
+src/
+  store/
+    modules/
+      theme/
+        shared.ts
+        ...
+```
+
+在 `shared.ts` 文件中定位到以下的代码：
+
+```ts
+export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false) {
+  const { primary: colorLoading } = colors;
+
+  const theme: GlobalThemeOverrides = {
+    // ...
+    Menu: {
+      borderRadius: '8px', // 定义主题样式中的圆角半径
+      itemTextColorInverted: '#474667', // 定义未选中状态下的项目文本颜色（反转主题）
+      itemTextColorHoverInverted: '#474667', // 定义鼠标悬停状态下的项目文本颜色（反转主题）
+      itemIconColorInverted: '#474667', // 定义未选中状态下的项目图标颜色（反转主题）
+      itemIconColorHoverInverted: '#474667', // 定义鼠标悬停状态下的项目图标颜色（反转主题）
+      itemColorHoverInverted: '#DCE2FC' // 定义鼠标悬停状态下的项目背景颜色（反转主题）
+    }
+  };
+
+  return theme;
+```
+
+添加并修改 `Menu` 的属性值，即可修改侧边栏菜单样式
+
+---
+
+### 8. xxx

@@ -1,7 +1,7 @@
 /*
-1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
-2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
-2. [UnoCSS]: allow to override the default border color with css var `--un-default-border-color`
+1. 防止填充和边框影响元素宽度。(https://github.com/mozdevs/cssremedy/issues/4)
+2. 允许通过仅添加边框宽度来为元素添加边框。(https://github.com/tailwindcss/tailwindcss/pull/116)
+2. [UnoCSS]: 允许使用 css 变量 `--un-default-border-color` 覆盖默认边框颜色
 */
 
 *,
@@ -14,10 +14,10 @@
 }
 
 /*
-1. Use a consistent sensible line-height in all browsers.
-2. Prevent adjustments of font size after orientation changes in iOS.
-3. Use a more readable tab size.
-4. Use the user's configured `sans` font-family by default.
+1. 在所有浏览器中使用一致且合适的行高。
+2. 防止在 iOS 中更改方向后调整字体大小。
+3. 使用更易读的制表符大小。
+4. 默认使用用户配置的 `sans` 字体系列。
 */
 
 html {
@@ -43,8 +43,8 @@ html {
 }
 
 /*
-1. Remove the margin in all browsers.
-2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+1. 在所有浏览器中移除 margin。
+2. 从 `html` 继承行高，以便用户可以直接在 `html` 元素上设置它们。
 */
 
 body {
@@ -53,9 +53,9 @@ body {
 }
 
 /*
-1. Add the correct height in Firefox.
-2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-3. Ensure horizontal rules are visible by default.
+1. 在 Firefox 中添加正确的高度。
+2. 修正 Firefox 中边框颜色的继承。(https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. 确保水平分隔线默认可见。
 */
 
 hr {
@@ -65,7 +65,7 @@ hr {
 }
 
 /*
-Add the correct text decoration in Chrome, Edge, and Safari.
+在 Chrome, Edge 和 Safari 中添加正确的文本装饰。
 */
 
 abbr:where([title]) {
@@ -73,7 +73,7 @@ abbr:where([title]) {
 }
 
 /*
-Remove the default font size and weight for headings.
+移除标题的默认字体大小和粗细。
 */
 
 h1,
@@ -87,7 +87,7 @@ h6 {
 }
 
 /*
-Reset links to optimize for opt-in styling instead of opt-out.
+重置链接以优化选择性样式而不是排除样式。
 */
 
 a {
@@ -96,7 +96,7 @@ a {
 }
 
 /*
-Add the correct font weight in Edge and Safari.
+在 Edge 和 Safari 中添加正确的字体粗细。
 */
 
 b,
@@ -105,8 +105,8 @@ strong {
 }
 
 /*
-1. Use the user's configured `mono` font family by default.
-2. Correct the odd `em` font sizing in all browsers.
+1. 默认使用用户配置的 `mono` 字体系列。
+2. 在所有浏览器中修正奇怪的 `em` 字体大小。
 */
 
 code,
@@ -118,7 +118,7 @@ pre {
 }
 
 /*
-Add the correct font size in all browsers.
+在所有浏览器中添加正确的字体大小。
 */
 
 small {
@@ -126,7 +126,7 @@ small {
 }
 
 /*
-Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+防止 `sub` 和 `sup` 元素在所有浏览器中影响行高。
 */
 
 sub,
@@ -146,9 +146,9 @@ sup {
 }
 
 /*
-1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
-2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
-3. Remove gaps between table borders by default.
+1. 在 Chrome 和 Safari 中移除表格内容的文本缩进。(https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. 在 Chrome 和 Safari 中修正表格边框颜色的继承。(https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. 默认移除表格边框之间的间隙。
 */
 
 table {
@@ -158,9 +158,9 @@ table {
 }
 
 /*
-1. Change the font styles in all browsers.
-2. Remove the margin in Firefox and Safari.
-3. Remove default padding in all browsers.
+1. 更改所有浏览器中的字体样式。
+2. 在 Firefox 和 Safari 中移除 margin。
+3. 在所有浏览器中移除默认填充。
 */
 
 button,
@@ -180,7 +180,7 @@ textarea {
 }
 
 /*
-Remove the inheritance of text transform in Edge and Firefox.
+在 Edge 和 Firefox 中移除文本转换的继承。
 */
 
 button,
@@ -189,8 +189,8 @@ select {
 }
 
 /*
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Remove default button styles.
+1. 在 iOS 和 Safari 中修正不可样式化的点击类型。
+2. 移除默认按钮样式。
 */
 
 button,
@@ -203,7 +203,7 @@ button,
 }
 
 /*
-Use the modern Firefox focus style for all focusable elements.
+为所有可聚焦元素使用现代 Firefox 焦点样式。
 */
 
 :-moz-focusring {
@@ -211,7 +211,7 @@ Use the modern Firefox focus style for all focusable elements.
 }
 
 /*
-Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+在 Firefox 中移除额外的 `:invalid` 样式。(https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
 */
 
 :-moz-ui-invalid {
@@ -219,7 +219,7 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
 }
 
 /*
-Add the correct vertical alignment in Chrome and Firefox.
+在 Chrome 和 Firefox 中添加正确的垂直对齐方式。
 */
 
 progress {
@@ -227,7 +227,7 @@ progress {
 }
 
 /*
-Correct the cursor style of increment and decrement buttons in Safari.
+在 Safari 中修正增量和减量按钮的光标样式。
 */
 
 ::-webkit-inner-spin-button,
@@ -236,8 +236,8 @@ Correct the cursor style of increment and decrement buttons in Safari.
 }
 
 /*
-1. Correct the odd appearance in Chrome and Safari.
-2. Correct the outline style in Safari.
+1. 在 Chrome 和 Safari 中修正奇怪的外观。
+2. 在 Safari 中修正轮廓样式。
 */
 
 [type='search'] {
@@ -246,7 +246,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 }
 
 /*
-Remove the inner padding in Chrome and Safari on macOS.
+在 macOS 的 Chrome 和 Safari 中移除内部填充。
 */
 
 ::-webkit-search-decoration {
@@ -254,8 +254,8 @@ Remove the inner padding in Chrome and Safari on macOS.
 }
 
 /*
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Change font properties to `inherit` in Safari.
+1. 在 iOS 和 Safari 中修正不可样式化的点击类型。
+2. 在 Safari 中将字体属性更改为 `inherit`。
 */
 
 ::-webkit-file-upload-button {
@@ -264,7 +264,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 }
 
 /*
-Add the correct display in Chrome and Safari.
+在 Chrome 和 Safari 中添加正确的显示样式。
 */
 
 summary {
@@ -272,7 +272,7 @@ summary {
 }
 
 /*
-Removes the default spacing and border for appropriate elements.
+移除适当元素的默认间距和边框。
 */
 
 blockquote,
@@ -309,7 +309,7 @@ menu {
 }
 
 /*
-Prevent resizing textareas horizontally by default.
+默认防止文本区域水平调整大小。
 */
 
 textarea {
@@ -317,8 +317,8 @@ textarea {
 }
 
 /*
-1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
-2. Set the default placeholder color to the user's configured gray 400 color.
+1. 在 Firefox 中重置默认占位符不透明度。(https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. 将默认占位符颜色设置为用户配置的灰色 400 颜色。
 */
 
 input::placeholder,
@@ -328,7 +328,7 @@ textarea::placeholder {
 }
 
 /*
-Set the default cursor for buttons.
+设置按钮的默认光标。
 */
 
 button,
@@ -337,16 +337,16 @@ button,
 }
 
 /*
-Make sure disabled buttons don't get the pointer cursor.
+确保禁用的按钮不会获得指针光标。
 */
 :disabled {
   cursor: default;
 }
 
 /*
-1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
-2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-   This can trigger a poorly considered lint error in some tools but is included by design.
+1. 默认将替换元素设置为 `display: block`。(https://github.com/mozdevs/cssremedy/issues/14)
+2. 添加 `vertical-align: middle` 以默认更合理地对齐替换元素。(https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   这可能会在某些工具中触发不合适的 lint 错误，但这是有意设计的。
 */
 
 img,
@@ -362,7 +362,7 @@ object {
 }
 
 /*
-Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+将图像和视频限制在父元素的宽度内并保持其固有的宽高比。(https://github.com/mozdevs/cssremedy/issues/14)
 */
 
 img,
@@ -371,7 +371,7 @@ video {
   height: auto;
 }
 
-/* Make elements with the HTML hidden attribute stay hidden by default */
+/* 使具有 HTML hidden 属性的元素默认保持隐藏 */
 [hidden] {
   display: none;
 }

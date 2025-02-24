@@ -24,4 +24,9 @@ withDefaults(defineProps<Props>(), {
   </RouterLink>
 </template>
 
-<style scoped></style>
+<style scoped>
+h2 {
+  /* padding-left: 6px; 调整左侧间距 */
+  letter-spacing: 0.8px; /* 调整字间距 */
+}
+</style>

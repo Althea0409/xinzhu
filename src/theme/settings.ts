@@ -4,10 +4,10 @@ export const themeSettings: App.Theme.ThemeSetting = {
   grayscale: false, // 灰度模式
   colourWeakness: false, // 色弱模式
   recommendColor: true, // 应用推荐算法的颜色
-  themeColor: '#3b82f6', // 主题色
+  themeColor: '#605CE5', // 主题色
   otherColor: {
     // 其他颜色
-    info: '#2080f0', // 信息色
+    info: '#605CE5', // 信息色
     success: '#52c41a', // 成功色
     warning: '#faad14', // 警告色
     error: '#f5222d' // 错误色
@@ -48,8 +48,8 @@ export const themeSettings: App.Theme.ThemeSetting = {
   fixedHeaderAndTab: true, // 固定头部和标签页
   sider: {
     // 侧边栏设置
-    inverted: false, // 反转色
-    width: 220, // 宽度
+    inverted: true, // 反转色
+    width: 210, // 宽度
     collapsedWidth: 64, // 收缩宽度
     mixWidth: 90, // 混合宽度
     mixCollapsedWidth: 64, // 混合收缩宽度
@@ -65,7 +65,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
   watermark: {
     // 水印设置
     visible: false, // 显示
-    text: 'TeachAI' // 文本
+    text: 'EduBanboo' // 文本
   },
   tokens: {
     // 主题令牌
@@ -73,9 +73,9 @@ export const themeSettings: App.Theme.ThemeSetting = {
       // 亮色主题
       colors: {
         // 颜色
-        container: 'rgb(255, 255, 255)', // 容器色
-        layout: 'rgb(242, 246, 253)', // 布局色 235,242,254
-        inverted: 'rgb(0, 20, 40)', // 反转色
+        container: 'rgb(255, 255, 255)', // 容器色 244, 247, 252
+        layout: 'rgb(244, 247, 252)', // 布局色 235,242,254  242, 246, 253
+        inverted: 'rgb(233, 240, 255)', // 反转色
         'base-text': 'rgb(31, 31, 31)' // 基础文本色
       },
       boxShadow: {

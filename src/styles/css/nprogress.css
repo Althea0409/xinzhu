@@ -1,83 +1,83 @@
-/* Make clicks pass-through */
+/* 使点击事件穿透 */
 #nprogress {
-  pointer-events: none;
+  pointer-events: none; /* 禁用指针事件 */
 }
 
 #nprogress .bar {
-  background: rgb(var(--nprogress-color));
+  background: rgb(var(--nprogress-color)); /* 设置进度条颜色 */
 
-  position: fixed;
-  z-index: 1031;
-  top: 0;
-  left: 0;
+  position: fixed; /* 固定定位 */
+  z-index: 1031; /* 设置堆叠顺序 */
+  top: 0; /* 位置顶部 */
+  left: 0; /* 位置左侧 */
 
-  width: 100%;
-  height: 2px;
+  width: 100%; /* 宽度为100% */
+  height: 2px; /* 高度为2px */
 }
 
-/* Fancy blur effect */
+/* 华丽的模糊效果 */
 #nprogress .peg {
-  display: block;
-  position: absolute;
-  right: 0px;
-  width: 100px;
-  height: 100%;
+  display: block; /* 块级元素 */
+  position: absolute; /* 绝对定位 */
+  right: 0px; /* 位置右侧 */
+  width: 100px; /* 宽度为100px */
+  height: 100%; /* 高度为100% */
   box-shadow:
     0 0 10px rgb(var(--nprogress-color)),
-    0 0 5px rgb(var(--nprogress-color));
-  opacity: 1;
+    /* 设置阴影颜色和尺寸 */ 0 0 5px rgb(var(--nprogress-color)); /* 设置阴影颜色和尺寸 */
+  opacity: 1; /* 设置不透明度 */
 
-  -webkit-transform: rotate(3deg) translate(0px, -4px);
-  -ms-transform: rotate(3deg) translate(0px, -4px);
-  transform: rotate(3deg) translate(0px, -4px);
+  -webkit-transform: rotate(3deg) translate(0px, -4px); /* 旋转和位移 */
+  -ms-transform: rotate(3deg) translate(0px, -4px); /* 旋转和位移 */
+  transform: rotate(3deg) translate(0px, -4px); /* 旋转和位移 */
 }
 
-/* Remove these to get rid of the spinner */
+/* 移除以下样式可去除加载旋转器 */
 #nprogress .spinner {
-  display: block;
-  position: fixed;
-  z-index: 1031;
-  top: 15px;
-  right: 15px;
+  display: block; /* 块级元素 */
+  position: fixed; /* 固定定位 */
+  z-index: 1031; /* 设置堆叠顺序 */
+  top: 15px; /* 位置顶部 */
+  right: 15px; /* 位置右侧 */
 }
 
 #nprogress .spinner-icon {
-  width: 18px;
-  height: 18px;
-  box-sizing: border-box;
+  width: 18px; /* 宽度为18px */
+  height: 18px; /* 高度为18px */
+  box-sizing: border-box; /* 边框盒模型 */
 
-  border: solid 2px transparent;
-  border-top-color: rgb(var(--nprogress-color));
-  border-left-color: rgb(var(--nprogress-color));
-  border-radius: 50%;
+  border: solid 2px transparent; /* 设置边框透明 */
+  border-top-color: rgb(var(--nprogress-color)); /* 顶部边框颜色 */
+  border-left-color: rgb(var(--nprogress-color)); /* 左侧边框颜色 */
+  border-radius: 50%; /* 圆角边框 */
 
-  -webkit-animation: nprogress-spinner 400ms linear infinite;
-  animation: nprogress-spinner 400ms linear infinite;
+  -webkit-animation: nprogress-spinner 400ms linear infinite; /* 设置旋转动画 */
+  animation: nprogress-spinner 400ms linear infinite; /* 设置旋转动画 */
 }
 
 .nprogress-custom-parent {
-  overflow: hidden;
-  position: relative;
+  overflow: hidden; /* 隐藏溢出内容 */
+  position: relative; /* 相对定位 */
 }
 
 .nprogress-custom-parent #nprogress .spinner,
 .nprogress-custom-parent #nprogress .bar {
-  position: absolute;
+  position: absolute; /* 绝对定位 */
 }
 
 @-webkit-keyframes nprogress-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg); /* 初始旋转角度 */
   }
   100% {
-    -webkit-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg); /* 最终旋转角度 */
   }
 }
 @keyframes nprogress-spinner {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg); /* 初始旋转角度 */
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(360deg); /* 最终旋转角度 */
   }
 }
