@@ -26,6 +26,4 @@ export const views: Record<LastLevelRouteKey, RouteComponent | (() => Promise<Ro
   system2: () => import("@/views/system2/index.vue"),
   system3: () => import("@/views/system3/index.vue"),
   system4: () => import("@/views/system4/index.vue"),
-  system5: () => import("@/views/system5/index.vue"),
-  system6: () => import("@/views/system6/index.vue"),
 };

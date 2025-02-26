@@ -125,7 +125,7 @@ const local: App.I18n.Schema = {
       }
     },
     sider: {
-      inverted: '深色侧边栏',
+      inverted: '彩色侧边栏',
       width: '侧边栏宽度',
       collapsedWidth: '侧边栏折叠宽度',
       mixWidth: '混合布局侧边栏宽度',
@@ -164,13 +164,11 @@ const local: App.I18n.Schema = {
     500: '服务器错误',
     'iframe-page': '外链页面',
     home: '首页',
-    system1: '课程规划与设计',
-    system2: '教学资源生成',
-    system3: '课堂互动与实施',
-    system4: '作业与测评',
-    system5: '学期分析与干预',
-    system6: '教师发展支持',
-    chatbot: '对话'
+    system1: '智能备课与教学设计',
+    system2: '智能作业与评估管理',
+    system3: '学生学习与表现监测',
+    system4: '虚拟现实与互动模拟',
+    chatbot: '新小竹 ai 助手'
   },
   page: {
     login: {
@@ -222,7 +220,7 @@ const local: App.I18n.Schema = {
     home: {
       branchDesc:
         '为了方便大家开发和更新合并，我们对main分支的代码进行了精简，只保留了首页菜单，其余内容已移至example分支进行维护。预览地址显示的内容即为example分支的内容。',
-      greeting: '早安，{userName}, 欢迎使用XXX系统!',
+      greeting: '早安，{userName}, 欢迎使用新竹ai备课系统!',
       weatherDesc: '今日多云转晴，20℃ - 25℃!',
       projectCount: '项目数',
       todo: '待办',

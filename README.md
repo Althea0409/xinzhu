@@ -204,7 +204,7 @@ export const generatedRoutes: GeneratedRoute[] = [
 
 ---
 
-### 7. xxx
+### 7. 自定义菜单样式
 
 找到路径：
 

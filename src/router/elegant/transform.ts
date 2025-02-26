@@ -173,9 +173,7 @@ const routeMap: RouteMap = {
   "system1": "/system1",
   "system2": "/system2",
   "system3": "/system3",
-  "system4": "/system4",
-  "system5": "/system5",
-  "system6": "/system6"
+  "system4": "/system4"
 };
 
 /**
