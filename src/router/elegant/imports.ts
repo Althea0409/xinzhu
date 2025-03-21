@@ -20,10 +20,10 @@ export const views: Record<LastLevelRouteKey, RouteComponent | (() => Promise<Ro
   500: () => import("@/views/_builtin/500/index.vue"),
   "iframe-page": () => import("@/views/_builtin/iframe-page/[url].vue"),
   login: () => import("@/views/_builtin/login/index.vue"),
-  chatbot: () => import("@/views/chatbot/index.vue"),
   home: () => import("@/views/home/index.vue"),
   system1: () => import("@/views/system1/index.vue"),
   system2: () => import("@/views/system2/index.vue"),
   system3: () => import("@/views/system3/index.vue"),
   system4: () => import("@/views/system4/index.vue"),
+  system5: () => import("@/views/system5/index.vue"),
 };

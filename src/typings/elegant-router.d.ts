@@ -20,7 +20,6 @@ declare module "@elegant-router/types" {
     "403": "/403";
     "404": "/404";
     "500": "/500";
-    "chatbot": "/chatbot";
     "home": "/home";
     "iframe-page": "/iframe-page/:url";
     "login": "/login/:module(pwd-login|code-login|register|reset-pwd|bind-wechat)?";
@@ -28,6 +27,7 @@ declare module "@elegant-router/types" {
     "system2": "/system2";
     "system3": "/system3";
     "system4": "/system4";
+    "system5": "/system5";
   };
 
   /**
@@ -62,7 +62,6 @@ declare module "@elegant-router/types" {
     | "403"
     | "404"
     | "500"
-    | "chatbot"
     | "home"
     | "iframe-page"
     | "login"
@@ -70,6 +69,7 @@ declare module "@elegant-router/types" {
     | "system2"
     | "system3"
     | "system4"
+    | "system5"
   >;
 
   /**
@@ -91,12 +91,12 @@ declare module "@elegant-router/types" {
     | "500"
     | "iframe-page"
     | "login"
-    | "chatbot"
     | "home"
     | "system1"
     | "system2"
     | "system3"
     | "system4"
+    | "system5"
   >;
 
   /**

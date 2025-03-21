@@ -167,9 +167,7 @@ const local: App.I18n.Schema = {
     system2: 'system 2',
     system3: 'system 3',
     system4: 'system 4',
-    system5: 'system 5',
-    system6: 'system 6',
-    chatbot: 'chatbot'
+    system5: 'system 5'
   },
   page: {
     login: {

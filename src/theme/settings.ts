@@ -75,7 +75,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
         // 颜色
         container: 'rgb(255, 255, 255)', // 容器色 244, 247, 252
         layout: 'rgb(244, 247, 252)', // 布局色 235,242,254  242, 246, 253
-        inverted: 'rgb(233, 240, 255)', // 反转色
+        inverted: 'rgb(234, 242, 255)', // 反转色 233, 240, 255
         'base-text': 'rgb(31, 31, 31)' // 基础文本色
       },
       boxShadow: {

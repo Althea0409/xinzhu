@@ -29,7 +29,7 @@ interface CommandArg {
   /**
    * display lang of cli
    *
-   * @default 'en-us'
+   * @default 'zh-cn'
    */
   lang?: Lang;
 }

@@ -1,6 +1,6 @@
 const local: App.I18n.Schema = {
   system: {
-    title: '新竹 EduBanboo',
+    title: '新 竹',
     updateTitle: '系统版本更新通知',
     updateContent: '检测到系统有新版本发布，是否立即刷新页面？',
     updateConfirm: '立即刷新',
@@ -163,12 +163,12 @@ const local: App.I18n.Schema = {
     404: '页面不存在',
     500: '服务器错误',
     'iframe-page': '外链页面',
-    home: '首页',
-    system1: '智能备课与教学设计',
-    system2: '智能作业与评估管理',
-    system3: '学生学习与表现监测',
-    system4: '虚拟现实与互动模拟',
-    chatbot: '新小竹 ai 助手'
+    home: '教学概览',
+    system1: '备课中心',
+    system2: '分层题库',
+    system3: '学情分析',
+    system4: '协作社区',
+    system5: '教师成长'
   },
   page: {
     login: {

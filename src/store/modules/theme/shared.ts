@@ -260,7 +260,8 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
       itemTextColorHoverInverted: '#474667', // 定义鼠标悬停状态下的项目文本颜色（反转主题）
       itemIconColorInverted: '#474667', // 定义未选中状态下的项目图标颜色（反转主题）
       itemIconColorHoverInverted: '#474667', // 定义鼠标悬停状态下的项目图标颜色（反转主题）
-      itemColorHoverInverted: '#DCE2FC' // 定义鼠标悬停状态下的项目背景颜色（反转主题）
+      itemColorHoverInverted: '#DCE2FC', // 定义鼠标悬停状态下的项目背景颜色（反转主题）
+      itemIconColorCollapsedInverted: '#474667' // 定义未选中状态下折叠菜单项目图标颜色（反转主题）
     }
   };
 

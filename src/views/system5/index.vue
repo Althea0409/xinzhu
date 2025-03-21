@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>chatbot</div>
+  <div>system5</div>
 </template>
 
 <style scoped></style>
