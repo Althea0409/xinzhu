@@ -166,7 +166,7 @@ const local: App.I18n.Schema = {
     home: '教学概览',
     system1: '备课中心',
     system2: '分层题库',
-    system3: '学情分析',
+    system3: '学情追踪',
     system4: '协作社区',
     system5: '教师成长'
   },

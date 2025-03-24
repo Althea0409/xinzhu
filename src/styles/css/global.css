@@ -11,3 +11,46 @@ body,
 html {
   overflow-x: hidden;
 }
+
+/* 菜单细节调整 */
+.n-menu {
+  margin: 0 10px;
+}
+
+.n-menu-item-content-header {
+  margin: 0 1px;
+}
+
+.n-menu-item-content__icon {
+  margin-left: 10px;
+}
+
+.n-menu--collapsed {
+  margin: 0;
+}
+
+.n-menu--collapsed .n-menu-item-content__icon {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.n-menu--collapsed .n-menu-item-content-header {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.n-menu--collapsed .n-menu-item-content {
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-modal div[aria-hidden='true'] {
+  display: none !important;
+}

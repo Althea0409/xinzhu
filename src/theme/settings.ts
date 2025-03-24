@@ -4,10 +4,10 @@ export const themeSettings: App.Theme.ThemeSetting = {
   grayscale: false, // 灰度模式
   colourWeakness: false, // 色弱模式
   recommendColor: true, // 应用推荐算法的颜色
-  themeColor: '#605CE5', // 主题色
+  themeColor: '#2B46FE', // 主题色 #605CE5
   otherColor: {
     // 其他颜色
-    info: '#605CE5', // 信息色
+    info: '#2B46FE', // 信息色
     success: '#52c41a', // 成功色
     warning: '#faad14', // 警告色
     error: '#f5222d' // 错误色
@@ -40,16 +40,17 @@ export const themeSettings: App.Theme.ThemeSetting = {
   },
   tab: {
     // 标签页设置
-    visible: true, // 显示
+    visible: false, // 显示
     cache: true, // 缓存
     height: 44, // 高度
+
     mode: 'chrome' // 模式
   },
   fixedHeaderAndTab: true, // 固定头部和标签页
   sider: {
     // 侧边栏设置
     inverted: true, // 反转色
-    width: 210, // 宽度
+    width: 200, // 宽度 210
     collapsedWidth: 64, // 收缩宽度
     mixWidth: 90, // 混合宽度
     mixCollapsedWidth: 64, // 混合收缩宽度
