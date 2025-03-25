@@ -24,13 +24,10 @@ export const views: Record<LastLevelRouteKey, RouteComponent | (() => Promise<Ro
   system1_child1: () => import("@/views/system1/child1/index.vue"),
   system1_child2: () => import("@/views/system1/child2/index.vue"),
   system1_child3: () => import("@/views/system1/child3/index.vue"),
-  system1: () => import("@/views/system1/index.vue"),
   system2_child1: () => import("@/views/system2/child1/index.vue"),
   system2_child2: () => import("@/views/system2/child2/index.vue"),
   system2_child3: () => import("@/views/system2/child3/index.vue"),
-  system2: () => import("@/views/system2/index.vue"),
   system3_child1: () => import("@/views/system3/child1/index.vue"),
   system3_child2: () => import("@/views/system3/child2/index.vue"),
-  system3: () => import("@/views/system3/index.vue"),
   system4: () => import("@/views/system4/index.vue"),
 };
