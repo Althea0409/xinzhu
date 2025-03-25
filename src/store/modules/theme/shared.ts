@@ -261,7 +261,15 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
       itemIconColorInverted: '#474667', // 定义未选中状态下的项目图标颜色（反转主题）
       itemIconColorHoverInverted: '#474667', // 定义鼠标悬停状态下的项目图标颜色（反转主题）
       itemColorHoverInverted: '#DCE2FC', // 定义鼠标悬停状态下的项目背景颜色（反转主题）
-      itemIconColorCollapsedInverted: '#474667' // 定义未选中状态下折叠菜单项目图标颜色（反转主题）
+      itemIconColorCollapsedInverted: '#474667', // 定义未选中状态下折叠菜单项目图标颜色（反转主题）
+
+      itemTextColorChildActiveInverted: '#2B46FE', // 定义二级菜单选中状态下的文字颜色（反转主题）
+      itemIconColorChildActiveInverted: '#2B46FE', // 定义二级菜单选中状态下的图标颜色（反转主题）
+      itemIconColorChildActiveHoverInverted: '#2B46FE', // 定义二级菜单鼠标悬停状态下的图标颜色（反转主题）
+      arrowColorInverted: '#474667', // 定义二级菜单选中状态下的箭头颜色（反转主题）
+      arrowColorHoverInverted: '#474667', // 定义二级菜单鼠标悬停状态下的箭头颜色（反转主题）
+      arrowColorChildActiveInverted: '#2B46FE', // 定义二级菜单选中状态下的箭头颜色（反转主题）
+      arrowColorChildActiveHoverInverted: '#2B46FE' // 定义二级菜单鼠标悬停状态下的箭头颜色（反转主题）
     }
   };
 

@@ -165,7 +165,10 @@ const local: App.I18n.Schema = {
     'iframe-page': '外链页面',
     home: '教学概览',
     system1: '备课中心',
+    system1_child1: 'AI教案生成器',
+    system1_child2: 'PPT资源工厂',
     system2: '分层题库',
+    system2_child1: '分层题库--',
     system3: '学情追踪',
     system4: '协作社区',
     system5: '教师成长'

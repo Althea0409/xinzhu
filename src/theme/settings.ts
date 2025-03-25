@@ -66,7 +66,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
   watermark: {
     // 水印设置
     visible: false, // 显示
-    text: 'EduBanboo' // 文本
+    text: 'EduBamboo' // 文本
   },
   tokens: {
     // 主题令牌

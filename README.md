@@ -242,4 +242,40 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
 
 ---
 
-### 8. xxx
+### 8. 提交代码
+
+```
+pnpm commit 提交代码时，会自动生成commit信息，并提交到远程仓库
+```
+
+提交规范：
+
+```
+feat:       新功能
+feat-wip:   开发中的功能（如未完成的功能代码）
+fix:        Bug修复
+docs:       仅文档更改
+typo:       拼写错误（代码/文档的校正）
+style:      代码样式调整（不影响逻辑的修改）
+refactor:   代码重构（非功能/非缺陷的修改）
+perf:       性能改进
+optimize:   代码优化
+test:       测试相关修改
+build:      构建系统修改
+ci:         持续集成配置修改
+chore:      其他非源码修改（如脚本、配置等杂项）
+revert:     撤销提交
+```
+
+```
+projects     项目          (项目全局配置/基建等)
+packages     依赖包        (第三方包/依赖管理)  
+components   组件          (可复用的UI组件)
+hooks        钩子          (自定义 Hook 函数) 
+utils        工具库        (通用工具函数/类)
+types        类型声明      (TypeScript 类型定义)
+styles       样式          (CSS/SCSS 等样式文件)
+deps         项目依赖      (依赖项的增减/升级)
+release      发布          (版本发布相关操作)
+other        其他          (未明确分类的变更)
+```

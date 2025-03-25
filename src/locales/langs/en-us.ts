@@ -164,7 +164,10 @@ const local: App.I18n.Schema = {
     'iframe-page': 'Iframe',
     home: 'Home',
     system1: 'system 1',
+    system1_child1: 'system 1 child 1',
+    system1_child2: 'system 1 child 2',
     system2: 'system 2',
+    system2_child1: 'system 2 child 1',
     system3: 'system 3',
     system4: 'system 4',
     system5: 'system 5'

@@ -78,24 +78,59 @@ export const generatedRoutes: GeneratedRoute[] = [
   {
     name: 'system1',
     path: '/system1',
-    component: 'layout.base$view.system1',
+    // @ts-ignore
+    component: 'layout.base',
     meta: {
       title: 'system1',
       i18nKey: 'route.system1',
       icon: 'mdi:human-male-board',
       order: 1
-    }
+    },
+    children: [
+      {
+        name: 'system1_child1',
+        path: '/system1/child1',
+        component: 'view.system1_child1',
+        meta: {
+          title: 'system1_child1',
+          i18nKey: 'route.system1_child1',
+          icon: 'mingcute:pencil-2-ai-fill'
+        }
+      },
+      {
+        name: 'system1_child2',
+        path: '/system1/child2',
+        component: 'view.system1_child2',
+        meta: {
+          title: 'system1_child2',
+          i18nKey: 'route.system1_child2',
+          icon: 'fa-solid:file-powerpoint'
+        }
+      }
+    ]
   },
   {
     name: 'system2',
     path: '/system2',
-    component: 'layout.base$view.system2',
+    // @ts-ignore
+    component: 'layout.base',
     meta: {
       title: 'system2',
       i18nKey: 'route.system2',
       icon: 'mdi:book-education-outline',
       order: 2
-    }
+    },
+    children: [
+      {
+        name: 'system2_child1',
+        path: '/system2/child1',
+        component: 'view.system2_child1',
+        meta: {
+          title: 'system2_child1',
+          i18nKey: 'route.system2_child1'
+        }
+      }
+    ]
   },
   {
     name: 'system3',
