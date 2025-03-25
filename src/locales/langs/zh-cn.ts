@@ -167,11 +167,15 @@ const local: App.I18n.Schema = {
     system1: '备课中心',
     system1_child1: 'AI教案生成器',
     system1_child2: 'PPT资源工厂',
-    system2: '分层题库',
-    system2_child1: '分层题库--',
-    system3: '学情追踪',
-    system4: '协作社区',
-    system5: '教师成长'
+    system1_child3: '跨学科素材库',
+    system2: '学情追踪',
+    system2_child1: '教学课程选择',
+    system2_child2: '分层作业分发',
+    system2_child3: '学习进度追踪',
+    system3: '协作社区',
+    system3_child1: '跨校教案共享',
+    system3_child2: '教学问题求助',
+    system4: '教师成长'
   },
   page: {
     login: {

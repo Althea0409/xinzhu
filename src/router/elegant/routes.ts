@@ -78,7 +78,6 @@ export const generatedRoutes: GeneratedRoute[] = [
   {
     name: 'system1',
     path: '/system1',
-    // @ts-ignore
     component: 'layout.base',
     meta: {
       title: 'system1',
@@ -106,13 +105,22 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.system1_child2',
           icon: 'fa-solid:file-powerpoint'
         }
+      },
+      {
+        name: 'system1_child3',
+        path: '/system1/child3',
+        component: 'view.system1_child3',
+        meta: {
+          title: 'system1_child3',
+          i18nKey: 'route.system1_child3',
+          icon: 'mingcute:pencil-2-ai-fill'
+        }
       }
     ]
   },
   {
     name: 'system2',
     path: '/system2',
-    // @ts-ignore
     component: 'layout.base',
     meta: {
       title: 'system2',
@@ -129,19 +137,57 @@ export const generatedRoutes: GeneratedRoute[] = [
           title: 'system2_child1',
           i18nKey: 'route.system2_child1'
         }
+      },
+      {
+        name: 'system2_child2',
+        path: '/system2/child2',
+        component: 'view.system2_child2',
+        meta: {
+          title: 'system2_child2',
+          i18nKey: 'route.system2_child2'
+        }
+      },
+      {
+        name: 'system2_child3',
+        path: '/system2/child3',
+        component: 'view.system2_child3',
+        meta: {
+          title: 'system2_child3',
+          i18nKey: 'route.system2_child3'
+        }
       }
     ]
   },
   {
     name: 'system3',
     path: '/system3',
-    component: 'layout.base$view.system3',
+    component: 'layout.base',
     meta: {
       title: 'system3',
       i18nKey: 'route.system3',
       icon: 'mdi:monitor-account',
       order: 3
-    }
+    },
+    children: [
+      {
+        name: 'system3_child1',
+        path: '/system3/child1',
+        component: 'view.system3_child1',
+        meta: {
+          title: 'system3_child1',
+          i18nKey: 'route.system3_child1'
+        }
+      },
+      {
+        name: 'system3_child2',
+        path: '/system3/child2',
+        component: 'view.system3_child2',
+        meta: {
+          title: 'system3_child2',
+          i18nKey: 'route.system3_child2'
+        }
+      }
+    ]
   },
   {
     name: 'system4',
@@ -152,17 +198,6 @@ export const generatedRoutes: GeneratedRoute[] = [
       i18nKey: 'route.system4',
       icon: 'mdi:comment-text-multiple-outline',
       order: 4
-    }
-  },
-  {
-    name: 'system5',
-    path: '/system5',
-    component: 'layout.base$view.system5',
-    meta: {
-      title: 'system5',
-      i18nKey: 'route.system5',
-      icon: 'mdi:lightbulb-on-outline',
-      order: 5
     }
   }
 ];
