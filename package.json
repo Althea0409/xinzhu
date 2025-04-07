@@ -54,6 +54,7 @@
     "@sa/hooks": "workspace:*",
     "@sa/materials": "workspace:*",
     "@sa/utils": "workspace:*",
+    "@vicons/carbon": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",
     "@vueuse/core": "12.5.0",
     "clipboard": "2.0.11",
@@ -72,6 +73,7 @@
   },
   "devDependencies": {
     "@elegant-router/vue": "0.3.8",
+    "@iconify-json/carbon": "^1.2.8",
     "@iconify/json": "2.2.305",
     "@sa/scripts": "workspace:*",
     "@sa/uno-preset": "workspace:*",
