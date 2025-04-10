@@ -57,7 +57,9 @@ const bgColor = computed(() => {
       <div class="w-400px lt-sm:w-300px">
         <header class="flex-y-center justify-between">
           <SystemLogo class="text-64px text-primary lt-sm:text-48px" />
-          <h3 class="text-28px text-primary font-600 tracking-wide lt-sm:text-22px">{{ $t('system.title') }}</h3>
+          <h3 class="custom-blue-color text-28px text-primary font-600 tracking-wide lt-sm:text-22px">
+            {{ $t('system.title') }}
+          </h3>
           <div class="i-flex-col">
             <ThemeSchemaSwitch
               :theme-schema="themeStore.themeScheme"
@@ -87,4 +89,8 @@ const bgColor = computed(() => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.custom-blue-color {
+  color: #2b46fe;
+}
+</style>

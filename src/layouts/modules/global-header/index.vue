@@ -6,7 +6,7 @@ import { GLOBAL_HEADER_MENU_ID } from '@/constants/app';
 import GlobalLogo from '../global-logo/index.vue';
 import GlobalBreadcrumb from '../global-breadcrumb/index.vue';
 import GlobalSearch from '../global-search/index.vue';
-import ThemeButton from './components/theme-button.vue';
+// import ThemeButton from './components/theme-button.vue';
 import UserAvatar from './components/user-avatar.vue';
 
 defineOptions({
@@ -46,12 +46,15 @@ const { isFullscreen, toggle } = useFullscreen();
         :lang-options="appStore.localeOptions"
         @change-lang="appStore.changeLocale"
       />
+      <!--
+        主题模式切换
       <ThemeSchemaSwitch
         :theme-schema="themeStore.themeScheme"
         :is-dark="themeStore.darkMode"
         @switch="themeStore.toggleThemeScheme"
-      />
-      <ThemeButton />
+      /> 
+      -->
+      <!-- <ThemeButton /> -->
       <UserAvatar />
     </div>
   </DarkModeContainer>
