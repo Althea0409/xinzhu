@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { AddOutline } from '@vicons/ionicons5';
 
 // 进度数据
 const progressItems = ref([

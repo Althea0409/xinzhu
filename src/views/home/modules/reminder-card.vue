@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { NotificationsOutline } from '@vicons/ionicons5';
 
 // 当前提醒
 const currentReminder = ref({

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { NCard, NEmpty, NModal, NProgress, NTabPane, NTabs, NTag } from 'naive-ui';
 import type { StudentInfo } from '../types';
 
 interface Props {
@@ -225,6 +224,7 @@ onMounted(() => {
                       :height="8"
                       :border-radius="4"
                       :color="item.value > 85 ? '#18a058' : item.value > 70 ? '#2080f0' : '#f0a020'"
+                      :show-indicator="false"
                     />
                   </div>
                 </div>

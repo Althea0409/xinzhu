@@ -14,65 +14,52 @@ withDefaults(defineProps<PlanProps>(), {
   duration: '预计学习时间40分钟',
   materials: '包含3个案例+2次实操训练'
 });
+
+// 根据标题类型返回对应的图标SVG内容和颜色
+const getIconInfo = (title: string): { path: string; color: string } => {
+  if (title.includes('实践')) {
+    return {
+      path: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+      color: '#4361ee'
+    };
+  } else if (title.includes('教学')) {
+    return {
+      path: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+      color: '#40c057'
+    };
+  } else if (title.includes('能力')) {
+    return {
+      path: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+      color: '#f03e3e'
+    };
+  }
+  // 默认图标 - 书籍/课程
+  return {
+    path: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+    color: '#1864ab'
+  };
+};
 </script>
 
 <template>
-  <div class="flex flex-col rounded-md bg-blue-50 p-4">
+  <div class="flex flex-col rounded-md bg-blue-50 p-4 transition-all duration-300 hover:shadow-md">
     <div class="mb-5 flex items-start">
       <div class="mr-3 mt-1 flex-shrink-0">
-        <div class="h-12 w-12 flex items-center justify-center rounded-md bg-blue-500 text-white">
-          <!-- 实践演练图标 -->
+        <div
+          class="icon-container h-12 w-12 flex items-center justify-center rounded-md text-white"
+          :style="{ backgroundColor: getIconInfo(title).color }"
+        >
           <svg
-            v-if="title.includes('实践')"
             viewBox="0 0 24 24"
             width="26"
             height="26"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="1.75"
             fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <path
-              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-            />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-
-          <!-- 教学设计图标 -->
-          <svg
-            v-else-if="title.includes('教学')"
-            viewBox="0 0 24 24"
-            width="26"
-            height="26"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-          >
-            <path d="M4 19.5v-15A2.5 2.5 0 016.5 2H20v20H6.5a2.5 2.5 0 01-2.5-2.5z" />
-            <path d="M8 7h6" />
-            <path d="M8 11h8" />
-            <path d="M8 15h5" />
-          </svg>
-
-          <!-- 能力评测图标 -->
-          <svg
-            v-else-if="title.includes('能力')"
-            viewBox="0 0 24 24"
-            width="26"
-            height="26"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-          >
-            <circle cx="12" cy="12" r="8" />
-            <path d="M12 16v-4" />
-            <path d="M8 12l4-4 4 4" />
-          </svg>
-
-          <!-- 默认图标 -->
-          <svg v-else viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none">
-            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-            <path d="M2 17l10 5 10-5" />
-            <path d="M2 12l10 5 10-5" />
+            <path :d="getIconInfo(title).path" />
           </svg>
         </div>
       </div>
@@ -83,7 +70,7 @@ withDefaults(defineProps<PlanProps>(), {
         <div class="text-xs text-gray-500">{{ materials }}</div>
       </div>
     </div>
-    <NButton type="primary" size="small" class="mt-auto w-full self-center">开始学习</NButton>
+    <NButton type="primary" size="small" class="button-learn mt-auto w-full self-center">开始学习</NButton>
   </div>
 </template>
 
@@ -92,10 +79,32 @@ withDefaults(defineProps<PlanProps>(), {
 :deep(.n-button--primary-type) {
   background-color: #3860f4;
   border-color: #3860f4;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  padding: 6px 12px;
 }
 
 :deep(.n-button--primary-type:hover) {
   background-color: #5074f5;
   border-color: #5074f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(56, 96, 244, 0.3);
+}
+
+.icon-container {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button-learn {
+  margin-top: 8px;
+  letter-spacing: 1px;
 }
 </style>

@@ -78,9 +78,9 @@ defineExpose({
 </script>
 
 <template>
-  <div class="h-full flex flex-col bg-gray-100">
+  <div class="h-full flex flex-col bg-[#F4F7FC]">
     <!-- 顶部操作区域 -->
-    <div class="flex items-center justify-end bg-gray-100 p-2">
+    <div class="flex items-center justify-end bg-[#F4F7FC] p-2">
       <NButton circle class="mr-2" text>
         <template #icon>
           <NIcon><TimeOutline /></NIcon>

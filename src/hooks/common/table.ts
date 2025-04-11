@@ -144,7 +144,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     },
     ...(showTotal
       ? {
-          prefix: page => $t('datatable.itemCount', { total: page.itemCount })
+          prefix: (page: { itemCount: number }) => $t('datatable.itemCount', { total: page.itemCount })
         }
       : {})
   });

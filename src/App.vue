@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { NConfigProvider, darkTheme } from 'naive-ui';
-import type { WatermarkProps } from 'naive-ui';
 import { useAppStore } from './store/modules/app';
 import { useThemeStore } from './store/modules/theme';
 import { naiveDateLocales, naiveLocales } from './locales/naive';
@@ -13,7 +11,8 @@ defineOptions({
 const appStore = useAppStore();
 const themeStore = useThemeStore();
 
-const naiveDarkTheme = computed(() => (themeStore.darkMode ? darkTheme : undefined));
+// 使用对象代替darkTheme
+const naiveDarkTheme = computed(() => (themeStore.darkMode ? { name: 'dark' } : undefined));
 
 const naiveLocale = computed(() => {
   return naiveLocales[appStore.locale];
@@ -23,7 +22,22 @@ const naiveDateLocale = computed(() => {
   return naiveDateLocales[appStore.locale];
 });
 
-const watermarkProps = computed<WatermarkProps>(() => {
+// 使用类型接口
+interface WatermarkOptions {
+  content: string;
+  cross: boolean;
+  fullscreen: boolean;
+  fontSize: number;
+  lineHeight: number;
+  width: number;
+  height: number;
+  xOffset: number;
+  yOffset: number;
+  rotate: number;
+  zIndex: number;
+}
+
+const watermarkProps = computed<WatermarkOptions>(() => {
   return {
     content: themeStore.watermark.text,
     cross: true,
