@@ -2,6 +2,7 @@ import { defineConfig } from '@unocss/vite';
 import transformerDirectives from '@unocss/transformer-directives';
 import transformerVariantGroup from '@unocss/transformer-variant-group';
 import presetUno from '@unocss/preset-uno';
+import presetIcons from '@unocss/preset-icons';
 import type { Theme } from '@unocss/preset-uno';
 import { presetSoybeanAdmin } from '@sa/uno-preset';
 import { themeVars } from './src/theme/vars';
@@ -9,7 +10,7 @@ import { themeVars } from './src/theme/vars';
 export default defineConfig<Theme>({
   content: {
     pipeline: {
-      exclude: ['node_modules', 'dist']
+      exclude: ['node_modules', '.git', 'dist']
     }
   },
   theme: {
@@ -26,5 +27,14 @@ export default defineConfig<Theme>({
     'card-wrapper': 'rd-8px shadow-sm'
   },
   transformers: [transformerDirectives(), transformerVariantGroup()],
-  presets: [presetUno({ dark: 'class' }), presetSoybeanAdmin()]
+  presets: [
+    presetUno({ dark: 'class' }),
+    presetSoybeanAdmin(),
+    presetIcons({
+      collections: {
+        carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default)
+      }
+    })
+  ],
+  safelist: ['w-[*]']
 });

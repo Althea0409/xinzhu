@@ -191,6 +191,16 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.system3_child2',
           icon: 'mdi:lightbulb-question'
         }
+      },
+      {
+        name: 'system3_child3',
+        path: '/system3/child3',
+        component: 'view.system3_child3',
+        meta: {
+          title: 'system3_child3',
+          i18nKey: 'route.system3_child3',
+          icon: 'material-symbols:handshake'
+        }
       }
     ]
   },

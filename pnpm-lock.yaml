@@ -11,6 +11,9 @@ importers:
       '@better-scroll/core':
         specifier: 2.5.1
         version: 2.5.1
+      '@iconify-icons/carbon':
+        specifier: ^1.2.20
+        version: 1.2.20
       '@iconify/vue':
         specifier: 4.3.0
         version: 4.3.0(vue@3.5.13(typescript@5.7.3))
@@ -852,6 +855,9 @@ packages:
   '@humanwhocodes/retry@0.4.1':
     resolution: {integrity: sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==}
     engines: {node: '>=18.18'}
+
+  '@iconify-icons/carbon@1.2.20':
+    resolution: {integrity: sha512-QCsqNX5VRK8ZqAnwDhUHdJFdRIDCHM3bF+72DUCIi1bQ6L8n5amOP4ZND2q1TadtAjP7g6DEnS2a6780iPjx9Q==}
 
   '@iconify-json/carbon@1.2.8':
     resolution: {integrity: sha512-6xh4YiFBz6qoSnB3XMe23WvjTJroDFXB17J1MbiT7nATFe+70+em1acRXr8hgP/gYpwFMHFc4IvjA/IPTPnTzg==}
@@ -4916,6 +4922,10 @@ snapshots:
   '@humanwhocodes/retry@0.3.1': {}
 
   '@humanwhocodes/retry@0.4.1': {}
+
+  '@iconify-icons/carbon@1.2.20':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/carbon@1.2.8':
     dependencies:

@@ -29,5 +29,6 @@ export const views: Record<LastLevelRouteKey, RouteComponent | (() => Promise<Ro
   system2_child3: () => import("@/views/system2/child3/index.vue"),
   system3_child1: () => import("@/views/system3/child1/index.vue"),
   system3_child2: () => import("@/views/system3/child2/index.vue"),
+  system3_child3: () => import("@/views/system3/child3/index.vue"),
   system4: () => import("@/views/system4/index.vue"),
 };

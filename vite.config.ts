@@ -35,7 +35,10 @@ export default defineConfig(configEnv => {
       host: '0.0.0.0',
       port: 9527,
       open: true,
-      proxy: createViteProxy(viteEnv, enableProxy)
+      proxy: createViteProxy(viteEnv, enableProxy),
+      hmr: {
+        overlay: false
+      }
     },
     preview: {
       port: 9725

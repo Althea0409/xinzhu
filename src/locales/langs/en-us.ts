@@ -174,6 +174,7 @@ const local: App.I18n.Schema = {
     system3: 'system 3',
     system3_child1: 'system 3 child 1',
     system3_child2: 'system 3 child 2',
+    system3_child3: 'system 3 child 3',
     system4: 'system 4'
   },
   page: {

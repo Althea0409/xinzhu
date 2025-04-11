@@ -29,7 +29,7 @@ const handleAdjust = () => {
 <template>
   <div class="task-header">
     <div class="header-left">
-      <h1 class="page-title">分层作业布置</h1>
+      <h1 class="page-title">分层作业分发</h1>
       <div class="student-layer-info">
         <div class="layer-card">
           <div class="layer-title">学生分层管理</div>

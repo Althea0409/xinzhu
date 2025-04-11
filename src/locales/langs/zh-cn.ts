@@ -175,6 +175,7 @@ const local: App.I18n.Schema = {
     system3: '协作社区',
     system3_child1: '跨校教案共享',
     system3_child2: '教学问题求助',
+    system3_child3: '在线协同备课',
     system4: '教师成长'
   },
   page: {

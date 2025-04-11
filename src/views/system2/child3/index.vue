@@ -159,29 +159,32 @@ function applyFilters() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 p-6">
-    <h1 class="mb-5 text-2xl font-bold">学情追踪</h1>
+  <div class="min-h-screen bg-gray-50 p-8">
+    <h1 class="mb-6 ml-3 text-2xl font-bold">学习进度追踪</h1>
 
     <!-- 筛选面板 -->
-    <div class="rounded-lg bg-white p-4 shadow-sm">
-      <div class="mb-3 flex items-center">
+    <div class="mb-8 rounded-lg bg-white p-5 shadow-sm">
+      <div class="mb-4 flex items-center">
         <h3 class="text-base text-[#333333] font-medium">数据筛选</h3>
-        <div class="ml-auto flex space-x-2">
+        <div class="ml-auto flex space-x-3">
           <button
-            class="rounded bg-[#EEF1FF] px-3 py-1 text-sm text-[#2B46FE] hover:bg-[#DCE1FF]"
+            class="rounded bg-[#EEF1FF] px-4 py-1.5 text-sm text-[#2B46FE] hover:bg-[#DCE1FF]"
             @click="resetFilters"
           >
             重置筛选
           </button>
-          <button class="rounded bg-[#2B46FE] px-3 py-1 text-sm text-white hover:bg-[#2B46FE]/90" @click="applyFilters">
+          <button
+            class="rounded bg-[#2B46FE] px-4 py-1.5 text-sm text-white hover:bg-[#2B46FE]/90"
+            @click="applyFilters"
+          >
             应用筛选
           </button>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-4">
         <div>
-          <label class="mb-1 block text-sm text-[#666666]">班级</label>
+          <label class="mb-2 block text-sm text-[#666666]">班级</label>
           <NSelect
             v-model:value="filterConditions.class"
             :options="classOptions"
@@ -191,7 +194,7 @@ function applyFilters() {
           />
         </div>
         <div>
-          <label class="mb-1 block text-sm text-[#666666]">学科</label>
+          <label class="mb-2 block text-sm text-[#666666]">学科</label>
           <NSelect
             v-model:value="filterConditions.subject"
             :options="subjectOptions"
@@ -201,7 +204,7 @@ function applyFilters() {
           />
         </div>
         <div>
-          <label class="mb-1 block text-sm text-[#666666]">学生状态</label>
+          <label class="mb-2 block text-sm text-[#666666]">学生状态</label>
           <NSelect
             v-model:value="filterConditions.status"
             :options="statusOptions"
@@ -211,18 +214,19 @@ function applyFilters() {
           />
         </div>
         <div>
-          <label class="mb-1 block text-sm text-[#666666]">关键词</label>
+          <label class="mb-2 block text-sm text-[#666666]">关键词</label>
           <NInput v-model:value="filterConditions.keyword" type="text" size="medium" placeholder="搜索学生姓名" />
         </div>
       </div>
     </div>
 
     <!-- 学生卡片列表 -->
-    <div class="grid grid-cols-1 mt-6 gap-5 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
+    <div class="grid grid-cols-1 gap-6 px-2 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
       <StudentTrackingCard
         v-for="student in studentsList"
         :key="student.id"
         :student="student"
+        class="transition-shadow hover:shadow-md"
         @click="handleStudentClick"
       />
     </div>
