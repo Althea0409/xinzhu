@@ -31,7 +31,7 @@ function handleSearch() {
         </div>
       </div>
       <button
-        class="h-9 w-9 flex transform items-center justify-center rounded-full bg-blue-600 text-white transition-transform duration-300 hover:scale-105 hover:bg-blue-700"
+        class="h-9 w-9 flex transform items-center justify-center rounded-full bg-[#2B46FE] text-white transition-transform duration-300 hover:scale-105 hover:bg-blue-700"
         @click="handleSearch"
       >
         <Icon icon="majesticons:arrow-right" class="text-lg" />
