@@ -22,6 +22,9 @@ declare module 'naive-ui' {
   const NMessageProvider: DefineComponent<any, any, any>;
   const NNotificationProvider: DefineComponent<any, any, any>;
   const NLoadingBarProvider: DefineComponent<any, any, any>;
+  const NCard: DefineComponent<any, any, any>;
+  const NDropdown: DefineComponent<any, any, any>;
+  const NSpace: DefineComponent<any, any, any>;
 
   // hooks相关
   function useDialog(): any;
@@ -70,6 +73,9 @@ declare module 'naive-ui' {
     NMessageProvider,
     NNotificationProvider,
     NLoadingBarProvider,
+    NCard,
+    NDropdown,
+    NSpace,
     useDialog,
     useLoadingBar,
     useMessage,
