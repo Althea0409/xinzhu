@@ -7,7 +7,7 @@ defineOptions({
 });
 
 // 顶部标题
-const title = ref('小学数学二年级下册《加减计算》');
+const title = ref('小学数学一年级上册《加减计算》');
 const subtitle = ref('PPT大纲（浙教版）');
 
 interface MenuItem {

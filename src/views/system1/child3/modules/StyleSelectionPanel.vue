@@ -161,8 +161,8 @@ watch(
   <div class="style-selection-panel h-full flex flex-col">
     <NCard title="风格选择" class="style-card">
       <!-- 风格分类标签 -->
-      <div class="categories-container mb-4">
-        <div class="categories-wrapper flex gap-2 overflow-x-auto py-2">
+      <div class="categories-container mb-2">
+        <div class="categories-wrapper flex gap-1 overflow-x-auto py-1">
           <NTag
             v-for="category in styleCategories"
             :key="category.id"
@@ -180,8 +180,8 @@ watch(
       </div>
 
       <!-- 已选择的风格 -->
-      <div v-if="selectedStyles.length > 0" class="selected-styles mb-4">
-        <div class="mb-2 flex items-center justify-between">
+      <div v-if="selectedStyles.length > 0" class="selected-styles mb-2">
+        <div class="mb-1 flex items-center justify-between">
           <div class="text-sm font-medium">已选风格</div>
           <NButton text size="small" @click="clearSelection">
             <template #icon>
@@ -196,7 +196,7 @@ watch(
             :key="style.id"
             type="success"
             closable
-            class="mb-2 mr-2"
+            class="mb-1 mr-1"
             @close="toggleStyleSelection(style.id)"
           >
             {{ style.name }}
@@ -204,27 +204,27 @@ watch(
         </div>
       </div>
 
-      <div class="my-4 border-t border-gray-200"></div>
+      <div class="my-2 border-t border-gray-200"></div>
 
       <!-- 风格网格 -->
       <div class="style-grid-container">
-        <div v-if="filteredStyles.length === 0" class="empty-state flex items-center justify-center py-10">
+        <div v-if="filteredStyles.length === 0" class="empty-state flex items-center justify-center py-6">
           <div class="text-center text-gray-500">
-            <div class="mb-2">
+            <div class="mb-1">
               <Icon icon="carbon:no-image" class="text-4xl" />
             </div>
             <p>当前分类下没有风格</p>
           </div>
         </div>
-        <div v-else class="grid grid-cols-3 gap-3">
+        <div v-else class="grid grid-cols-3 gap-2">
           <div
             v-for="style in filteredStyles"
             :key="style.id"
-            class="style-item cursor-pointer border rounded p-2"
+            class="style-item cursor-pointer border rounded p-1"
             :class="{ 'border-primary ring-2 ring-primary-100': style.selected, 'border-gray-200': !style.selected }"
             @click="toggleStyleSelection(style.id)"
           >
-            <div class="preview-container relative mb-2">
+            <div class="preview-container relative mb-1">
               <img :src="style.preview" class="style-preview h-20 w-full rounded object-cover" />
               <div
                 v-if="style.selected"
@@ -239,7 +239,7 @@ watch(
       </div>
 
       <!-- 底部按钮区域 -->
-      <div class="bottom-actions">
+      <div class="bottom-actions pt-2">
         <div class="flex items-center justify-end">
           <NButton type="primary" @click="$emit('next')">
             <template #icon>
@@ -256,7 +256,7 @@ watch(
 <style scoped>
 .style-selection-panel {
   height: 100%;
-  min-height: 700px;
+  min-height: 650px;
   max-height: 100%;
 }
 
@@ -270,13 +270,14 @@ watch(
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 12px;
 }
 
 .style-grid-container {
   flex: 1;
   overflow-y: auto;
-  padding-right: 8px;
-  margin-bottom: 16px;
+  padding-right: 4px;
+  margin-bottom: 8px;
   min-height: 450px;
 }
 
@@ -300,7 +301,7 @@ watch(
 
 .bottom-actions {
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 8px;
 }
 
 .border-primary {
