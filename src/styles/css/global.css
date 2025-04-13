@@ -25,6 +25,15 @@ html {
   margin-left: 10px;
 }
 
+/* 二级菜单样式调整 - 整体左移 */
+.n-submenu-children .n-menu-item-content {
+  padding-left: 36px !important;
+}
+
+.n-submenu-children .n-menu-item-content .n-menu-item-content__icon {
+  margin-left: 0 !important;
+}
+
 .n-menu--collapsed {
   margin: 0;
 }
