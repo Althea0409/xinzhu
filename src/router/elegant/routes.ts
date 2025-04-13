@@ -97,22 +97,22 @@ export const generatedRoutes: GeneratedRoute[] = [
         }
       },
       {
-        name: 'system1_child3',
-        path: '/system1/child3',
-        component: 'view.system1_child3',
-        meta: {
-          title: 'system1_child3',
-          i18nKey: 'route.system1_child3',
-          icon: 'ri:dashboard-fill'
-        }
-      },
-      {
         name: 'system1_child2',
         path: '/system1/child2',
         component: 'view.system1_child2',
         meta: {
           title: 'system1_child2',
           i18nKey: 'route.system1_child2',
+          icon: 'ri:dashboard-fill'
+        }
+      },
+      {
+        name: 'system1_child3',
+        path: '/system1/child3',
+        component: 'view.system1_child3',
+        meta: {
+          title: 'system1_child3',
+          i18nKey: 'route.system1_child3',
           icon: 'mingcute:ppt-fill'
         }
       }
