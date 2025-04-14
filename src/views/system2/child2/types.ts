@@ -4,6 +4,7 @@ export interface StudentLayer {
   name: string;
   layer: '基础层' | '提高层' | '拓展层';
   analysisTags: string[];
+  className?: string; // 学生所在班级
 }
 
 // 层级计数类型

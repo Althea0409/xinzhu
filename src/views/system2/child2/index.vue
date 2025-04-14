@@ -28,10 +28,10 @@ const studentLayers = ref<LayerCounts>({
 
 // 各区域题目数量
 const questionCounts = ref({
-  basic: 5,
-  improve: 4,
-  extension: 5,
-  comprehensive: 4
+  basic: 2,
+  improve: 3,
+  extension: 3,
+  comprehensive: 2
 });
 
 // 生成的练习题集
@@ -39,12 +39,12 @@ const generatedExerciseSet = ref<ExerciseSet | undefined>(undefined);
 
 // 下拉选项
 const countOptions = [
+  { label: '1', value: 1 },
+  { label: '2', value: 2 },
   { label: '3', value: 3 },
   { label: '4', value: 4 },
   { label: '5', value: 5 },
-  { label: '6', value: 6 },
-  { label: '7', value: 7 },
-  { label: '8', value: 8 }
+  { label: '6', value: 6 }
 ];
 
 // 题目生成算法参数
@@ -317,7 +317,7 @@ function openExercisePreviewModal() {
       <StudentLayerModal v-model:show="showStudentLayerModal" :student-data="studentData" @save="saveStudentLayers" />
 
       <!-- 练习题预览弹窗 -->
-      <ExercisePreviewModal v-model:show="showExercisePreviewModal" :exercise-set="generatedExerciseSet" />
+      <ExercisePreviewModal v-model:show="showExercisePreviewModal" :exercise-set="generatedExerciseSet || null" />
     </div>
   </MessageProvider>
 </template>

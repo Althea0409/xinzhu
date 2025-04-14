@@ -1,136 +1,110 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import {
-  NButton,
-  NCollapse,
-  NCollapseItem,
-  NDivider,
-  NInput,
-  NList,
-  NListItem,
-  NModal,
-  NRadio,
-  NRadioGroup,
-  NSpace,
-  NTabPane,
-  NTabs,
-  NTag
-} from 'naive-ui';
-import type { ExerciseQuestion, ExerciseSet } from '../types';
+import { computed, ref, watch } from 'vue';
+import { NButton, NCollapse, NCollapseItem, NModal, NSelect, NSpace, NTag } from 'naive-ui';
+import type { ExerciseSet } from '../types';
 
-// 接收父组件传递的props
+// 接收从父组件传递的props
 const props = defineProps<{
   show: boolean;
-  exerciseSet?: ExerciseSet;
+  exerciseSet: ExerciseSet | null;
 }>();
 
-// 展示/隐藏模态框的状态
+// 发送事件到父组件
 const emit = defineEmits<{
-  'update:show': [value: boolean];
+  // 关闭模态框事件
+  (e: 'update:show', value: boolean): void;
 }>();
 
-// 当前查看的题目索引
-const currentQuestionIndex = ref(0);
+// 本地状态
+const activeQuestionIndex = ref(0);
+const showAnswer = ref(false);
+const selectedType = ref<string | null>(null);
 
-// 模态框关闭
-function closeModal() {
-  emit('update:show', false);
-}
-
-// 当前查看的题目
-const currentQuestion = computed(() => {
-  if (!props.exerciseSet || !props.exerciseSet.questions.length) return null;
-  return props.exerciseSet.questions[currentQuestionIndex.value];
-});
-
-// 显示题目导航索引
-const questionNavigation = computed<Record<string, ExerciseQuestion[]>>(() => {
-  if (!props.exerciseSet) return {};
-
-  // 根据题目类型分组
-  const questionTypes = ['选择题', '填空题', '判断题', '简答题', '综合题'];
-  const grouped: Record<string, ExerciseQuestion[]> = {};
-
-  // 初始化分组
-  questionTypes.forEach(type => {
-    grouped[type] = [];
-  });
-
-  props.exerciseSet.questions.forEach((q: ExerciseQuestion) => {
-    if (grouped[q.type]) {
-      grouped[q.type].push(q);
-    }
-  });
-
-  return grouped;
-});
-
-// 所有题目类型
-const allQuestionTypes = computed(() => {
+// 计算属性：根据选中的题型过滤题目
+const filteredQuestions = computed(() => {
   if (!props.exerciseSet) return [];
-  const types = new Set(props.exerciseSet.questions.map((q: ExerciseQuestion) => q.type));
+  if (!selectedType.value) return props.exerciseSet.questions;
+  return props.exerciseSet.questions.filter(q => q.type === selectedType.value);
+});
+
+// 当前选中的题目
+const currentQuestion = computed(() => {
+  return filteredQuestions.value[activeQuestionIndex.value] || null;
+});
+
+// 获取去重后的题型列表
+const questionTypes = computed(() => {
+  if (!props.exerciseSet) return [];
+  const types = new Set(props.exerciseSet.questions.map(q => q.type));
   return Array.from(types);
 });
 
-// 切换到指定的题目
-function goToQuestion(index: number) {
-  if (index >= 0 && props.exerciseSet && index < props.exerciseSet.questions.length) {
-    currentQuestionIndex.value = index;
+// 重置状态
+const resetState = () => {
+  activeQuestionIndex.value = 0;
+  showAnswer.value = false;
+  selectedType.value = null;
+};
+
+// 导航到下一题
+const nextQuestion = () => {
+  if (activeQuestionIndex.value < filteredQuestions.value.length - 1) {
+    activeQuestionIndex.value += 1;
   }
-}
+};
 
-// 获取题目在整个题集中的索引
-function getQuestionIndex(type: string, typeIndex: number): number {
-  if (!props.exerciseSet) return -1;
-
-  let count = 0;
-  for (const q of props.exerciseSet.questions) {
-    if (q.type === type) {
-      if (count === typeIndex) {
-        return props.exerciseSet.questions.indexOf(q);
-      }
-      count += 1;
-    }
+// 导航到上一题
+const prevQuestion = () => {
+  if (activeQuestionIndex.value > 0) {
+    activeQuestionIndex.value -= 1;
   }
-
-  return -1;
-}
-
-// 获取难度标签的类型
-function getDifficultyType(difficulty: string): 'success' | 'warning' | 'error' {
-  if (difficulty === '简单') return 'success';
-  if (difficulty === '中等') return 'warning';
-  return 'error';
-}
-
-// 是否显示答案分析
-const showAnswer = ref(false);
+};
 
 // 切换显示答案
-function toggleAnswer() {
+const toggleAnswer = () => {
   showAnswer.value = !showAnswer.value;
-}
+};
 
-// 获取当前在查看的题目类型的总数
-function getTypeCount(type: string): number {
-  if (!props.exerciseSet) return 0;
-  return props.exerciseSet.questions.filter((q: ExerciseQuestion) => q.type === type).length;
-}
+// 选择题型变化时，重置当前题目索引
+watch(selectedType, () => {
+  activeQuestionIndex.value = 0;
+});
 
-// 获取当前题型索引
-function getCurrentTypeIndex(type: string): number {
-  if (!props.exerciseSet || !currentQuestion.value) return -1;
-  if (currentQuestion.value.type !== type) return -1;
+// 关闭模态框
+const closeModal = () => {
+  resetState();
+  emit('update:show', false);
+};
 
-  let count = 0;
-  for (let i = 0; i < currentQuestionIndex.value; i += 1) {
-    if (props.exerciseSet.questions[i].type === type) {
-      count += 1;
+// 监听show属性变化
+watch(
+  () => props.show,
+  newVal => {
+    if (!newVal) {
+      resetState();
     }
   }
+);
 
-  return count;
-}
+// 格式化题目编号，根据题型添加前缀
+const formatQuestionNumber = (index: number) => {
+  return `Q${index + 1}`;
+};
+
+// 获取题型标签颜色 - 全部改为primary
+const getTypeColor = () => {
+  return 'primary';
+};
+
+// 获取难度标签颜色
+const getDifficultyColor = (difficulty: string) => {
+  const difficultyColorMap: Record<string, string> = {
+    简单: 'success',
+    中等: 'warning',
+    困难: 'error'
+  };
+  return difficultyColorMap[difficulty] || 'default';
+};
 </script>
 
 <template>
@@ -139,29 +113,16 @@ function getCurrentTypeIndex(type: string): number {
   <NModal
     :show="show"
     preset="card"
-    style="width: 800px"
-    title="练习题预览"
+    style="width: 800px; --n-title-font-size: 0"
+    :title="null"
     :mask-closable="false"
+    :closable="true"
     @close="closeModal"
     @update:show="emit('update:show', $event)"
   >
     <template #header>
       <div class="modal-header">
-        <h3 v-if="exerciseSet">{{ exerciseSet.title }}</h3>
-        <div v-if="exerciseSet" class="target-layer">
-          适用层级：
-          <NTag
-            :type="
-              exerciseSet.targetLayer === '基础层'
-                ? 'success'
-                : exerciseSet.targetLayer === '提高层'
-                  ? 'warning'
-                  : 'error'
-            "
-          >
-            {{ exerciseSet.targetLayer }}
-          </NTag>
-        </div>
+        <h2 class="preview-title text-[#2b46fe]">练习题预览</h2>
       </div>
     </template>
     <!-- eslint-enable vue/no-static-inline-styles -->
@@ -169,86 +130,105 @@ function getCurrentTypeIndex(type: string): number {
     <div v-if="!exerciseSet" class="empty-state">暂无练习题数据</div>
 
     <div v-else class="exercise-preview-container">
-      <div class="exercise-navigation">
-        <NTabs type="line" animated>
-          <NTabPane v-for="type in allQuestionTypes" :key="type" :name="type" :tab="type">
-            <NList>
-              <NListItem v-for="(q, idx) in questionNavigation[type]" :key="q.id">
-                <div
-                  class="nav-item"
-                  :class="{ active: currentQuestion && currentQuestion.id === q.id }"
-                  @click="goToQuestion(getQuestionIndex(type, idx))"
-                >
-                  <span>{{ idx + 1 }}</span>
-                  <NTag size="small" :type="getDifficultyType(q.difficulty)">{{ q.difficulty }}</NTag>
-                </div>
-              </NListItem>
-            </NList>
-          </NTabPane>
-        </NTabs>
+      <div class="pagination-container">
+        <div v-if="filteredQuestions.length > 0" class="pagination-info">
+          {{ activeQuestionIndex + 1 }} / {{ filteredQuestions.length }}
+        </div>
       </div>
 
-      <NDivider />
-
-      <div v-if="currentQuestion" class="question-display">
-        <div class="question-header">
-          <div class="question-type">
-            <NTag>{{ currentQuestion.type }}</NTag>
-            <span class="question-number">
-              {{ getCurrentTypeIndex(currentQuestion.type) + 1 }}/{{ getTypeCount(currentQuestion.type) }}
-            </span>
-          </div>
-          <NTag :type="getDifficultyType(currentQuestion.difficulty)">{{ currentQuestion.difficulty }}</NTag>
+      <div class="exercise-filter">
+        <div class="filter-row w-1">
+          <NSelect
+            v-model:value="selectedType"
+            clearable
+            size="small"
+            placeholder="筛选题型"
+            :options="
+              questionTypes.map(type => ({
+                label: type,
+                value: type
+              }))
+            "
+            class="type-select"
+          />
         </div>
+      </div>
 
+      <div v-if="filteredQuestions.length === 0" class="empty-state">没有符合筛选条件的题目</div>
+
+      <div v-else-if="currentQuestion" class="question-display">
         <div class="question-content">
-          <!-- ESLint禁用规则: 允许v-html用于显示格式化的题目内容 -->
-          <!-- eslint-disable vue/no-v-html -->
-          <div v-html="currentQuestion.content"></div>
-          <!-- eslint-enable vue/no-v-html -->
-
-          <!-- 选择题 -->
-          <NRadioGroup v-if="currentQuestion.type === '选择题' && currentQuestion.options" class="options-group">
-            <div v-for="(option, index) in currentQuestion.options" :key="index" class="option-item">
-              <NRadio :value="String.fromCharCode(65 + index)">
-                {{ String.fromCharCode(65 + index) }}. {{ option }}
-              </NRadio>
+          <div class="question-header">
+            <div class="question-type">
+              <NTag :type="getTypeColor()">{{ currentQuestion.type }}</NTag>
+              <NTag :type="getDifficultyColor(currentQuestion.difficulty)">{{ currentQuestion.difficulty }}</NTag>
             </div>
-          </NRadioGroup>
-
-          <!-- 判断题 -->
-          <div v-if="currentQuestion.type === '判断题'" class="judge-options">
-            <NRadioGroup>
-              <NSpace>
-                <NRadio value="true">正确</NRadio>
-                <NRadio value="false">错误</NRadio>
-              </NSpace>
-            </NRadioGroup>
           </div>
 
-          <!-- 填空题 -->
-          <div v-if="currentQuestion.type === '填空题'" class="fill-blank">
-            <div v-for="i in 3" :key="i" class="blank-line">
-              <NInput placeholder="请在此处填写答案" />
+          <div class="flex-content">
+            <div class="flex items-baseline">
+              <div class="question-number">{{ formatQuestionNumber(activeQuestionIndex) }}.</div>
+              <div>{{ currentQuestion.content }}</div>
+            </div>
+
+            <div v-if="currentQuestion.type === '选择题'" class="options-grid mt-4">
+              <div v-for="(option, index) in currentQuestion.options" :key="index" class="option-item">
+                <div class="flex">
+                  <div class="option-label mr-2">{{ String.fromCharCode(65 + index) }}.</div>
+                  <div>{{ option }}</div>
+                </div>
+              </div>
+            </div>
+
+            <div v-else-if="currentQuestion.type === '判断题'" class="judge-options mt-4">
+              <NSpace>
+                <NTag type="primary">对</NTag>
+                <NTag type="primary">错</NTag>
+              </NSpace>
+            </div>
+
+            <div v-else-if="currentQuestion.type === '填空题'" class="fill-blank mt-4">
+              <div v-for="(_, index) in currentQuestion.content.match(/___/g) || []" :key="index" class="blank-line">
+                <div class="flex items-center">
+                  <div class="blank-number mr-2">空{{ index + 1 }}:</div>
+                  <div class="blank-placeholder h-6 w-32 rounded bg-gray-100"></div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              v-if="currentQuestion.knowledgePoints && currentQuestion.knowledgePoints.length > 0"
+              class="knowledge-points mt-4"
+            >
+              <div class="mb-1 text-sm text-gray-500">知识点:</div>
+              <NSpace>
+                <NTag
+                  v-for="(point, index) in currentQuestion.knowledgePoints"
+                  :key="index"
+                  size="small"
+                  type="primary"
+                >
+                  {{ point }}
+                </NTag>
+              </NSpace>
             </div>
           </div>
         </div>
 
         <div class="question-actions">
-          <NButton type="primary" ghost @click="toggleAnswer">
-            {{ showAnswer ? '隐藏答案' : '查看答案' }}
-          </NButton>
           <NSpace>
-            <NButton :disabled="currentQuestionIndex <= 0" @click="goToQuestion(currentQuestionIndex - 1)">
-              上一题
-            </NButton>
+            <NButton size="small" :disabled="activeQuestionIndex === 0" @click="prevQuestion">上一题</NButton>
             <NButton
-              :disabled="!exerciseSet || currentQuestionIndex >= exerciseSet.questions.length - 1"
-              @click="goToQuestion(currentQuestionIndex + 1)"
+              size="small"
+              :disabled="activeQuestionIndex === filteredQuestions.length - 1"
+              @click="nextQuestion"
             >
               下一题
             </NButton>
           </NSpace>
+          <NButton size="small" type="primary" @click="toggleAnswer">
+            {{ showAnswer ? '隐藏答案' : '查看答案' }}
+          </NButton>
         </div>
 
         <NCollapse v-if="showAnswer">
@@ -269,69 +249,70 @@ function getCurrentTypeIndex(type: string): number {
         </NCollapse>
       </div>
     </div>
-
-    <template #footer>
-      <div class="modal-footer">
-        <NButton @click="closeModal">关闭</NButton>
-      </div>
-    </template>
   </NModal>
 </template>
 
 <style scoped>
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-header h3 {
+.preview-title {
   margin: 0;
-}
-
-.target-layer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b46fe;
 }
 
 .exercise-preview-container {
   display: flex;
   flex-direction: column;
   min-height: 400px;
+  padding: 0;
+  position: relative;
 }
 
-.exercise-navigation {
-  margin-bottom: 16px;
+.pagination-container {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  z-index: 10;
 }
 
-.nav-item {
+.pagination-info {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4161fe;
+  background-color: #f5f7ff;
+  padding: 4px 16px;
+  border-radius: 20px;
+  border: 1px solid #e8eeff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(65, 97, 254, 0.1);
+}
+
+.exercise-filter {
+  margin-bottom: 0;
+  padding-top: 1px;
+}
+
+.filter-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.nav-item:hover {
-  background-color: rgba(65, 97, 254, 0.1);
-}
-
-.nav-item.active {
-  background-color: rgba(65, 97, 254, 0.2);
+  padding: 6px 0;
+  margin-bottom: 8px;
+  position: relative;
 }
 
 .question-display {
-  margin-top: 20px;
+  padding: 0;
+  position: relative;
 }
 
 .question-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .question-type {
@@ -341,34 +322,36 @@ function getCurrentTypeIndex(type: string): number {
 }
 
 .question-number {
-  font-size: 14px;
-  color: #666;
+  color: #4161fe;
+  font-weight: bold;
+  font-size: 16px;
+  min-width: 35px;
 }
 
 .question-content {
-  margin-bottom: 24px;
-  font-size: 15px;
-  line-height: 1.6;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+  background-color: #fdfdfd;
 }
 
-.options-group {
-  margin-top: 16px;
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
 }
 
 .option-item {
-  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.judge-options {
-  margin-top: 16px;
-}
-
-.fill-blank {
-  margin-top: 16px;
-}
-
-.blank-line {
-  margin-bottom: 12px;
+.option-label {
+  font-weight: 500;
+  color: #666;
 }
 
 .question-actions {
@@ -408,13 +391,131 @@ function getCurrentTypeIndex(type: string): number {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 150px;
   color: #999;
-  font-size: 16px;
+  font-size: 14px;
 }
 
-.modal-footer {
+/* 移动关闭按钮样式 */
+:deep(.n-card__action) {
+  display: none;
+}
+
+/* UnoCSS 工具类兼容 */
+.mb-4 {
+  margin-bottom: 0 !important;
+}
+
+.my-4 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.mr-2 {
+  margin-right: 8px;
+}
+
+.flex {
   display: flex;
-  justify-content: flex-end;
+}
+
+.flex-content {
+  margin-top: 8px;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-primary {
+  color: #4161fe;
+}
+
+.text-sm {
+  font-size: 14px;
+}
+
+.text-gray-500 {
+  color: #718096;
+}
+
+.w-32 {
+  width: 128px;
+}
+
+.h-6 {
+  height: 24px;
+}
+
+.bg-gray-100 {
+  background-color: #f7fafc;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+:deep(.n-card__content) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+:deep(.n-modal-body-wrapper) {
+  margin-top: 0 !important;
+}
+
+:deep(.n-divider) {
+  display: none;
+}
+
+:deep(.n-card-header) {
+  padding: 6px 16px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+:deep(.n-card-header__main) {
+  width: 100%;
+}
+
+:deep(.n-select) {
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
+
+.type-select {
+  min-width: 200px;
+  margin-top: 5px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+:deep(.n-modal-close) {
+  top: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+:deep(.n-modal-close:hover) {
+  color: #f44336;
+  transform: scale(1.1);
 }
 </style>

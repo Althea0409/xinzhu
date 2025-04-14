@@ -2,16 +2,24 @@ import type { ExerciseSet, LayerCounts, StudentLayer } from '../types';
 
 // 模拟学生数据
 export const mockStudents: StudentLayer[] = [
-  { id: 1, name: '张三', layer: '基础层', analysisTags: ['基础薄弱'] },
-  { id: 2, name: '李四', layer: '基础层', analysisTags: ['计算需加强'] },
-  { id: 3, name: '王五', layer: '基础层', analysisTags: ['几何优势'] },
-  { id: 4, name: '赵六', layer: '提高层', analysisTags: ['稳定中等'] },
-  { id: 5, name: '钱七', layer: '提高层', analysisTags: ['应用题优势'] },
-  { id: 6, name: '孙八', layer: '拓展层', analysisTags: ['逻辑思维强'] },
-  { id: 7, name: '周九', layer: '拓展层', analysisTags: ['创新思维佳'] },
-  { id: 8, name: '吴十', layer: '基础层', analysisTags: ['基础薄弱'] },
-  { id: 9, name: '郑十一', layer: '提高层', analysisTags: ['稳定中等'] },
-  { id: 10, name: '王十二', layer: '拓展层', analysisTags: ['全面发展'] }
+  { id: 1, name: '陈晓明', layer: '基础层', analysisTags: ['基础薄弱'], className: '初三(1)班' },
+  { id: 2, name: '王思雨', layer: '提高层', analysisTags: ['稳定中等'], className: '初三(2)班' },
+  { id: 3, name: '李华', layer: '拓展层', analysisTags: ['逻辑思维强'], className: '初三(3)班' },
+  { id: 4, name: '张小芳', layer: '基础层', analysisTags: ['计算需加强'], className: '初三(1)班' },
+  { id: 5, name: '刘明', layer: '提高层', analysisTags: ['应用题优势'], className: '初三(2)班' },
+  { id: 6, name: '王强', layer: '基础层', analysisTags: ['几何优势'], className: '初三(3)班' },
+  { id: 7, name: '赵敏', layer: '拓展层', analysisTags: ['创新思维佳'], className: '初三(1)班' },
+  { id: 8, name: '孙伟', layer: '基础层', analysisTags: ['基础薄弱'], className: '初三(2)班' },
+  { id: 9, name: '李四', layer: '提高层', analysisTags: ['代数需加强'], className: '初三(3)班' },
+  { id: 10, name: '王五', layer: '基础层', analysisTags: ['计算需加强'], className: '初三(1)班' },
+  { id: 11, name: '赵六', layer: '提高层', analysisTags: ['稳定中等'], className: '初三(2)班' },
+  { id: 12, name: '钱七', layer: '拓展层', analysisTags: ['全面发展'], className: '初三(3)班' },
+  { id: 13, name: '周宇', layer: '基础层', analysisTags: ['基础薄弱'], className: '初三(1)班' },
+  { id: 14, name: '吴彤', layer: '提高层', analysisTags: ['应用题优势'], className: '初三(2)班' },
+  { id: 15, name: '郑怡', layer: '拓展层', analysisTags: ['逻辑思维强'], className: '初三(3)班' },
+  { id: 16, name: '冯芳', layer: '基础层', analysisTags: ['几何优势'], className: '初三(1)班' },
+  { id: 17, name: '陈浩', layer: '提高层', analysisTags: ['代数需加强'], className: '初三(2)班' },
+  { id: 18, name: '杨云', layer: '拓展层', analysisTags: ['创新思维佳'], className: '初三(3)班' }
 ];
 
 // 计算各层级学生人数
@@ -35,7 +43,7 @@ export function generateMockExercise(targetLayer: '基础层' | '提高层' | '�
         id: 1,
         type: '选择题',
         content: '计算: 12 × 4 - 8 ÷ 2 = ?',
-        options: ['A. 44', 'B. 46', 'C. 48', 'D. 50'],
+        options: ['44', '46', '48', '50'],
         answer: 'B',
         difficulty: '简单',
         analysis: '先算乘除，后算加减: 12 × 4 - 8 ÷ 2 = 48 - 4 = 44'
@@ -61,7 +69,7 @@ export function generateMockExercise(targetLayer: '基础层' | '提高层' | '�
         id: 4,
         type: '选择题',
         content: '下列图形中，不是轴对称图形的是？',
-        options: ['A. 正方形', 'B. 等腰梯形', 'C. 平行四边形', 'D. 圆形'],
+        options: ['正方形', '等腰梯形', '平行四边形', '圆形'],
         answer: 'C',
         difficulty: '中等',
         analysis: '平行四边形一般不是轴对称图形，除非它是矩形、菱形或正方形'
