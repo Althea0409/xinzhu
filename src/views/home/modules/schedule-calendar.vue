@@ -16,47 +16,47 @@ const currentWeek = ref('本周');
 const courses = ref([
   {
     id: 1,
-    name: '计算机图形学',
-    class: '数媒22',
-    room: '7B406',
-    time: '7:00-9:00',
+    name: '10以内加法',
+    class: '一年级1班',
+    room: '教室101',
+    time: '8:00-8:45',
     day: 1, // 星期一
     color: 'border-blue-200 bg-blue-100 text-blue-600'
   },
   {
     id: 2,
-    name: '数字图像处理',
-    class: '数媒22',
-    room: '12A204',
-    time: '7:00-9:00',
-    day: 3, // 星期三
+    name: '10以内减法',
+    class: '一年级2班',
+    room: '教室103',
+    time: '10:00-10:45',
+    day: 1, // 星期一
     color: 'border-purple-200 bg-purple-100 text-purple-600'
   },
   {
     id: 3,
-    name: '计算机图形学',
-    class: '数媒22',
-    room: '7B506',
-    time: '7:00-9:00',
-    day: 6, // 星期六
+    name: '数学加减法',
+    class: '一年级3班',
+    room: '教室105',
+    time: '10:00-10:45',
+    day: 2, // 星期二
     color: 'border-orange-200 bg-orange-100 text-orange-600'
   },
   {
     id: 4,
-    name: '数字图像处理',
-    class: '数媒22',
-    room: '12B204',
-    time: '10:00-11:00',
-    day: 2, // 星期二
+    name: '20以内加法',
+    class: '一年级1班',
+    room: '教室101',
+    time: '8:00-8:45',
+    day: 3, // 星期三
     color: 'border-purple-200 bg-purple-100 text-purple-600'
   },
   {
     id: 5,
-    name: '计算机图形学',
-    class: '数媒22',
-    room: '7B506',
-    time: '10:00-11:00',
-    day: 4, // 星期日
+    name: '加减法练习课',
+    class: '一年级2班',
+    room: '教室103',
+    time: '10:00-10:45',
+    day: 4, // 星期四
     color: 'border-blue-200 bg-blue-100 text-blue-600'
   }
 ]);
@@ -73,7 +73,7 @@ const weekDays = [
 ];
 
 // 时间段
-const timeSlots = ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00'];
+const timeSlots = ['8:00', '9:00', '10:00', '11:00', '14:00', '15:00'];
 
 // 获取特定日期和时间的课程
 const getCourse = (day: number, time: string) => {
