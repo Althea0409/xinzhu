@@ -1,14 +1,29 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
+import { NSelect } from 'naive-ui';
 import ControlButtons from './modules/ControlButtons.vue';
 import LevelGroup from './modules/LevelGroup.vue';
 import TaskHeader from './modules/TaskHeader.vue';
+import StudentLayerModal from './modules/StudentLayerModal.vue';
+import ExercisePreviewModal from './modules/ExercisePreviewModal.vue';
+import MessageProvider from './modules/MessageProvider.vue';
+import { calculateStudentCounts, generateMockExercise, mockStudents } from './modules/mockData';
+import type { ExerciseSet, LayerCounts, StudentLayer } from './types';
 
 // 学生分层数据
-const studentLayers = ref({
-  basic: 20, // 基础层
-  improve: 15, // 提高层
-  extension: 10 // 拓展层
+const studentData = ref<StudentLayer[]>(mockStudents);
+
+// 学生分层弹窗控制
+const showStudentLayerModal = ref(false);
+
+// 练习题预览弹窗控制
+const showExercisePreviewModal = ref(false);
+
+// 计算学生分层人数
+const studentLayers = ref<LayerCounts>({
+  basic: mockStudents.filter(s => s.layer === '基础层').length,
+  improve: mockStudents.filter(s => s.layer === '提高层').length,
+  extension: mockStudents.filter(s => s.layer === '拓展层').length
 });
 
 // 各区域题目数量
@@ -18,6 +33,9 @@ const questionCounts = ref({
   extension: 5,
   comprehensive: 4
 });
+
+// 生成的练习题集
+const generatedExerciseSet = ref<ExerciseSet | undefined>(undefined);
 
 // 下拉选项
 const countOptions = [
@@ -93,160 +111,215 @@ function getBarColor(index: number) {
   const colors = ['#4161fe', '#ff9f43', '#28c76f', '#7367f0'];
   return colors[index % colors.length];
 }
+
+// 打开学生分层管理弹窗
+function openStudentLayerModal() {
+  showStudentLayerModal.value = true;
+}
+
+// 保存学生分层数据
+function saveStudentLayers(layers: StudentLayer[]) {
+  studentData.value = layers;
+
+  // 更新学生分层人数
+  studentLayers.value = calculateStudentCounts(layers);
+}
+
+// 模拟生成题目
+async function generateQuestions() {
+  if (window.$message) {
+    window.$message.loading('正在生成题目...', { duration: 3000 });
+  }
+
+  // 模拟 API 调用延迟
+  await new Promise(resolve => {
+    setTimeout(resolve, 3000);
+  });
+
+  // 创建基础层练习题集
+  generatedExerciseSet.value = generateMockExercise('基础层');
+
+  if (window.$message) {
+    window.$message.success('生成题目成功！');
+  }
+}
+
+// 打开练习题预览弹窗
+function openExercisePreviewModal() {
+  if (!generatedExerciseSet.value) {
+    if (window.$message) {
+      window.$message.error('请先生成题目！');
+    }
+    return;
+  }
+
+  showExercisePreviewModal.value = true;
+}
 </script>
 
 <template>
-  <div class="task-layout-container">
-    <!-- 页面标题和操作区 -->
-    <TaskHeader :student-layers="studentLayers" />
+  <MessageProvider>
+    <div class="task-layout-container">
+      <!-- 页面标题和操作区 -->
+      <TaskHeader :student-layers="studentLayers" @adjust="openStudentLayerModal" />
 
-    <!-- 题型组合区域 -->
-    <div class="question-group-section">
-      <div class="group-title-wrapper">
-        <div class="title-indicator"></div>
-        <h3 class="group-title">题型组合</h3>
-        <div class="algorithm-info" @click="toggleAnalysis">
-          <i class="algorithm-icon">i</i>
-          <span>智能推荐</span>
-        </div>
-      </div>
-
-      <div class="question-selectors">
-        <div class="question-type">
-          <div class="type-name">选择</div>
-          <NSelect v-model:value="questionCounts.basic" :options="countOptions" />
+      <!-- 题型组合区域 -->
+      <div class="question-group-section">
+        <div class="group-title-wrapper">
+          <div class="title-indicator"></div>
+          <h3 class="group-title">题型组合</h3>
+          <div class="algorithm-info" @click="toggleAnalysis">
+            <i class="algorithm-icon">i</i>
+            <span>智能推荐</span>
+          </div>
         </div>
 
-        <div class="question-type">
-          <div class="type-name">填空</div>
-          <NSelect v-model:value="questionCounts.improve" :options="countOptions" />
-        </div>
-
-        <div class="question-type">
-          <div class="type-name">判断</div>
-          <NSelect v-model:value="questionCounts.extension" :options="countOptions" />
-        </div>
-
-        <div class="question-type">
-          <div class="type-name">综合题</div>
-          <NSelect v-model:value="questionCounts.comprehensive" :options="countOptions" />
-        </div>
-      </div>
-
-      <!-- 算法分析面板 -->
-      <div v-if="showAnalysis" class="analysis-panel">
-        <div class="analysis-header">
-          <h4>智能题目生成分析</h4>
-          <span class="analysis-close" @click="toggleAnalysis">×</span>
-        </div>
-
-        <div class="analysis-content">
-          <div class="analysis-section">
-            <h5>知识点覆盖分析</h5>
-            <div class="coverage-info">
-              <div class="coverage-progress">
-                <div
-                  class="progress-bar"
-                  :style="{
-                    width: `${(analysisData.knowledgePoints.covered / analysisData.knowledgePoints.total) * 100}%`
-                  }"
-                ></div>
-              </div>
-              <div class="coverage-text">
-                覆盖率:
-                {{ Math.round((analysisData.knowledgePoints.covered / analysisData.knowledgePoints.total) * 100) }}%
-              </div>
-            </div>
-
-            <div class="distribution-chart">
-              <div v-for="(item, index) in analysisData.knowledgePoints.distribution" :key="index" class="chart-bar">
-                <div class="bar-label">{{ item.name }}</div>
-                <div class="bar-container">
-                  <div class="bar-fill" :style="{ width: `${item.value}%`, backgroundColor: getBarColor(index) }"></div>
-                </div>
-                <div class="bar-value">{{ item.value }}%</div>
-              </div>
-            </div>
+        <div class="question-selectors">
+          <div class="question-type">
+            <div class="type-name">选择</div>
+            <NSelect v-model:value="questionCounts.basic" :options="countOptions" />
           </div>
 
-          <div class="analysis-section">
-            <h5>难度分布</h5>
-            <div class="difficulty-info">
-              <div class="difficulty-levels">
-                <div v-for="(level, index) in ['基础层', '提高层', '拓展层']" :key="index" class="difficulty-level">
-                  <div class="level-name">{{ level }}</div>
-                  <div class="level-bars">
+          <div class="question-type">
+            <div class="type-name">填空</div>
+            <NSelect v-model:value="questionCounts.improve" :options="countOptions" />
+          </div>
+
+          <div class="question-type">
+            <div class="type-name">判断</div>
+            <NSelect v-model:value="questionCounts.extension" :options="countOptions" />
+          </div>
+
+          <div class="question-type">
+            <div class="type-name">综合题</div>
+            <NSelect v-model:value="questionCounts.comprehensive" :options="countOptions" />
+          </div>
+        </div>
+
+        <!-- 算法分析面板 -->
+        <div v-if="showAnalysis" class="analysis-panel">
+          <div class="analysis-header">
+            <h4>智能题目生成分析</h4>
+            <span class="analysis-close" @click="toggleAnalysis">×</span>
+          </div>
+
+          <div class="analysis-content">
+            <div class="analysis-section">
+              <h5>知识点覆盖分析</h5>
+              <div class="coverage-info">
+                <div class="coverage-progress">
+                  <div
+                    class="progress-bar"
+                    :style="{
+                      width: `${(analysisData.knowledgePoints.covered / analysisData.knowledgePoints.total) * 100}%`
+                    }"
+                  ></div>
+                </div>
+                <div class="coverage-text">
+                  覆盖率:
+                  {{ Math.round((analysisData.knowledgePoints.covered / analysisData.knowledgePoints.total) * 100) }}%
+                </div>
+              </div>
+
+              <div class="distribution-chart">
+                <div v-for="(item, index) in analysisData.knowledgePoints.distribution" :key="index" class="chart-bar">
+                  <div class="bar-label">{{ item.name }}</div>
+                  <div class="bar-container">
                     <div
-                      class="level-bar easy"
-                      :style="{
-                        width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].easy}%`
-                      }"
-                    ></div>
-                    <div
-                      class="level-bar medium"
-                      :style="{
-                        width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].medium}%`
-                      }"
-                    ></div>
-                    <div
-                      class="level-bar hard"
-                      :style="{
-                        width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].hard}%`
-                      }"
+                      class="bar-fill"
+                      :style="{ width: `${item.value}%`, backgroundColor: getBarColor(index) }"
                     ></div>
                   </div>
-                  <div class="level-legend">
-                    <span>
-                      <i class="easy color-dot"></i>
-                      易
-                    </span>
-                    <span>
-                      <i class="color-dot medium"></i>
-                      中
-                    </span>
-                    <span>
-                      <i class="color-dot hard"></i>
-                      难
-                    </span>
-                  </div>
+                  <div class="bar-value">{{ item.value }}%</div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="analysis-section algorithm-section">
-            <h5>智能生成算法</h5>
-            <div class="algorithm-items">
-              <div class="algorithm-item">
-                <div class="algorithm-title">基础层题目</div>
-                <div class="algorithm-desc">{{ generationParams.algorithms.basic }}</div>
+            <div class="analysis-section">
+              <h5>难度分布</h5>
+              <div class="difficulty-info">
+                <div class="difficulty-levels">
+                  <div v-for="(level, index) in ['基础层', '提高层', '拓展层']" :key="index" class="difficulty-level">
+                    <div class="level-name">{{ level }}</div>
+                    <div class="level-bars">
+                      <div
+                        class="level-bar easy"
+                        :style="{
+                          width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].easy}%`
+                        }"
+                      ></div>
+                      <div
+                        class="level-bar medium"
+                        :style="{
+                          width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].medium}%`
+                        }"
+                      ></div>
+                      <div
+                        class="level-bar hard"
+                        :style="{
+                          width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].hard}%`
+                        }"
+                      ></div>
+                    </div>
+                    <div class="level-legend">
+                      <span>
+                        <i class="easy color-dot"></i>
+                        易
+                      </span>
+                      <span>
+                        <i class="color-dot medium"></i>
+                        中
+                      </span>
+                      <span>
+                        <i class="color-dot hard"></i>
+                        难
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="algorithm-item">
-                <div class="algorithm-title">提高层题目</div>
-                <div class="algorithm-desc">{{ generationParams.algorithms.improve }}</div>
-              </div>
-              <div class="algorithm-item">
-                <div class="algorithm-title">拓展层题目</div>
-                <div class="algorithm-desc">{{ generationParams.algorithms.extension }}</div>
+            </div>
+
+            <div class="analysis-section algorithm-section">
+              <h5>智能生成算法</h5>
+              <div class="algorithm-items">
+                <div class="algorithm-item">
+                  <div class="algorithm-title">基础层题目</div>
+                  <div class="algorithm-desc">{{ generationParams.algorithms.basic }}</div>
+                </div>
+                <div class="algorithm-item">
+                  <div class="algorithm-title">提高层题目</div>
+                  <div class="algorithm-desc">{{ generationParams.algorithms.improve }}</div>
+                </div>
+                <div class="algorithm-item">
+                  <div class="algorithm-title">拓展层题目</div>
+                  <div class="algorithm-desc">{{ generationParams.algorithms.extension }}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 分层题目区域 -->
+      <div class="level-questions-container">
+        <LevelGroup level-type="basic" level-name="基础层" label-text="必做" :count="questionCounts.basic" />
+
+        <LevelGroup level-type="improve" level-name="提高层" label-text="选做" :count="questionCounts.improve" />
+
+        <LevelGroup level-type="extension" level-name="拓展层" label-text="选做" :count="questionCounts.extension" />
+      </div>
+
+      <!-- 底部控制按钮 -->
+      <ControlButtons @generate="generateQuestions" @preview="openExercisePreviewModal" />
+
+      <!-- 学生分层管理弹窗 -->
+      <StudentLayerModal v-model:show="showStudentLayerModal" :student-data="studentData" @save="saveStudentLayers" />
+
+      <!-- 练习题预览弹窗 -->
+      <ExercisePreviewModal v-model:show="showExercisePreviewModal" :exercise-set="generatedExerciseSet" />
     </div>
-
-    <!-- 分层题目区域 -->
-    <div class="level-questions-container">
-      <LevelGroup level-type="basic" level-name="基础层" label-text="必做" :count="questionCounts.basic" />
-
-      <LevelGroup level-type="improve" level-name="提高层" label-text="选做" :count="questionCounts.improve" />
-
-      <LevelGroup level-type="extension" level-name="拓展层" label-text="选做" :count="questionCounts.extension" />
-    </div>
-
-    <!-- 底部控制按钮 -->
-    <ControlButtons />
-  </div>
+  </MessageProvider>
 </template>
 
 <style scoped>
@@ -270,7 +343,7 @@ function getBarColor(index: number) {
 .group-title-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .title-indicator {
@@ -342,6 +415,96 @@ function getBarColor(index: number) {
   width: 100%;
   text-align: center;
   font-weight: 500;
+}
+
+/* NSelect数字居中样式 */
+:deep(.n-select) {
+  width: 100%;
+}
+
+:deep(.n-base-selection) {
+  padding: 0 8px;
+  border-radius: 6px !important;
+  border: 1px solid #e0e0e0 !important;
+  transition: all 0.2s !important;
+  height: 36px !important;
+}
+
+:deep(.n-base-selection:hover) {
+  border-color: #4161fe !important;
+}
+
+:deep(.n-base-selection-input) {
+  text-align: center;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #444 !important;
+}
+
+:deep(.n-base-selection-placeholder) {
+  text-align: center;
+  left: 0;
+  right: 0;
+  color: #999 !important;
+}
+
+:deep(.n-base-selection-tags) {
+  justify-content: center;
+}
+
+:deep(.n-select-menu) {
+  border-radius: 6px !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1) !important;
+  padding: 4px !important;
+}
+
+:deep(.n-select-menu .n-base-select-option) {
+  text-align: center;
+  justify-content: center;
+  border-radius: 4px !important;
+  margin: 2px 0 !important;
+  font-size: 14px !important;
+  color: #444 !important;
+}
+
+:deep(.n-select-menu .n-base-select-option:hover) {
+  background-color: #f5f7ff !important;
+}
+
+:deep(.n-select-menu .n-base-select-option--selected) {
+  color: #4161fe !important;
+  background-color: #edf1ff !important;
+  font-weight: 500 !important;
+}
+
+.level-questions-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* 覆盖LevelGroup组件中的标题样式以确保一致性 */
+:deep(.level-title) {
+  font-weight: 700 !important;
+  font-size: 17px !important;
+}
+
+:deep(.level-header) {
+  padding: 12px 15px !important;
+}
+
+@media (max-width: 768px) {
+  .task-layout-container {
+    padding: 15px;
+  }
+
+  .question-selectors {
+    flex-wrap: wrap;
+  }
+
+  .level-questions-container {
+    flex-direction: column;
+  }
 }
 
 /* 分析面板样式 */
@@ -549,95 +712,5 @@ function getBarColor(index: number) {
   font-size: 12px;
   color: #666;
   line-height: 1.5;
-}
-
-/* NSelect数字居中样式 */
-:deep(.n-select) {
-  width: 100%;
-}
-
-:deep(.n-base-selection) {
-  padding: 0 8px;
-  border-radius: 6px !important;
-  border: 1px solid #e0e0e0 !important;
-  transition: all 0.2s !important;
-  height: 36px !important;
-}
-
-:deep(.n-base-selection:hover) {
-  border-color: #4161fe !important;
-}
-
-:deep(.n-base-selection-input) {
-  text-align: center;
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  color: #444 !important;
-}
-
-:deep(.n-base-selection-placeholder) {
-  text-align: center;
-  left: 0;
-  right: 0;
-  color: #999 !important;
-}
-
-:deep(.n-base-selection-tags) {
-  justify-content: center;
-}
-
-:deep(.n-select-menu) {
-  border-radius: 6px !important;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1) !important;
-  padding: 4px !important;
-}
-
-:deep(.n-select-menu .n-base-select-option) {
-  text-align: center;
-  justify-content: center;
-  border-radius: 4px !important;
-  margin: 2px 0 !important;
-  font-size: 14px !important;
-  color: #444 !important;
-}
-
-:deep(.n-select-menu .n-base-select-option:hover) {
-  background-color: #f5f7ff !important;
-}
-
-:deep(.n-select-menu .n-base-select-option--selected) {
-  color: #4161fe !important;
-  background-color: #edf1ff !important;
-  font-weight: 500 !important;
-}
-
-.level-questions-container {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* 覆盖LevelGroup组件中的标题样式以确保一致性 */
-:deep(.level-title) {
-  font-weight: 700 !important;
-  font-size: 17px !important;
-}
-
-:deep(.level-header) {
-  padding: 12px 15px !important;
-}
-
-@media (max-width: 768px) {
-  .task-layout-container {
-    padding: 15px;
-  }
-
-  .question-selectors {
-    flex-wrap: wrap;
-  }
-
-  .level-questions-container {
-    flex-direction: column;
-  }
 }
 </style>

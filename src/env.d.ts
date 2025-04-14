@@ -12,20 +12,30 @@ declare module 'naive-ui' {
 
   // 组件相关
   const NButton: DefineComponent<any, any, any>;
+  const NCard: DefineComponent<any, any, any>;
+  const NCollapse: DefineComponent<any, any, any>;
+  const NCollapseItem: DefineComponent<any, any, any>;
+  const NConfigProvider: DefineComponent<any, any, any>;
+  const NDialogProvider: DefineComponent<any, any, any>;
+  const NDivider: DefineComponent<any, any, any>;
+  const NDropdown: DefineComponent<any, any, any>;
   const NIcon: DefineComponent<any, any, any>;
   const NInput: DefineComponent<any, any, any>;
-  const NSpin: DefineComponent<any, any, any>;
-  const NTag: DefineComponent<any, any, any>;
-  const NConfigProvider: DefineComponent<any, any, any>;
-  const NWatermark: DefineComponent<any, any, any>;
-  const NDialogProvider: DefineComponent<any, any, any>;
-  const NMessageProvider: DefineComponent<any, any, any>;
-  const NNotificationProvider: DefineComponent<any, any, any>;
+  const NList: DefineComponent<any, any, any>;
+  const NListItem: DefineComponent<any, any, any>;
   const NLoadingBarProvider: DefineComponent<any, any, any>;
-  const NCard: DefineComponent<any, any, any>;
-  const NDropdown: DefineComponent<any, any, any>;
-  const NSpace: DefineComponent<any, any, any>;
+  const NMessageProvider: DefineComponent<any, any, any>;
+  const NModal: DefineComponent<any, any, any>;
+  const NNotificationProvider: DefineComponent<any, any, any>;
+  const NRadio: DefineComponent<any, any, any>;
+  const NRadioGroup: DefineComponent<any, any, any>;
   const NSelect: DefineComponent<any, any, any>;
+  const NSpace: DefineComponent<any, any, any>;
+  const NSpin: DefineComponent<any, any, any>;
+  const NTabPane: DefineComponent<any, any, any>;
+  const NTabs: DefineComponent<any, any, any>;
+  const NTag: DefineComponent<any, any, any>;
+  const NWatermark: DefineComponent<any, any, any>;
 
   // hooks相关
   function useDialog(): any;
@@ -64,20 +74,30 @@ declare module 'naive-ui' {
   // 导出所有声明
   export {
     NButton,
+    NCard,
+    NCollapse,
+    NCollapseItem,
+    NConfigProvider,
+    NDialogProvider,
+    NDivider,
+    NDropdown,
     NIcon,
     NInput,
-    NSpin,
-    NTag,
-    NConfigProvider,
-    NWatermark,
-    NDialogProvider,
-    NMessageProvider,
-    NNotificationProvider,
+    NList,
+    NListItem,
     NLoadingBarProvider,
-    NCard,
-    NDropdown,
-    NSpace,
+    NMessageProvider,
+    NModal,
+    NNotificationProvider,
+    NRadio,
+    NRadioGroup,
     NSelect,
+    NSpace,
+    NSpin,
+    NTabPane,
+    NTabs,
+    NTag,
+    NWatermark,
     useDialog,
     useLoadingBar,
     useMessage,

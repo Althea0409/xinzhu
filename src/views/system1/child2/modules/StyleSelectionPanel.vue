@@ -3,6 +3,17 @@ import { computed, reactive, ref, watch } from 'vue';
 import { NButton, NCard, NTag } from 'naive-ui';
 import { Icon } from '@iconify/vue';
 
+// 导入图片资源
+import fg1 from '@/assets/images/fg1.png';
+import fg2 from '@/assets/images/fg2.png';
+import fg3 from '@/assets/images/fg3.png';
+import fg4 from '@/assets/images/fg4.png';
+import fg5 from '@/assets/images/fg5.png';
+import fg6 from '@/assets/images/fg6.png';
+import fg7 from '@/assets/images/fg7.png';
+import fg8 from '@/assets/images/fg8.png';
+import fg9 from '@/assets/images/fg9.png';
+
 defineOptions({
   name: 'StyleSelectionPanel'
 });
@@ -12,7 +23,7 @@ const styleCategories = [
   { id: 'all', name: '全部', icon: 'carbon:view-filled' },
   { id: 'simple', name: '简约', icon: 'carbon:clean' },
   { id: 'cartoon', name: '卡通', icon: 'carbon:face-satisfied' },
-  { id: 'realistic', name: '写实', icon: 'carbon:photo' },
+  { id: 'realistic', name: '写实', icon: 'proicons:photo' },
   { id: 'retro', name: '复古', icon: 'carbon:time' },
   { id: 'future', name: '未来', icon: 'carbon:rocket' },
   { id: 'hand', name: '手绘', icon: 'carbon:pen' }
@@ -27,84 +38,63 @@ const styleItems = reactive([
     id: 1,
     name: '简约清新',
     category: 'simple',
-    preview: 'https://picsum.photos/100/80?random=1',
+    preview: fg1,
     selected: false
   },
   {
     id: 2,
-    name: '手绘风格',
-    category: 'hand',
-    preview: 'https://picsum.photos/100/80?random=2',
+    name: '卡通人物',
+    category: 'cartoon',
+    preview: fg2,
     selected: false
   },
   {
     id: 3,
-    name: '卡通人物',
-    category: 'cartoon',
-    preview: 'https://picsum.photos/100/80?random=3',
+    name: '科技未来',
+    category: 'future',
+    preview: fg3,
     selected: false
   },
   {
     id: 4,
-    name: '科技未来',
-    category: 'future',
-    preview: 'https://picsum.photos/100/80?random=4',
+    name: '复古怀旧',
+    category: 'retro',
+    preview: fg4,
     selected: false
   },
   {
     id: 5,
-    name: '复古怀旧',
-    category: 'retro',
-    preview: 'https://picsum.photos/100/80?random=5',
+    name: '线条简约',
+    category: 'simple',
+    preview: fg5,
     selected: false
   },
   {
     id: 6,
-    name: '写实教学',
-    category: 'realistic',
-    preview: 'https://picsum.photos/100/80?random=6',
+    name: '抽象几何',
+    category: 'future',
+    preview: fg6,
     selected: false
   },
   {
     id: 7,
-    name: '线条简约',
-    category: 'simple',
-    preview: 'https://picsum.photos/100/80?random=7',
+    name: '素描手绘',
+    category: 'hand',
+    preview: fg7,
     selected: false
   },
   {
     id: 8,
-    name: '卡通场景',
-    category: 'cartoon',
-    preview: 'https://picsum.photos/100/80?random=8',
+    name: '80年代风',
+    category: 'retro',
+    preview: fg8,
     selected: false
   },
   {
     id: 9,
-    name: '抽象几何',
-    category: 'future',
-    preview: 'https://picsum.photos/100/80?random=9',
-    selected: false
-  },
-  {
-    id: 10,
-    name: '素描手绘',
-    category: 'hand',
-    preview: 'https://picsum.photos/100/80?random=10',
-    selected: false
-  },
-  {
-    id: 11,
-    name: '80年代风',
-    category: 'retro',
-    preview: 'https://picsum.photos/100/80?random=11',
-    selected: false
-  },
-  {
-    id: 12,
     name: '自然写实',
     category: 'realistic',
-    preview: 'https://picsum.photos/100/80?random=12',
+    preview: fg9,
     selected: false
   }
 ]);

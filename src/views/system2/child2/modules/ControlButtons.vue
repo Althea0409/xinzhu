@@ -2,17 +2,23 @@
 <script setup lang="ts">
 import { NButton } from 'naive-ui';
 
+const emit = defineEmits<{
+  generate: [];
+  publish: [];
+  preview: [];
+}>();
+
 // 按钮点击事件处理
 const handleGenerate = () => {
-  console.log('生成题目');
+  emit('generate');
 };
 
 const handlePublish = () => {
-  console.log('发布题目');
+  emit('publish');
 };
 
 const handlePreview = () => {
-  console.log('学生视角预览');
+  emit('preview');
 };
 </script>
 

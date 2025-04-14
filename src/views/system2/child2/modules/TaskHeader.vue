@@ -10,6 +10,10 @@ defineProps<{
   };
 }>();
 
+const emit = defineEmits<{
+  adjust: [];
+}>();
+
 // 处理上传题库点击事件
 const handleUpload = () => {
   console.log('上传题库');
@@ -22,7 +26,7 @@ const handleSelect = () => {
 
 // 处理调整分层点击事件
 const handleAdjust = () => {
-  console.log('调整分层');
+  emit('adjust');
 };
 </script>
 

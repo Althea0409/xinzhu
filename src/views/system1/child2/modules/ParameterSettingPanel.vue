@@ -350,7 +350,7 @@ watch(
         </NCollapse>
       </NScrollbar>
 
-      <!-- 底部按钮区域 - 红框位置 -->
+      <!-- 底部按钮区域 -->
       <div class="bottom-actions">
         <div class="flex items-center justify-start">
           <NButton @click="$emit('back')">
