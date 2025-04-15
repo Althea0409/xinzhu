@@ -32,7 +32,7 @@ async function sendMessage() {
   });
 
   // 清空输入框
-  const userMessage = userInput.value;
+  //   const userMessage = userInput.value;
   userInput.value = '';
 
   // 滚动到底部
@@ -44,7 +44,7 @@ async function sendMessage() {
   setTimeout(() => {
     chatMessages.push({
       role: 'assistant',
-      content: `我已收到您的消息："${userMessage}"。这是一个示例回复，在实际应用中，这里会连接到大语言模型API获取真实回复。`
+      content: `好的。我将基于已有的课程设计，以“小学数学浙教版一年级上册生成”为主题，生成一份更加详细的教案。`
     });
     isLoading.value = false;
 
