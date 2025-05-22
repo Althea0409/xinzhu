@@ -44,7 +44,7 @@ function togglePreviewMode() {
       v-model:show="showDetailedPlanModal"
       class="detailed-plan-modal"
       preset="card"
-      :title="showPreviewMode ? '一年级数学教案预览' : '详细教案'"
+      :title="showPreviewMode ? '教案预览' : '详细设计'"
       size="huge"
       :bordered="false"
       :segmented="{
@@ -56,12 +56,12 @@ function togglePreviewMode() {
       <div v-if="showPreviewMode" class="preview-mode">
         <div class="preview-header">
           <h1 class="preview-title mb-6 text-center text-3xl text-red-600 font-bold">
-            《小学数学一年级100以内加减法》教案
+            {{ courseFormRef.generatedDesign?.title }}
           </h1>
           <table class="preview-table w-full border-collapse shadow-lg">
             <tr>
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 text-blue-800 font-medium">课题</td>
-              <td class="w-1/3 border border-blue-200 bg-white p-3">100以内加减法</td>
+              <td class="w-1/3 border border-blue-200 bg-white p-3">《静夜思》</td>
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 text-blue-800 font-medium">课型</td>
               <td class="w-1/3 border border-blue-200 bg-white p-3">新授课</td>
             </tr>
@@ -69,7 +69,7 @@ function togglePreviewMode() {
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 text-blue-800 font-medium">授课时间</td>
               <td class="w-1/3 border border-blue-200 bg-white p-3">45分钟</td>
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 text-blue-800 font-medium">课时</td>
-              <td class="w-1/3 border border-blue-200 bg-white p-3">2课时</td>
+              <td class="w-1/3 border border-blue-200 bg-white p-3">1课时</td>
             </tr>
           </table>
         </div>
@@ -80,9 +80,9 @@ function togglePreviewMode() {
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">教学目标</td>
               <td class="border border-blue-200 bg-white p-3">
                 <ol class="list-decimal pl-5 space-y-2">
-                  <li>使学生能够理解并熟练掌握100以内的加减法计算方法</li>
-                  <li>能够运用不同的计算策略（直接计算、凑十法、分解法）进行两位数加减法计算</li>
-                  <li>培养学生的计算能力和解决实际问题的能力</li>
+                  <li v-for="(objective, index) in courseFormRef.generatedDesign?.objectives" :key="index">
+                    {{ objective }}
+                  </li>
                 </ol>
               </td>
             </tr>
@@ -90,10 +90,9 @@ function togglePreviewMode() {
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">教学重点</td>
               <td class="border border-blue-200 bg-white p-3">
                 <ul class="list-disc pl-5 space-y-2">
-                  <li>100以内加减法相关计算策略及算理的理解</li>
-                  <li>数字分解与重组计算法，灵活运用凑十法进行计算</li>
-                  <li>通过试算学会快速计算，提高计算速度与准确性</li>
-                  <li>两位数加减法的竖式计算方法与横式计算方法</li>
+                  <li v-for="(point, index) in courseFormRef.generatedDesign?.focusPoints[0].points" :key="index">
+                    {{ point }}
+                  </li>
                 </ul>
               </td>
             </tr>
@@ -101,10 +100,9 @@ function togglePreviewMode() {
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">教学难点</td>
               <td class="border border-blue-200 bg-white p-3">
                 <ul class="list-disc pl-5 space-y-2">
-                  <li>基于数的分解进行计算，特别是数字跨十的情况处理</li>
-                  <li>包含过十加法和过十减法的正确处理方法及位置关系理解</li>
-                  <li>加减混合运算中的运算顺序理解与应用</li>
-                  <li>实际应用题中数学信息的提取与运算方法的选择</li>
+                  <li v-for="(point, index) in courseFormRef.generatedDesign?.focusPoints[1].points" :key="index">
+                    {{ point }}
+                  </li>
                 </ul>
               </td>
             </tr>
@@ -112,11 +110,9 @@ function togglePreviewMode() {
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">教学准备</td>
               <td class="border border-blue-200 bg-white p-3">
                 <ul class="list-disc pl-5 space-y-2">
-                  <li>多媒体课件、电子白板</li>
-                  <li>数字卡片、计数棒、小算盘</li>
-                  <li>学生用书、练习纸</li>
-                  <li>情境图片、模拟钱币</li>
-                  <li>计时器、小组记分表</li>
+                  <li v-for="(material, index) in courseFormRef.generatedDesign?.materials" :key="index">
+                    {{ material }}
+                  </li>
                 </ul>
               </td>
             </tr>
@@ -124,129 +120,74 @@ function togglePreviewMode() {
               <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">教学设计</td>
               <td class="border border-blue-200 p-0">
                 <table class="w-full border-collapse">
-                  <tr>
+                  <tr v-for="(step, index) in courseFormRef.generatedDesign?.lessonFlow" :key="index">
                     <td class="w-1/6 border border-blue-200 bg-yellow-50 p-3 align-top text-yellow-800 font-medium">
-                      导入
+                      {{ step.title }}
                       <br />
-                      <span class="text-sm text-yellow-700 font-normal">(5分钟)</span>
+                      <span class="text-sm text-yellow-700 font-normal">({{ step.duration }})</span>
                     </td>
                     <td class="border border-blue-200 bg-white p-3 align-top">
                       <div class="mb-3">
-                        <p class="mb-2 text-indigo-700 font-bold">一、创设情境，激情导入</p>
-                        <ol class="list-decimal pl-5 space-y-2">
-                          <li>
-                            <span class="text-blue-600 font-medium">【课件出示1】</span>
-                            播放动画《小兔子超市购物》：小白兔和小灰兔去文具店购物，小白兔买了一本12元的图画本，一盒8元的彩笔；小灰兔买了一个15元的铅笔盒和一把6元的尺子。他们一共需要付多少钱？
-                          </li>
-                          <li>
-                            <span class="text-blue-600 font-medium">提问：</span>
-                            小朋友们，你们知道小白兔和小灰兔一共要付多少钱吗？我们怎样计算呢？（引导学生回答：12+8+15+6=）
-                          </li>
-                          <li>师板书课题：《100以内的加减法》，生齐读课题。</li>
-                        </ol>
+                        <p class="mb-2 text-indigo-700 font-bold">{{ index + 1 }}、{{ step.title }}</p>
+                        <p class="mb-3 text-gray-700">{{ step.content }}</p>
+                        <div v-if="step.interaction" class="mb-3">
+                          <p class="mb-1 text-indigo-600 font-bold">互动环节：</p>
+                          <p class="border-l-4 border-blue-400 rounded-md bg-blue-50 p-2">
+                            {{ step.interaction }}
+                          </p>
+                        </div>
+                        <div v-if="step.expectedOutcome" class="mb-3">
+                          <p class="mb-1 text-indigo-600 font-bold">预期成果：</p>
+                          <p class="border-l-4 border-purple-400 rounded-md bg-purple-50 p-2">
+                            {{ step.expectedOutcome }}
+                          </p>
+                        </div>
+                        <div v-if="step.materials" class="mb-3">
+                          <p class="mb-1 text-indigo-600 font-bold">所需材料：</p>
+                          <p class="border-l-4 border-orange-400 rounded-md bg-orange-50 p-2">
+                            {{ step.materials }}
+                          </p>
+                        </div>
                       </div>
                     </td>
                     <td class="w-1/6 border border-blue-200 bg-green-50 p-3 align-top text-sm text-green-800">
                       <p>
-                        通过生活情境导入，激发学生学习兴趣，同时引导学生发现日常生活中加减法的应用，为本节课的学习内容创设有意义的背景。
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border border-blue-200 bg-yellow-50 p-3 align-top text-yellow-800 font-medium">
-                      新课教学
-                      <br />
-                      <span class="text-sm text-yellow-700 font-normal">(30分钟)</span>
-                    </td>
-                    <td class="border border-blue-200 bg-white p-3 align-top">
-                      <div class="mb-3">
-                        <p class="mb-2 text-indigo-700 font-bold">二、新知讲解，掌握方法</p>
-                        <ol class="list-decimal pl-5 space-y-3">
-                          <li>
-                            <span class="text-blue-600 font-medium">讲解两位数加减法的计算方法【课件出示2】</span>
-                            <ol class="list-lower-alpha mt-1 pl-5 space-y-1">
-                              <li>直接计算法：如23+45=68（按位相加）</li>
-                              <li>凑十法：如26+7=(26+4)+3=30+3=33</li>
-                              <li>数字分解法：如47-9=47-7-2=40-2=38</li>
-                            </ol>
-                          </li>
-                          <li>教师示范计算过程，在白板上用不同颜色标记关键步骤。</li>
-                          <li>
-                            学生尝试计算，教师巡视指导。
-                            <ol class="list-lower-alpha mt-1 pl-5 space-y-1">
-                              <li>例题演示：34+20=?、57-30=?、46+7=?、52-8=?【课件出示3】</li>
-                            </ol>
-                          </li>
-                          <li>
-                            <p class="mb-1 text-indigo-600 font-bold">互动活动一：数字接龙（5分钟）</p>
-                            <p class="border-l-4 border-blue-400 rounded-md bg-blue-50 p-2">
-                              全班分成四组，每组学生依次说出一个数，下一位学生需要给这个数加5或减3，小组成员轮流进行。教师使用计时器，最快完成且准确率最高的小组获胜。
-                            </p>
-                          </li>
-                          <li>
-                            <p class="mb-1 text-indigo-600 font-bold">互动活动二：数学侦探（10分钟）</p>
-                            <p class="border-l-4 border-purple-400 rounded-md bg-purple-50 p-2">
-                              发放数学侦探卡片，每组获得一系列相关的加减法算式卡片，部分数字被隐藏，学生需要通过已知条件推理出被隐藏的数字。如：□+24=61，37-□=19。小组讨论后派代表上台展示解题思路。
-                            </p>
-                          </li>
-                          <li>
-                            <p class="mb-1 text-indigo-600 font-bold">互动活动三：智慧超市（10分钟）</p>
-                            <p class="border-l-4 border-orange-400 rounded-md bg-orange-50 p-2">
-                              教室前方布置超市场景，各种"商品"标有价格（均为两位数）。学生分组扮演"顾客"和"收银员"，顾客挑选2-3件商品，收银员计算总价并找零（使用100元）。
-                            </p>
-                          </li>
-                        </ol>
-                      </div>
-                    </td>
-                    <td class="border border-blue-200 bg-green-50 p-3 align-top text-sm text-green-800">
-                      <p>
-                        通过直观讲解和例题分析，帮助学生掌握100以内加减法的基本计算方法，并在实践活动中巩固所学内容。
-                      </p>
-                      <p class="mt-4">
-                        设计三个互动环节，注重学生参与，在游戏和活动中提高计算能力，培养学生对数学的兴趣，同时发展合作能力和解决问题的能力。
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border border-blue-200 bg-yellow-50 p-3 align-top text-yellow-800 font-medium">
-                      课堂小结
-                      <br />
-                      <span class="text-sm text-yellow-700 font-normal">(10分钟)</span>
-                    </td>
-                    <td class="border border-blue-200 bg-white p-3 align-top">
-                      <div class="mb-3">
-                        <p class="mb-2 text-indigo-700 font-bold">四、课堂总结，巩固提高</p>
-                        <ol class="list-decimal pl-5 space-y-3">
-                          <li>
-                            <p class="mb-1 text-indigo-600 font-bold">知识总结</p>
-                            <p class="border-l-4 border-gray-400 rounded-md bg-gray-50 p-2">
-                              师：今天我们学习了100以内的加减法，掌握了哪些计算方法？（学生回答）请同学们总结一下使用这些方法的关键步骤。
-                            </p>
-                          </li>
-                          <li>
-                            <p class="mb-1 text-indigo-600 font-bold">计算评比（3分钟）</p>
-                            <p class="border-l-4 border-green-400 rounded-md bg-green-50 p-2">
-                              进行"计算冲关"个人练习，设置基础版、进阶版和挑战版计算题。学生根据自己的能力选择并完成，教师记录完成情况。
-                            </p>
-                          </li>
-                          <li>
-                            <p class="mb-1 text-indigo-600 font-bold">布置作业</p>
-                            <ol class="list-lower-alpha pl-5 space-y-1">
-                              <li>完成练习册第14页的加减法练习题。</li>
-                              <li>设计一张"家庭购物清单"，列出5件物品及价格，计算总价。</li>
-                              <li>在日常生活中找出使用加减法的例子，记录在数学日记本上。</li>
-                            </ol>
-                          </li>
-                        </ol>
-                      </div>
-                    </td>
-                    <td class="border border-blue-200 bg-green-50 p-3 align-top text-sm text-green-800">
-                      <p>
-                        通过总结归纳和计算评比，检验学生对所学知识的掌握程度，强化重点内容。结合生活实际布置作业，培养学生在真实情境中运用数学知识解决问题的能力。
+                        {{ step.expectedOutcome }}
                       </p>
                     </td>
                   </tr>
                 </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">评价方式</td>
+              <td class="border border-blue-200 bg-white p-3">
+                <div class="mb-4">
+                  <h3 class="mb-2 text-lg text-gray-800 font-medium">过程性评价：</h3>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li v-for="(item, index) in courseFormRef.generatedDesign?.evaluation.formative" :key="index">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="mb-2 text-lg text-gray-800 font-medium">总结性评价：</h3>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li v-for="(item, index) in courseFormRef.generatedDesign?.evaluation.summative" :key="index">
+                      {{ item }}
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="w-1/6 border border-blue-200 bg-blue-50 p-3 align-top text-blue-800 font-medium">课后作业</td>
+              <td class="border border-blue-200 bg-white p-3">
+                <ul class="list-disc pl-5 space-y-2">
+                  <li v-for="(item, index) in courseFormRef.generatedDesign?.homeworkAndReflection" :key="index">
+                    {{ item }}
+                  </li>
+                </ul>
               </td>
             </tr>
           </table>
@@ -273,12 +214,18 @@ function togglePreviewMode() {
             教学目标
           </h2>
           <ul class="goal-list list-decimal pl-8">
-            <li
-              v-for="(objective, index) in courseFormRef.generatedDesign?.detailedPlan?.priorKnowledge"
-              :key="index"
-              class="goal-item mb-2 text-gray-700 dark:text-gray-300"
-            >
-              {{ objective }}
+            <li class="goal-item mb-2 text-gray-700 dark:text-gray-300">
+              认识并理解《静夜思》这首诗的内容，感受诗人思乡的情感。
+            </li>
+            <li class="goal-item mb-2 text-gray-700 dark:text-gray-300">
+              掌握"床、前、明、月、光、疑、是、地、上、霜"等生字的读音和书写。
+            </li>
+            <li class="goal-item mb-2 text-gray-700 dark:text-gray-300">
+              能够正确、流利、有感情地朗读和背诵《静夜思》。
+            </li>
+            <li class="goal-item mb-2 text-gray-700 dark:text-gray-300">通过想象和联想，体会诗人望月思乡的意境。</li>
+            <li class="goal-item mb-2 text-gray-700 dark:text-gray-300">
+              培养学生对古诗的兴趣，激发学习传统文化的热情。
             </li>
           </ul>
         </div>
@@ -883,5 +830,45 @@ function togglePreviewMode() {
 .reflection-item,
 .homework-item {
   line-height: 1.6;
+}
+
+/* 过渡动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition:
+    opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.98) translateY(30px);
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* 生成成功内容弹性缩放动画 */
+.generated-content {
+  animation: popIn 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(30px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-4px);
+  }
+  80% {
+    transform: scale(0.98) translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 </style>
