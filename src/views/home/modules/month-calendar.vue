@@ -3,32 +3,32 @@ import { ref } from 'vue';
 import { ChevronBackOutline, ChevronForwardOutline } from '@vicons/ionicons5';
 
 // 当前月份
-const currentMonth = ref('2025/3');
+const currentMonth = ref('2025/5');
 
 // 日历数据
 const calendarDays = [
-  // 2月的最后几天 (2025年2月的最后一天是28日，3月1日是周六，所以需要显示周一到周五的日期：24,25,26,27,28)
-  { day: 24, isCurrentMonth: false },
-  { day: 25, isCurrentMonth: false },
-  { day: 26, isCurrentMonth: false },
-  { day: 27, isCurrentMonth: false },
-  { day: 28, isCurrentMonth: false },
+  { day: 28, isCurrentMonth: false }, // 4月
+  { day: 29, isCurrentMonth: false },
+  { day: 30, isCurrentMonth: false },
+  // 5月1日-5月31日
   ...Array.from({ length: 31 }, (_, i) => ({
     day: i + 1,
     isCurrentMonth: true,
-    isToday: i + 1 === 15
+    isToday: i + 1 === 24 // 高亮5月24日
   })),
-  // 4月的前几天
+  // 6月的前几天补齐到42格（6周）
   { day: 1, isCurrentMonth: false },
   { day: 2, isCurrentMonth: false },
   { day: 3, isCurrentMonth: false },
   { day: 4, isCurrentMonth: false },
   { day: 5, isCurrentMonth: false },
-  { day: 6, isCurrentMonth: false }
+  { day: 6, isCurrentMonth: false },
+  { day: 7, isCurrentMonth: false },
+  { day: 8, isCurrentMonth: false }
 ];
 
 // 当前选中日期
-const selectedDay = ref(26);
+const selectedDay = ref(24);
 
 // 选择日期
 const selectDay = (day: number) => {

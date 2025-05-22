@@ -9,67 +9,162 @@ import {
 } from '@vicons/ionicons5';
 
 // 当前日期和周次
-const currentDate = ref('2025/3');
-const currentWeek = ref('本周');
+const currentDate = ref('2024/5');
+const currentWeek = ref('5.26-6.1');
 
 // 课程数据
 const courses = ref([
+  // 星期一
   {
     id: 1,
-    name: '10以内加法',
+    name: '古诗欣赏《静夜思》',
     class: '一年级1班',
-    room: '教室101',
+    room: '语文教室101',
     time: '8:00-8:45',
-    day: 1, // 星期一
+    day: 1,
     color: 'border-blue-200 bg-blue-100 text-blue-600'
   },
   {
     id: 2,
-    name: '10以内减法',
+    name: '古诗欣赏《静夜思》',
     class: '一年级2班',
-    room: '教室103',
-    time: '10:00-10:45',
-    day: 1, // 星期一
-    color: 'border-purple-200 bg-purple-100 text-purple-600'
+    room: '语文教室102',
+    time: '8:00-8:45',
+    day: 1,
+    color: 'border-green-200 bg-green-100 text-green-600'
   },
   {
     id: 3,
-    name: '数学加减法',
+    name: '课文朗读',
     class: '一年级3班',
-    room: '教室105',
+    room: '语文教室103',
     time: '10:00-10:45',
-    day: 2, // 星期二
+    day: 1,
+    color: 'border-purple-200 bg-purple-100 text-purple-600'
+  },
+  // 星期二
+  {
+    id: 4,
+    name: '阅读训练',
+    class: '一年级1班',
+    room: '语文教室101',
+    time: '8:00-8:45',
+    day: 2,
     color: 'border-orange-200 bg-orange-100 text-orange-600'
   },
   {
-    id: 4,
-    name: '20以内加法',
+    id: 5,
+    name: '写话练习',
+    class: '一年级2班',
+    room: '语文教室102',
+    time: '10:00-10:45',
+    day: 2,
+    color: 'border-blue-200 bg-blue-100 text-blue-600'
+  },
+  {
+    id: 6,
+    name: '识字与写字',
+    class: '一年级3班',
+    room: '语文教室103',
+    time: '14:00-14:45',
+    day: 2,
+    color: 'border-green-200 bg-green-100 text-green-600'
+  },
+  // 星期三
+  {
+    id: 7,
+    name: '古诗欣赏《春晓》',
     class: '一年级1班',
-    room: '教室101',
+    room: '语文教室101',
     time: '8:00-8:45',
-    day: 3, // 星期三
+    day: 3,
     color: 'border-purple-200 bg-purple-100 text-purple-600'
   },
   {
-    id: 5,
-    name: '加减法练习课',
+    id: 8,
+    name: '课文讲解',
     class: '一年级2班',
-    room: '教室103',
+    room: '语文教室102',
     time: '10:00-10:45',
-    day: 4, // 星期四
+    day: 3,
+    color: 'border-orange-200 bg-orange-100 text-orange-600'
+  },
+  {
+    id: 9,
+    name: '阅读训练',
+    class: '一年级3班',
+    room: '语文教室103',
+    time: '14:00-14:45',
+    day: 3,
     color: 'border-blue-200 bg-blue-100 text-blue-600'
+  },
+  // 星期四
+  {
+    id: 10,
+    name: '写话练习',
+    class: '一年级1班',
+    room: '语文教室101',
+    time: '8:00-8:45',
+    day: 4,
+    color: 'border-green-200 bg-green-100 text-green-600'
+  },
+  {
+    id: 11,
+    name: '单元复习',
+    class: '一年级2班',
+    room: '语文教室102',
+    time: '10:00-10:45',
+    day: 4,
+    color: 'border-purple-200 bg-purple-100 text-purple-600'
+  },
+  {
+    id: 12,
+    name: '课文朗读',
+    class: '一年级3班',
+    room: '语文教室103',
+    time: '14:00-14:45',
+    day: 4,
+    color: 'border-orange-200 bg-orange-100 text-orange-600'
+  },
+  // 星期五
+  {
+    id: 13,
+    name: '识字与写字',
+    class: '一年级1班',
+    room: '语文教室101',
+    time: '8:00-8:45',
+    day: 5,
+    color: 'border-blue-200 bg-blue-100 text-blue-600'
+  },
+  {
+    id: 14,
+    name: '古诗欣赏《咏鹅》',
+    class: '一年级2班',
+    room: '语文教室102',
+    time: '10:00-10:45',
+    day: 5,
+    color: 'border-green-200 bg-green-100 text-green-600'
+  },
+  {
+    id: 15,
+    name: '单元复习',
+    class: '一年级3班',
+    room: '语文教室103',
+    time: '14:00-14:45',
+    day: 5,
+    color: 'border-purple-200 bg-purple-100 text-purple-600'
   }
 ]);
 
 // 日期数据
 const weekDays = [
-  { day: '星期一', date: '03.24' },
-  { day: '星期二', date: '03.25' },
-  { day: '星期三', date: '03.26', isHighlighted: true },
-  { day: '星期四', date: '03.27' },
-  { day: '星期五', date: '03.28' },
-  { day: '星期六', date: '03.29' },
-  { day: '星期日', date: '03.30' }
+  { day: '星期一', date: '05.26' },
+  { day: '星期二', date: '05.27' },
+  { day: '星期三', date: '05.28', isHighlighted: true },
+  { day: '星期四', date: '05.29' },
+  { day: '星期五', date: '05.30' },
+  { day: '星期六', date: '05.31' },
+  { day: '星期日', date: '06.01' }
 ];
 
 // 时间段

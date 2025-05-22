@@ -10,9 +10,9 @@ const message = useMessage();
 
 // 当前提醒
 const currentReminder = ref({
-  date: '明天 (03.27)',
-  time: '10:00-10:45',
-  course: '数学加减法',
+  date: '下周一 (05.26)',
+  time: '8:00-8:45',
+  course: '古诗静夜思',
   status: '教案未准备！'
 });
 
