@@ -27,6 +27,7 @@ declare module "@elegant-router/types" {
     "system1_child1": "/system1/child1";
     "system1_child2": "/system1/child2";
     "system1_child3": "/system1/child3";
+    "system1_child4": "/system1/child4";
     "system2": "/system2";
     "system2_child1": "/system2/child1";
     "system2_child2": "/system2/child2";
@@ -36,6 +37,9 @@ declare module "@elegant-router/types" {
     "system3_child2": "/system3/child2";
     "system3_child3": "/system3/child3";
     "system4": "/system4";
+    "system6": "/system6";
+    "system6_child1": "/system6/child1";
+    "system6_child2": "/system6/child2";
   };
 
   /**
@@ -77,6 +81,7 @@ declare module "@elegant-router/types" {
     | "system2"
     | "system3"
     | "system4"
+    | "system6"
   >;
 
   /**
@@ -102,6 +107,7 @@ declare module "@elegant-router/types" {
     | "system1_child1"
     | "system1_child2"
     | "system1_child3"
+    | "system1_child4"
     | "system2_child1"
     | "system2_child2"
     | "system2_child3"
@@ -109,6 +115,8 @@ declare module "@elegant-router/types" {
     | "system3_child2"
     | "system3_child3"
     | "system4"
+    | "system6_child1"
+    | "system6_child2"
   >;
 
   /**

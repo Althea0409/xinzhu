@@ -113,7 +113,17 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'system1_child3',
           i18nKey: 'route.system1_child3',
-          icon: 'mingcute:ppt-fill'
+          icon: 'material-symbols:smb-share'
+        }
+      },
+      {
+        name: 'system1_child4',
+        path: '/system1/child4',
+        component: 'view.system1_child4',
+        meta: {
+          title: 'system1_child4',
+          i18nKey: 'route.system1_child4',
+          icon: 'material-symbols:handshake'
         }
       }
     ]
@@ -136,7 +146,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'system2_child1',
           i18nKey: 'route.system2_child1',
-          icon: 'eos-icons:storage-class'
+          icon: 'mingcute:presentation-1-fill'
         }
       },
       {
@@ -146,7 +156,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'system2_child2',
           i18nKey: 'route.system2_child2',
-          icon: 'uis:layer-group'
+          icon: 'mdi:account-box'
         }
       },
       {
@@ -156,7 +166,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'system2_child3',
           i18nKey: 'route.system2_child3',
-          icon: 'mingcute:presentation-1-fill'
+          icon: 'eos-icons:storage-class'
         }
       }
     ]
@@ -179,7 +189,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'system3_child1',
           i18nKey: 'route.system3_child1',
-          icon: 'material-symbols:smb-share'
+          icon: 'mdi:human-greeting-variant'
         }
       },
       {
@@ -189,7 +199,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         meta: {
           title: 'system3_child2',
           i18nKey: 'route.system3_child2',
-          icon: 'mdi:lightbulb-question'
+          icon: 'mdi:text-box-edit'
         }
       },
       {
@@ -212,7 +222,40 @@ export const generatedRoutes: GeneratedRoute[] = [
       title: 'system4',
       i18nKey: 'route.system4',
       icon: 'mingcute:user-star-fill',
-      order: 4
+      order: 5
     }
+  },
+  {
+    name: 'system6',
+    path: '/system6',
+    component: 'layout.base',
+    meta: {
+      title: 'system6',
+      i18nKey: 'route.system6',
+      icon: 'mdi:book-variant',
+      order: 4
+    },
+    children: [
+      {
+        name: 'system6_child1',
+        path: '/system6/child1',
+        component: 'view.system6_child1',
+        meta: {
+          title: 'system6_child1',
+          i18nKey: 'route.system6_child1',
+          icon: 'uis:layer-group'
+        }
+      },
+      {
+        name: 'system6_child2',
+        path: '/system6/child2',
+        component: 'view.system6_child2',
+        meta: {
+          title: 'system6_child2',
+          i18nKey: 'route.system6_child2',
+          icon: 'mdi:book-open-page-variant'
+        }
+      }
+    ]
   }
 ];
