@@ -1,6 +1,7 @@
 ## 代码详细解读
 
 ### 1. 修改系统标题
+
 找到路径：
 
 ```
@@ -25,7 +26,9 @@ const local: App.I18n.Schema = {
 将 `'System Title'` 修改为想要的标题即可。
 
 ---
+
 ### 2. 修改用户名和密码
+
 找到路径：
 
 ```
@@ -75,7 +78,9 @@ const accounts = computed<Account[]>(() => [
 ```
 
 ---
+
 ### 3. 修改主题配置
+
 找到路径：
 
 ```
@@ -103,6 +108,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
 其他主题配置也可以在此文件中，根据需要修改。
 
 ---
+
 ### 4. 创建路由
 
 在终端执行 `pnpm gen-route` 命令，可以快速创建路由文件
@@ -279,3 +285,102 @@ deps         项目依赖      (依赖项的增减/升级)
 release      发布          (版本发布相关操作)
 other        其他          (未明确分类的变更)
 ```
+
+---
+
+### 9. 删除右上角按钮
+
+找到路径：
+
+```
+src/
+  layouts/
+    modules/
+      global-header/
+        index.vue
+        ...
+```
+
+在 `index.vue` 文件中定位到以下的代码：
+
+```html
+<template>
+...
+    <!-- 全屏按钮 -->
+    <FullScreen v-if="!appStore.isMobile" :full="isFullscreen" @click="toggle" />
+    <!-- 切换语言按钮 -->
+    <LangSwitch :lang="appStore.locale" :lang-options="appStore.localeOptions" @change-lang="appStore.changeLocale" />
+    <!-- 主题配置按钮 -->
+    <ThemeSchemaSwitch
+    :theme-schema="themeStore.themeScheme"
+    :is-dark="themeStore.darkMode"
+    @switch="themeStore.toggleThemeScheme"
+    />
+...
+</template>
+```
+
+注释或删除 `<LangSwitch>` 和 `<ThemeSchemaSwitch>` 等标签即可。
+
+---
+
+### 10. 替换logo
+
+（1）找到路径：
+
+```
+public/
+  favicon.svg
+```
+
+把新的Logo命名为 `favicon.svg` 并替换即可
+
+（2）找到路径：
+
+```
+src/
+  assets/
+    svg-icon/
+        logo.svg
+```
+
+把新的Logo命名为 `logo.svg` 并替换即可
+
+---
+
+### 11. xxx
+
+找到路径：
+
+```
+src/
+  layouts/
+    modules/
+      global-header/
+        index.vue
+        ...
+```
+
+在 `index.vue` 文件中定位到以下的代码：
+
+```html
+<template>
+...
+    <!-- 全屏按钮 -->
+    <FullScreen v-if="!appStore.isMobile" :full="isFullscreen" @click="toggle" />
+    <!-- 切换语言按钮 -->
+    <LangSwitch :lang="appStore.locale" :lang-options="appStore.localeOptions" @change-lang="appStore.changeLocale" />
+    <!-- 主题配置按钮 -->
+    <ThemeSchemaSwitch
+    :theme-schema="themeStore.themeScheme"
+    :is-dark="themeStore.darkMode"
+    @switch="themeStore.toggleThemeScheme"
+    />
+...
+</template>
+```
+
+注释或删除 `<LangSwitch>` 和 `<ThemeSchemaSwitch>` 等标签即可。
+
+---
+

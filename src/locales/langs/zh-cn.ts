@@ -1,6 +1,6 @@
 const local: App.I18n.Schema = {
   system: {
-    title: '新 竹',
+    title: '明 蹊',
     updateTitle: '系统版本更新通知',
     updateContent: '检测到系统有新版本发布，是否立即刷新页面？',
     updateConfirm: '立即刷新',
@@ -205,9 +205,9 @@ const local: App.I18n.Schema = {
         register: '注册账号',
         otherAccountLogin: '其他账号登录',
         otherLoginMode: '其他登录方式',
-        superAdmin: '超级管理员',
-        admin: '管理员',
-        user: '普通用户'
+        superAdmin: '管理端',
+        admin: '教师端',
+        user: '学生端'
       },
       codeLogin: {
         title: '验证码登录',
