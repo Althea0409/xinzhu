@@ -1,716 +1,291 @@
+<!-- eslint-disable no-console -->
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import { NSelect } from 'naive-ui';
-import ControlButtons from './modules/ControlButtons.vue';
-import LevelGroup from './modules/LevelGroup.vue';
-import TaskHeader from './modules/TaskHeader.vue';
-import StudentLayerModal from './modules/StudentLayerModal.vue';
-import ExercisePreviewModal from './modules/ExercisePreviewModal.vue';
-import MessageProvider from './modules/MessageProvider.vue';
-import { calculateStudentCounts, generateMockExercise, mockStudents } from './modules/mockData';
-import type { ExerciseSet, LayerCounts, StudentLayer } from './types';
+import { ref } from 'vue';
+import { StudentTrackingCard } from './modules/student-tracking-card';
+import StudentDetailModal from './modules/student-detail-modal/student-detail-modal.vue';
+import type { StudentInfo } from './modules/types';
 
-// 学生分层数据
-const studentData = ref<StudentLayer[]>(mockStudents);
-
-// 学生分层弹窗控制
-const showStudentLayerModal = ref(false);
-
-// 练习题预览弹窗控制
-const showExercisePreviewModal = ref(false);
-
-// 计算学生分层人数
-const studentLayers = ref<LayerCounts>({
-  basic: mockStudents.filter(s => s.layer === '基础层').length,
-  improve: mockStudents.filter(s => s.layer === '提高层').length,
-  extension: mockStudents.filter(s => s.layer === '拓展层').length
-});
-
-// 各区域题目数量
-const questionCounts = ref({
-  basic: 2,
-  improve: 3,
-  extension: 3,
-  comprehensive: 2
-});
-
-// 生成的练习题集
-const generatedExerciseSet = ref<ExerciseSet | undefined>(undefined);
-
-// 下拉选项
-const countOptions = [
-  { label: '1', value: 1 },
-  { label: '2', value: 2 },
-  { label: '3', value: 3 },
-  { label: '4', value: 4 },
-  { label: '5', value: 5 },
-  { label: '6', value: 6 }
+/** 班级选项 */
+const classOptions = [
+  { label: '全部班级', value: '' },
+  { label: '初三(1)班', value: '初三(1)班' },
+  { label: '初三(2)班', value: '初三(2)班' },
+  { label: '初三(3)班', value: '初三(3)班' }
 ];
 
-// 题目生成算法参数
-const generationParams = reactive({
-  coverageRate: 85, // 知识点覆盖率
-  difficultyDistribution: {
-    basic: { easy: 60, medium: 30, hard: 10 }, // 基础层题目难度分布
-    improve: { easy: 30, medium: 50, hard: 20 }, // 提高层题目难度分布
-    extension: { easy: 10, medium: 40, hard: 50 } // 拓展层题目难度分布
-  },
-  questionTypes: {
-    choice: '选择题', // 选择题
-    fill: '填空题', // 填空题
-    judge: '判断题', // 判断题
-    comprehensive: '综合题' // 综合题
-  },
-  algorithms: {
-    basic: '基于核心知识点分布自动生成',
-    improve: '基于学生易错点和关联知识点生成',
-    extension: '基于知识应用和创新能力生成'
-  }
+/** 学科选项 */
+const subjectOptions = [
+  { label: '全部学科', value: '' },
+  { label: '数学', value: '数学' },
+  { label: '语文', value: '语文' },
+  { label: '英语', value: '英语' },
+  { label: '物理', value: '物理' },
+  { label: '化学', value: '化学' }
+];
+
+/** 学生状态选项 */
+const statusOptions = [
+  { label: '全部状态', value: '' },
+  { label: '优秀', value: '优秀' },
+  { label: '正常', value: '正常' },
+  { label: '需关注', value: '需关注' },
+  { label: '重度关注', value: '重度关注' }
+];
+
+/** 筛选条件 */
+const filterConditions = ref({
+  class: '',
+  subject: '',
+  status: '',
+  keyword: ''
 });
 
-// 生成的题目分析数据
-const analysisData = reactive({
-  knowledgePoints: {
-    covered: 42, // 已覆盖知识点
-    total: 50, // 总知识点
-    distribution: [
-      { name: '数与代数', value: 35 },
-      { name: '几何与测量', value: 30 },
-      { name: '统计与概率', value: 20 },
-      { name: '综合应用', value: 15 }
-    ]
+/** 学生信息数据 包含学生姓名、班级、课程和学习状态 */
+const studentsList = ref<StudentInfo[]>([
+  {
+    id: 1,
+    name: '陈晓明',
+    className: '初三(1)班',
+    subjects: [
+      { id: 1, name: '三角函数', type: 'math' },
+      { id: 2, name: '几何证明', type: 'math' }
+    ],
+    studyStatus: 'middle-excellent'
   },
-  difficulty: {
-    average: 3.6, // 平均难度 (1-5)
-    distribution: [
-      { name: '容易', value: 30 },
-      { name: '适中', value: 45 },
-      { name: '困难', value: 25 }
-    ]
+  {
+    id: 2,
+    name: '王思雨',
+    className: '初三(2)班',
+    subjects: [
+      { id: 3, name: '时态语法', type: 'english' },
+      { id: 4, name: '阅读理解', type: 'chinese' }
+    ],
+    studyStatus: 'normal'
   },
-  cognitive: {
-    distribution: [
-      { name: '知识记忆', value: 20 },
-      { name: '理解应用', value: 45 },
-      { name: '分析综合', value: 25 },
-      { name: '评价创造', value: 10 }
-    ]
+  {
+    id: 3,
+    name: '李华',
+    className: '初三(3)班',
+    subjects: [
+      { id: 5, name: '物理力学', type: 'physics' },
+      { id: 6, name: '化学方程式', type: 'chemistry' }
+    ],
+    studyStatus: 'excellent'
+  },
+  {
+    id: 4,
+    name: '张小芳',
+    className: '初三(1)班',
+    subjects: [
+      { id: 7, name: '政治理论', type: 'politics' },
+      { id: 8, name: '历史年表', type: 'history' }
+    ],
+    studyStatus: 'needs-improvement'
+  },
+  {
+    id: 5,
+    name: '刘明',
+    className: '初三(2)班',
+    subjects: [
+      { id: 9, name: '生物分类', type: 'biology' },
+      { id: 10, name: '地理地形', type: 'geography' }
+    ],
+    studyStatus: 'middle-excellent'
+  },
+  {
+    id: 6,
+    name: '王强',
+    className: '初三(3)班',
+    subjects: [
+      { id: 11, name: '三角函数', type: 'math' },
+      { id: 12, name: '英语听力', type: 'english' }
+    ],
+    studyStatus: 'normal'
+  },
+  {
+    id: 7,
+    name: '赵敏',
+    className: '初三(1)班',
+    subjects: [
+      { id: 13, name: '物理电学', type: 'physics' },
+      { id: 14, name: '化学实验', type: 'chemistry' }
+    ],
+    studyStatus: 'excellent'
+  },
+  {
+    id: 8,
+    name: '孙伟',
+    className: '初三(2)班',
+    subjects: [
+      { id: 15, name: '文言文', type: 'chinese' },
+      { id: 16, name: '英语写作', type: 'english' }
+    ],
+    studyStatus: 'needs-improvement'
   }
-});
+]);
 
-// 显示/隐藏分析面板
-const showAnalysis = ref(false);
+/** 当前选中的学生 */
+const selectedStudent = ref<StudentInfo | null>(null);
 
-// 切换分析面板显示状态
-const toggleAnalysis = () => {
-  showAnalysis.value = !showAnalysis.value;
-};
+/** 是否显示学生详情弹窗 */
+const showDetailModal = ref(false);
 
-// 获取图表条形图的颜色
-function getBarColor(index: number) {
-  const colors = ['#4161fe', '#ff9f43', '#28c76f', '#7367f0'];
-  return colors[index % colors.length];
+/** 处理学生卡片点击事件 */
+function handleStudentClick(student: StudentInfo) {
+  selectedStudent.value = student;
+  showDetailModal.value = true;
 }
 
-// 打开学生分层管理弹窗
-function openStudentLayerModal() {
-  showStudentLayerModal.value = true;
+/** 关闭学生详情弹窗 */
+function closeDetailModal() {
+  showDetailModal.value = false;
 }
 
-// 保存学生分层数据
-function saveStudentLayers(layers: StudentLayer[]) {
-  studentData.value = layers;
-
-  // 更新学生分层人数
-  studentLayers.value = calculateStudentCounts(layers);
+/** 重置筛选条件 */
+function resetFilters() {
+  filterConditions.value = {
+    class: '',
+    subject: '',
+    status: '',
+    keyword: ''
+  };
 }
 
-// 模拟生成题目
-async function generateQuestions() {
-  if (window.$message) {
-    window.$message.loading('正在生成题目...', { duration: 3000 });
-  }
-
-  // 模拟 API 调用延迟
-  await new Promise(resolve => {
-    setTimeout(resolve, 3000);
-  });
-
-  // 创建基础层练习题集
-  generatedExerciseSet.value = generateMockExercise('基础层');
-
-  if (window.$message) {
-    window.$message.success('生成题目成功！');
-  }
-}
-
-// 打开练习题预览弹窗
-function openExercisePreviewModal() {
-  if (!generatedExerciseSet.value) {
-    if (window.$message) {
-      window.$message.error('请先生成题目！');
-    }
-    return;
-  }
-
-  showExercisePreviewModal.value = true;
+/** 应用筛选条件 */
+function applyFilters() {
+  // 这里实现筛选逻辑
+  console.log('应用筛选：', filterConditions.value);
 }
 </script>
 
 <template>
-  <MessageProvider>
-    <div class="task-layout-container">
-      <!-- 页面标题和操作区 -->
-      <TaskHeader :student-layers="studentLayers" @adjust="openStudentLayerModal" />
+  <div class="min-h-screen bg-gray-50 p-8">
+    <h1 class="mb-6 ml-3 text-2xl font-bold">学生个性画像</h1>
 
-      <!-- 题型组合区域 -->
-      <div class="question-group-section">
-        <div class="group-title-wrapper">
-          <div class="title-indicator"></div>
-          <h3 class="group-title">题型组合</h3>
-          <div class="algorithm-info" @click="toggleAnalysis">
-            <i class="algorithm-icon">i</i>
-            <span>智能推荐</span>
-          </div>
-        </div>
-
-        <div class="question-selectors">
-          <div class="question-type">
-            <div class="type-name">选择</div>
-            <NSelect v-model:value="questionCounts.basic" :options="countOptions" />
-          </div>
-
-          <div class="question-type">
-            <div class="type-name">填空</div>
-            <NSelect v-model:value="questionCounts.improve" :options="countOptions" />
-          </div>
-
-          <div class="question-type">
-            <div class="type-name">判断</div>
-            <NSelect v-model:value="questionCounts.extension" :options="countOptions" />
-          </div>
-
-          <div class="question-type">
-            <div class="type-name">综合题</div>
-            <NSelect v-model:value="questionCounts.comprehensive" :options="countOptions" />
-          </div>
-        </div>
-
-        <!-- 算法分析面板 -->
-        <div v-if="showAnalysis" class="analysis-panel">
-          <div class="analysis-header">
-            <h4>智能题目生成分析</h4>
-            <span class="analysis-close" @click="toggleAnalysis">×</span>
-          </div>
-
-          <div class="analysis-content">
-            <div class="analysis-section">
-              <h5>知识点覆盖分析</h5>
-              <div class="coverage-info">
-                <div class="coverage-progress">
-                  <div
-                    class="progress-bar"
-                    :style="{
-                      width: `${(analysisData.knowledgePoints.covered / analysisData.knowledgePoints.total) * 100}%`
-                    }"
-                  ></div>
-                </div>
-                <div class="coverage-text">
-                  覆盖率:
-                  {{ Math.round((analysisData.knowledgePoints.covered / analysisData.knowledgePoints.total) * 100) }}%
-                </div>
-              </div>
-
-              <div class="distribution-chart">
-                <div v-for="(item, index) in analysisData.knowledgePoints.distribution" :key="index" class="chart-bar">
-                  <div class="bar-label">{{ item.name }}</div>
-                  <div class="bar-container">
-                    <div
-                      class="bar-fill"
-                      :style="{ width: `${item.value}%`, backgroundColor: getBarColor(index) }"
-                    ></div>
-                  </div>
-                  <div class="bar-value">{{ item.value }}%</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="analysis-section">
-              <h5>难度分布</h5>
-              <div class="difficulty-info">
-                <div class="difficulty-levels">
-                  <div v-for="(level, index) in ['基础层', '提高层', '拓展层']" :key="index" class="difficulty-level">
-                    <div class="level-name">{{ level }}</div>
-                    <div class="level-bars">
-                      <div
-                        class="level-bar easy"
-                        :style="{
-                          width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].easy}%`
-                        }"
-                      ></div>
-                      <div
-                        class="level-bar medium"
-                        :style="{
-                          width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].medium}%`
-                        }"
-                      ></div>
-                      <div
-                        class="level-bar hard"
-                        :style="{
-                          width: `${generationParams.difficultyDistribution[index === 0 ? 'basic' : index === 1 ? 'improve' : 'extension'].hard}%`
-                        }"
-                      ></div>
-                    </div>
-                    <div class="level-legend">
-                      <span>
-                        <i class="easy color-dot"></i>
-                        易
-                      </span>
-                      <span>
-                        <i class="color-dot medium"></i>
-                        中
-                      </span>
-                      <span>
-                        <i class="color-dot hard"></i>
-                        难
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="analysis-section algorithm-section">
-              <h5>智能生成算法</h5>
-              <div class="algorithm-items">
-                <div class="algorithm-item">
-                  <div class="algorithm-title">基础层题目</div>
-                  <div class="algorithm-desc">{{ generationParams.algorithms.basic }}</div>
-                </div>
-                <div class="algorithm-item">
-                  <div class="algorithm-title">提高层题目</div>
-                  <div class="algorithm-desc">{{ generationParams.algorithms.improve }}</div>
-                </div>
-                <div class="algorithm-item">
-                  <div class="algorithm-title">拓展层题目</div>
-                  <div class="algorithm-desc">{{ generationParams.algorithms.extension }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- 筛选面板 -->
+    <div class="mb-8 rounded-lg bg-white p-5 shadow-sm">
+      <div class="mb-4 flex items-center">
+        <h3 class="text-base text-[#333333] font-medium">数据筛选</h3>
+        <div class="ml-auto flex space-x-3">
+          <button
+            class="rounded bg-[#EEF1FF] px-4 py-1.5 text-sm text-[#2B46FE] hover:bg-[#DCE1FF]"
+            @click="resetFilters"
+          >
+            重置筛选
+          </button>
+          <button
+            class="rounded bg-[#2B46FE] px-4 py-1.5 text-sm text-white hover:bg-[#2B46FE]/90"
+            @click="applyFilters"
+          >
+            应用筛选
+          </button>
         </div>
       </div>
 
-      <!-- 分层题目区域 -->
-      <div class="level-questions-container">
-        <LevelGroup level-type="basic" level-name="基础层" label-text="必做" :count="questionCounts.basic" />
-
-        <LevelGroup level-type="improve" level-name="提高层" label-text="选做" :count="questionCounts.improve" />
-
-        <LevelGroup level-type="extension" level-name="拓展层" label-text="选做" :count="questionCounts.extension" />
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-4">
+        <div>
+          <label class="mb-2 block text-sm text-[#666666]">班级</label>
+          <NSelect
+            v-model:value="filterConditions.class"
+            :options="classOptions"
+            size="medium"
+            placeholder="选择班级"
+            clearable
+          />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm text-[#666666]">学科</label>
+          <NSelect
+            v-model:value="filterConditions.subject"
+            :options="subjectOptions"
+            size="medium"
+            placeholder="选择学科"
+            clearable
+          />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm text-[#666666]">学生状态</label>
+          <NSelect
+            v-model:value="filterConditions.status"
+            :options="statusOptions"
+            size="medium"
+            placeholder="选择状态"
+            clearable
+          />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm text-[#666666]">关键词</label>
+          <NInput v-model:value="filterConditions.keyword" type="text" size="medium" placeholder="搜索学生姓名" />
+        </div>
       </div>
-
-      <!-- 底部控制按钮 -->
-      <ControlButtons @generate="generateQuestions" @preview="openExercisePreviewModal" />
-
-      <!-- 学生分层管理弹窗 -->
-      <StudentLayerModal v-model:show="showStudentLayerModal" :student-data="studentData" @save="saveStudentLayers" />
-
-      <!-- 练习题预览弹窗 -->
-      <ExercisePreviewModal v-model:show="showExercisePreviewModal" :exercise-set="generatedExerciseSet || null" />
     </div>
-  </MessageProvider>
+
+    <!-- 学生卡片列表 -->
+    <div class="grid grid-cols-1 gap-6 px-2 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-4">
+      <StudentTrackingCard
+        v-for="student in studentsList"
+        :key="student.id"
+        :student="student"
+        class="transition-shadow hover:shadow-md"
+        @click="handleStudentClick"
+      />
+    </div>
+
+    <!-- 学生详情弹窗 - 当选中学生时显示 -->
+    <StudentDetailModal
+      v-if="selectedStudent"
+      v-model:show="showDetailModal"
+      :student="selectedStudent"
+      @close="closeDetailModal"
+    />
+  </div>
 </template>
 
 <style scoped>
-.task-layout-container {
-  padding: 20px 40px;
-  min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-}
-
-.question-group-section {
-  margin: 20px 0 30px;
-  background-color: white;
-  padding: 20px 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee;
-  max-width: 600px;
-  position: relative;
-}
-
-.group-title-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.title-indicator {
-  width: 3px;
-  height: 18px;
-  background-color: #4161fe;
-  border-radius: 3px;
-  margin-right: 8px;
-}
-
-.group-title {
-  font-weight: 600;
-  font-size: 16px;
-  color: #333;
-  margin: 0;
-}
-
-.algorithm-info {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 13px;
-  color: #4161fe;
-  transition: all 0.2s;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.algorithm-info:hover {
-  background-color: #f0f3ff;
-}
-
-.algorithm-icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #4161fe;
-  color: white;
-  font-size: 11px;
-  font-style: normal;
-  margin-right: 5px;
-  font-weight: bold;
-}
-
-.question-selectors {
-  display: flex;
-  gap: 12px;
-  padding: 5px 0;
-  flex-wrap: wrap;
-}
-
-.question-type {
-  display: flex;
-  flex-direction: column;
-  width: calc(25% - 9px);
-}
-
-.type-name {
-  background-color: #4161fe;
-  color: white;
-  font-size: 14px;
-  padding: 8px 0;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  width: 100%;
-  text-align: center;
-  font-weight: 500;
-}
-
-/* NSelect数字居中样式 */
 :deep(.n-select) {
   width: 100%;
 }
 
-:deep(.n-base-selection) {
-  padding: 0 8px;
-  border-radius: 6px !important;
-  border: 1px solid #e0e0e0 !important;
-  transition: all 0.2s !important;
-  height: 36px !important;
+:deep(.n-select .n-base-selection) {
+  border-radius: 4px;
+  border-color: #e5e7eb;
+  transition: all 0.2s ease;
 }
 
-:deep(.n-base-selection:hover) {
-  border-color: #4161fe !important;
+:deep(.n-select:hover .n-base-selection) {
+  border-color: rgba(43, 70, 254, 0.3);
 }
 
-:deep(.n-base-selection-input) {
-  text-align: center;
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  color: #444 !important;
+:deep(.n-select:focus-within .n-base-selection),
+:deep(.n-select.n-select--focus .n-base-selection) {
+  border-color: #2b46fe;
+  box-shadow: 0 0 0 1px rgba(43, 70, 254, 0.2);
 }
 
-:deep(.n-base-selection-placeholder) {
-  text-align: center;
-  left: 0;
-  right: 0;
-  color: #999 !important;
-}
-
-:deep(.n-base-selection-tags) {
-  justify-content: center;
-}
-
-:deep(.n-select-menu) {
-  border-radius: 6px !important;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1) !important;
-  padding: 4px !important;
-}
-
-:deep(.n-select-menu .n-base-select-option) {
-  text-align: center;
-  justify-content: center;
-  border-radius: 4px !important;
-  margin: 2px 0 !important;
-  font-size: 14px !important;
-  color: #444 !important;
+:deep(.n-select-menu .n-base-select-option.n-base-select-option--selected) {
+  color: #2b46fe;
 }
 
 :deep(.n-select-menu .n-base-select-option:hover) {
-  background-color: #f5f7ff !important;
+  background-color: #f3f3f5;
 }
 
-:deep(.n-select-menu .n-base-select-option--selected) {
-  color: #4161fe !important;
-  background-color: #edf1ff !important;
-  font-weight: 500 !important;
+:deep(.n-input) {
+  width: 100%;
 }
 
-.level-questions-container {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* 覆盖LevelGroup组件中的标题样式以确保一致性 */
-:deep(.level-title) {
-  font-weight: 700 !important;
-  font-size: 17px !important;
-}
-
-:deep(.level-header) {
-  padding: 12px 15px !important;
-}
-
-@media (max-width: 768px) {
-  .task-layout-container {
-    padding: 15px;
-  }
-
-  .question-selectors {
-    flex-wrap: wrap;
-  }
-
-  .level-questions-container {
-    flex-direction: column;
-  }
-}
-
-/* 分析面板样式 */
-.analysis-panel {
-  margin-top: 15px;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #fafbfd;
-}
-
-.analysis-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  background-color: #f5f7ff;
-  border-bottom: 1px solid #eaeaea;
-}
-
-.analysis-header h4 {
-  margin: 0;
-  font-size: 15px;
-  color: #4161fe;
-}
-
-.analysis-close {
-  font-size: 20px;
-  line-height: 1;
-  color: #aaa;
-  cursor: pointer;
-  padding: 0 5px;
-}
-
-.analysis-close:hover {
-  color: #666;
-}
-
-.analysis-content {
-  padding: 15px;
-}
-
-.analysis-section {
-  margin-bottom: 20px;
-}
-
-.analysis-section h5 {
-  margin: 0 0 10px;
-  font-size: 14px;
-  color: #555;
-  font-weight: 600;
-}
-
-.coverage-info {
-  margin-bottom: 15px;
-}
-
-.coverage-progress {
-  height: 8px;
-  background-color: #eee;
+:deep(.n-input .n-input__border) {
   border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 5px;
+  border-color: #e5e7eb;
+  transition: all 0.2s ease;
 }
 
-.progress-bar {
-  height: 100%;
-  background-color: #4caf50;
-  border-radius: 4px;
+:deep(.n-input:hover .n-input__border) {
+  border-color: rgba(43, 70, 254, 0.3);
 }
 
-.coverage-text {
-  font-size: 13px;
-  color: #555;
-  text-align: right;
-}
-
-.distribution-chart {
-  margin-top: 10px;
-}
-
-.chart-bar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.bar-label {
-  width: 100px;
-  font-size: 13px;
-  color: #555;
-}
-
-.bar-container {
-  flex: 1;
-  height: 12px;
-  background-color: #eee;
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 0 10px;
-}
-
-.bar-fill {
-  height: 100%;
-  border-radius: 6px;
-}
-
-.bar-value {
-  width: 40px;
-  font-size: 13px;
-  color: #555;
-  text-align: right;
-}
-
-.difficulty-levels {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.difficulty-level {
-  display: flex;
-  flex-direction: column;
-}
-
-.level-name {
-  font-size: 13px;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-.level-bars {
-  height: 14px;
-  display: flex;
-  border-radius: 7px;
-  overflow: hidden;
-}
-
-.level-bar {
-  height: 100%;
-}
-
-.level-bar.easy {
-  background-color: #4caf50;
-}
-
-.level-bar.medium {
-  background-color: #ffc107;
-}
-
-.level-bar.hard {
-  background-color: #f44336;
-}
-
-.level-legend {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 5px;
-  font-size: 12px;
-  color: #777;
-}
-
-.color-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 4px;
-}
-
-.color-dot.easy {
-  background-color: #4caf50;
-}
-
-.color-dot.medium {
-  background-color: #ffc107;
-}
-
-.color-dot.hard {
-  background-color: #f44336;
-}
-
-.algorithm-items {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.algorithm-item {
-  background-color: white;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  padding: 10px;
-}
-
-.algorithm-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: #444;
-  margin-bottom: 5px;
-}
-
-.algorithm-desc {
-  font-size: 12px;
-  color: #666;
-  line-height: 1.5;
+:deep(.n-input:focus-within .n-input__border) {
+  border-color: #2b46fe;
+  box-shadow: 0 0 0 1px rgba(43, 70, 254, 0.2);
 }
 </style>
