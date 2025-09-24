@@ -12,7 +12,24 @@ declare module 'naive-ui' {
 
   // 组件相关
   const NButton: DefineComponent<any, any, any>;
-  const NCard: DefineComponent<any, any, any>;
+  const NCard: DefineComponent<
+    {
+      title?: string;
+      bordered?: boolean;
+      size?: 'small' | 'medium' | 'large';
+      segmented?: boolean | { content?: boolean; footer?: boolean };
+      [key: string]: any;
+    },
+    {
+      'header-extra'?: any;
+      default?: any;
+      footer?: any;
+      action?: any;
+      cover?: any;
+      [key: string]: any;
+    },
+    any
+  >;
   const NCollapse: DefineComponent<any, any, any>;
   const NCollapseItem: DefineComponent<any, any, any>;
   const NConfigProvider: DefineComponent<any, any, any>;

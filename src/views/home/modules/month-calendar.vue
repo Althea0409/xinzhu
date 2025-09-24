@@ -112,14 +112,10 @@ onMounted(() => {
       <div class="text-xl font-bold">{{ currentMonth }}</div>
       <div class="navigation-buttons flex gap-2">
         <NButton quaternary circle size="small" @click="changeMonth('prev')">
-          <template #icon>
-            <NIcon><ChevronBackOutline /></NIcon>
-          </template>
+          <NIcon><ChevronBackOutline /></NIcon>
         </NButton>
         <NButton quaternary circle size="small" @click="changeMonth('next')">
-          <template #icon>
-            <NIcon><ChevronForwardOutline /></NIcon>
-          </template>
+          <NIcon><ChevronForwardOutline /></NIcon>
         </NButton>
       </div>
     </div>

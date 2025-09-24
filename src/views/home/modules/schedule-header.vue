@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { SearchOutline } from '@vicons/ionicons5';
 // 搜索功能
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const searchValue = ref('');
 
 // 视图切换功能
@@ -15,22 +15,29 @@ const changeView = (mode: string) => {
 </script>
 
 <template>
-  <div class="w-full flex items-center justify-between rounded-lg bg-white p-4">
+  <div>
+    <!-- 暂时注释掉的内容 -->
+    <!-- <div class="w-full flex items-center justify-between rounded-lg bg-white p-4"> -->
     <!-- 左侧搜索框 -->
-    <div class="search-box flex items-center">
-      <NInput v-model:value="searchValue" placeholder="快速查找课程" clearable round class="w-60">
-        <template #prefix>
-          <NIcon class="text-gray-500" size="20"><SearchOutline /></NIcon>
-        </template>
-      </NInput>
-    </div>
+    <!--
+ <div class="search-box flex items-center">
+        <NInput v-model:value="searchValue" placeholder="快速查找课程" clearable round class="w-60">
+          <template #prefix>
+            <NIcon class="text-gray-500" size="20"><SearchOutline /></NIcon>
+          </template>
+        </NInput>
+      </div> 
+-->
 
     <!-- 右侧功能按钮 -->
-    <div class="action-buttons flex gap-4">
-      <NButton type="primary" ghost>快速同步课表</NButton>
-      <NButton type="primary" ghost>导出课表PDF</NButton>
-      <NButton type="primary" ghost>设置</NButton>
-    </div>
+    <!--
+ <div class="action-buttons flex gap-4">
+        <NButton type="primary" ghost>快速同步课表</NButton>
+        <NButton type="primary" ghost>导出课表PDF</NButton>
+        <NButton type="primary" ghost>设置</NButton>
+      </div>
+    </div> 
+-->
   </div>
 </template>
 

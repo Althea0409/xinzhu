@@ -23,9 +23,7 @@ const addProgressItem = () => {
     <div class="card-header mb-4 flex items-center justify-between">
       <div class="text-lg font-bold">语文备课进度</div>
       <NButton quaternary circle size="small" @click="addProgressItem">
-        <template #icon>
-          <NIcon><AddOutline /></NIcon>
-        </template>
+        <NIcon><AddOutline /></NIcon>
       </NButton>
     </div>
 

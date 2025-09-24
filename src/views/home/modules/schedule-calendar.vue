@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
+import { NButton, NIcon, NModal } from 'naive-ui';
 import {
   CalendarOutline,
   ChevronBackOutline,
@@ -47,21 +48,17 @@ const weekDays = computed(() => {
   const today = new Date();
   const days = [];
 
-  const dayNames = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
-
   for (let i = 0; i < 7; i += 1) {
     const date = new Date(startOfWeek);
     date.setDate(startOfWeek.getDate() + i);
 
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-
-    // 检查是否是今天
+    const dayNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
     const isToday = date.toDateString() === today.toDateString();
 
     days.push({
-      day: dayNames[i],
-      date: `${month}.${day}`,
+      day: dayNames[date.getDay()],
+      date: String(date.getDate()).padStart(2, '0'),
+      fullDate: date,
       isHighlighted: isToday
     });
   }
@@ -69,156 +66,153 @@ const weekDays = computed(() => {
   return days;
 });
 
-// 课程数据
+// 时间段配置
+const timeSlots = [
+  { time: '8:00', label: '8:00' },
+  { time: '9:00', label: '9:00' },
+  { time: '10:00', label: '10:00' },
+  { time: '11:00', label: '11:00' },
+  { time: '14:00', label: '14:00' },
+  { time: '15:00', label: '15:00' }
+];
+
+// 课程数据 - 符合真实初中语文教师的课程安排
 const courses = ref([
-  // 星期一
+  // 周一课程安排 - 通常每天2-3节课
   {
     id: 1,
-    name: '古诗欣赏《静夜思》',
-    class: '一年级1班',
-    room: '语文教室101',
+    name: '古诗词欣赏（精读）',
+    teacher: '张老师',
     time: '8:00-8:45',
-    day: 1,
-    color: 'border-blue-200 bg-blue-100 text-blue-600'
+    location: '初一2班',
+    day: 1, // 周一
+    color: 'bg-blue-100 border-blue-200 text-blue-800',
+    status: 'upcoming'
   },
   {
     id: 2,
-    name: '古诗欣赏《静夜思》',
-    class: '一年级2班',
-    room: '语文教室102',
-    time: '8:00-8:45',
-    day: 1,
-    color: 'border-green-200 bg-green-100 text-green-600'
+    name: '经典朗诵',
+    teacher: '张老师',
+    time: '9:00-9:45',
+    location: '初一2班',
+    day: 1, // 周一
+    color: 'bg-orange-100 border-orange-200 text-orange-800',
+    status: 'upcoming'
   },
   {
     id: 3,
-    name: '课文朗读',
-    class: '一年级3班',
-    room: '语文教室103',
-    time: '10:00-10:45',
-    day: 1,
-    color: 'border-purple-200 bg-purple-100 text-purple-600'
+    name: '经典朗诵',
+    teacher: '张老师',
+    time: '11:00-11:45',
+    location: '初一2班',
+    day: 2, // 周一
+    color: 'bg-orange-100 border-orange-200 text-orange-800',
+    status: 'upcoming'
   },
-  // 星期二
-  {
-    id: 4,
-    name: '阅读训练',
-    class: '一年级1班',
-    room: '语文教室101',
-    time: '8:00-8:45',
-    day: 2,
-    color: 'border-orange-200 bg-orange-100 text-orange-600'
-  },
+
+  // 周二课程安排
+  //   {
+  //     id: 4,
+  //     name: '语文',
+  //     teacher: '张老师',
+  //     time: '9:00-9:45',
+  //     location: '初一2班',
+  //     day: 2, // 周二
+  //     color: 'bg-orange-100 border-orange-200 text-orange-800',
+  //     status: 'ongoing'
+  //   },
   {
     id: 5,
-    name: '写话练习',
-    class: '一年级2班',
-    room: '语文教室102',
-    time: '10:00-10:45',
-    day: 2,
-    color: 'border-blue-200 bg-blue-100 text-blue-600'
+    name: '阅读练习',
+    teacher: '张老师',
+    time: '14:00-14:45',
+    location: '初一2班',
+    day: 2, // 周二
+    color: 'bg-purple-100 border-purple-200 text-purple-800',
+    status: 'ongoing'
   },
+
+  // 周三课程安排
   {
     id: 6,
-    name: '识字与写字',
-    class: '一年级3班',
-    room: '语文教室103',
-    time: '14:00-14:45',
-    day: 2,
-    color: 'border-green-200 bg-green-100 text-green-600'
+    name: '阅读练习',
+    teacher: '张老师',
+    time: '10:00-10:45',
+    location: '初一2班',
+    day: 3, // 周三
+    color: 'bg-purple-100 border-purple-200 text-purple-800',
+    status: 'ended'
   },
-  // 星期三
   {
     id: 7,
-    name: '古诗欣赏《春晓》',
-    class: '一年级1班',
-    room: '语文教室101',
-    time: '8:00-8:45',
-    day: 3,
-    color: 'border-purple-200 bg-purple-100 text-purple-600'
+    name: '阅读练习',
+    teacher: '张老师',
+    time: '11:00-11:45',
+    location: '初一2班',
+    day: 3, // 周三
+    color: 'bg-purple-100 border-purple-200 text-purple-800',
+    status: 'ended'
   },
-  {
-    id: 8,
-    name: '课文讲解',
-    class: '一年级2班',
-    room: '语文教室102',
-    time: '10:00-10:45',
-    day: 3,
-    color: 'border-orange-200 bg-orange-100 text-orange-600'
-  },
+  //   {
+  //     id: 8,
+  //     name: '语文',
+  //     teacher: '张老师',
+  //     time: '15:00-15:45',
+  //     location: '初一2班',
+  //     day: 3, // 周三
+  //     color: 'bg-purple-100 border-purple-200 text-purple-800',
+  //     status: 'ended'
+  //   },
+
+  // 周四课程安排
   {
     id: 9,
-    name: '阅读训练',
-    class: '一年级3班',
-    room: '语文教室103',
-    time: '14:00-14:45',
-    day: 3,
-    color: 'border-blue-200 bg-blue-100 text-blue-600'
+    name: '随堂测验',
+    teacher: '张老师',
+    time: '9:00-9:45',
+    location: '初一2班',
+    day: 4, // 周四
+    color: 'bg-green-100 border-green-200 text-green-800',
+    status: 'upcoming'
   },
-  // 星期四
   {
     id: 10,
-    name: '写话练习',
-    class: '一年级1班',
-    room: '语文教室101',
-    time: '8:00-8:45',
-    day: 4,
-    color: 'border-green-200 bg-green-100 text-green-600'
+    name: '古诗词欣赏（精读）',
+    teacher: '张老师',
+    time: '14:00-14:45',
+    location: '初一2班',
+    day: 4, // 周四
+    color: 'bg-blue-100 border-blue-200 text-blue-800',
+    status: 'upcoming'
   },
+
+  // 周五课程安排
   {
     id: 11,
-    name: '单元复习',
-    class: '一年级2班',
-    room: '语文教室102',
-    time: '10:00-10:45',
-    day: 4,
-    color: 'border-purple-200 bg-purple-100 text-purple-600'
+    name: '随堂测验',
+    teacher: '张老师',
+    time: '8:00-8:45',
+    location: '初一2班',
+    day: 5, // 周五
+    color: 'bg-green-100 border-green-200 text-green-800',
+    status: 'upcoming'
   },
   {
     id: 12,
-    name: '课文朗读',
-    class: '一年级3班',
-    room: '语文教室103',
-    time: '14:00-14:45',
-    day: 4,
-    color: 'border-orange-200 bg-orange-100 text-orange-600'
-  },
-  // 星期五
-  {
-    id: 13,
-    name: '识字与写字',
-    class: '一年级1班',
-    room: '语文教室101',
-    time: '8:00-8:45',
-    day: 5,
-    color: 'border-blue-200 bg-blue-100 text-blue-600'
-  },
-  {
-    id: 14,
-    name: '古诗欣赏《咏鹅》',
-    class: '一年级2班',
-    room: '语文教室102',
+    name: '课外知识分享会',
+    teacher: '张老师',
     time: '10:00-10:45',
-    day: 5,
-    color: 'border-green-200 bg-green-100 text-green-600'
-  },
-  {
-    id: 15,
-    name: '单元复习',
-    class: '一年级3班',
-    room: '语文教室103',
-    time: '14:00-14:45',
-    day: 5,
-    color: 'border-purple-200 bg-purple-100 text-purple-600'
+    location: '初一2班',
+    day: 5, // 周五
+    color: 'bg-indigo-100 border-indigo-200 text-indigo-800',
+    status: 'upcoming'
   }
 ]);
 
-// 时间段
-const timeSlots = ['8:00', '9:00', '10:00', '11:00', '14:00', '15:00'];
-
-// 获取特定日期和时间的课程
-const getCourse = (day: number, time: string) => {
-  return courses.value.find(course => course.day === day && course.time.startsWith(time.substring(0, 2)));
+// 获取指定时间段和日期的课程
+const getCourseForSlot = (timeSlot: string, dayIndex: number) => {
+  const dayOfWeek = dayIndex + 1; // 转换为周一=1的格式
+  return courses.value.find(course => course.time.startsWith(timeSlot) && course.day === dayOfWeek);
 };
 
 // 切换周次
@@ -233,7 +227,66 @@ const changeWeek = (direction: 'prev' | 'next') => {
 };
 
 // 切换视图
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const currentView = ref('week');
+
+// 课程详情弹窗相关
+const showCourseDetail = ref(false);
+const selectedCourse = ref<any>(null);
+
+// 显示课程详情
+function showCourseInfo(course: any) {
+  selectedCourse.value = course;
+  showCourseDetail.value = true;
+}
+
+// 编辑课程
+function editCourse(course: any) {
+  // 这里可以添加编辑逻辑
+  // eslint-disable-next-line no-console
+  console.log('编辑课程:', course);
+  // 可以打开编辑弹窗或跳转到编辑页面
+}
+
+// 删除课程
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function deleteCourse(courseId: number) {
+  const index = courses.value.findIndex(course => course.id === courseId);
+  if (index > -1) {
+    courses.value.splice(index, 1);
+  }
+}
+
+// 获取课程统计信息
+const courseStats = computed(() => {
+  const stats = {
+    totalCourses: courses.value.length,
+    subjects: new Set(courses.value.map(course => course.name)).size,
+    teachers: new Set(courses.value.map(course => course.teacher)).size
+  };
+  return stats;
+});
+
+// 获取今日课程
+const todayCourses = computed(() => {
+  const today = new Date();
+  const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay(); // 转换为周一=1的格式
+  return courses.value
+    .filter(course => course.day === dayOfWeek)
+    .sort((a, b) => {
+      const timeA = a.time.split('-')[0];
+      const timeB = b.time.split('-')[0];
+      return timeA.localeCompare(timeB);
+    });
+});
+
+// 暴露方法给父组件
+defineExpose({
+  showCourseInfo,
+  courses,
+  courseStats,
+  todayCourses
+});
 
 // 组件挂载时初始化
 onMounted(() => {
@@ -243,39 +296,28 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="schedule-calendar rounded-lg bg-white p-4">
-    <div class="mb-4 text-center text-2xl font-bold">我的课程安排</div>
-    <div class="calendar-header mb-4">
-      <div class="w-full flex items-center justify-between">
-        <div class="text-xl font-bold">{{ currentDateDisplay }}</div>
-        <div class="flex flex-1 items-center justify-center">
-          <NTabs
-            v-model:value="currentView"
-            type="segment"
-            size="small"
-            class="ml-16 w-64 bg-white transition-colors duration-200"
-            tab-text-color="#2B46FE"
-          >
-            <NTabPane name="week" tab="周" class="px-1.5 py-0.5 text-[10px] font-medium" />
-            <NTabPane name="month" tab="月" class="px-1.5 py-0.5 text-[10px] font-medium" />
-            <NTabPane name="year" tab="年" class="px-1.5 py-0.5 text-[10px] font-medium" />
-          </NTabs>
-        </div>
+  <div class="schedule-calendar rounded-lg bg-white shadow-sm">
+    <!-- 头部导航 -->
+    <div class="flex items-center justify-between p-6">
+      <div class="flex items-center gap-4">
+        <h2 class="text-xl text-gray-800 font-semibold">我的课程安排</h2>
+        <span class="text-sm text-gray-500">{{ currentDateDisplay }}</span>
+      </div>
+
+      <div class="flex items-center gap-4">
         <div class="week-navigation flex items-center gap-2">
           <NButton quaternary circle @click="changeWeek('prev')">
-            <template #icon>
-              <NIcon><ChevronBackOutline /></NIcon>
-            </template>
+            <NIcon><ChevronBackOutline /></NIcon>
           </NButton>
           <NButton type="primary" size="small" class="px-4">{{ currentWeek }}</NButton>
           <NButton quaternary circle @click="changeWeek('next')">
-            <template #icon>
-              <NIcon><ChevronForwardOutline /></NIcon>
-            </template>
+            <NIcon><ChevronForwardOutline /></NIcon>
           </NButton>
         </div>
       </div>
+    </div>
 
+    <div class="calendar-content p-6">
       <div class="calendar-grid border border-gray-200 rounded-lg">
         <!-- 日期头部 -->
         <div class="grid grid-cols-8 border-b border-gray-200">
@@ -292,63 +334,114 @@ onMounted(() => {
           </div>
         </div>
 
-        <!-- 时间格子 -->
-        <div class="grid grid-cols-8">
-          <div class="time-column border-r border-gray-200">
-            <div
-              v-for="time in timeSlots"
-              :key="time"
-              class="h-24 flex items-center justify-center border-b border-gray-200 text-gray-500 last:border-b-0"
-            >
-              {{ time }}
-            </div>
+        <!-- 时间段和课程 -->
+        <div
+          v-for="(slot, slotIndex) in timeSlots"
+          :key="slotIndex"
+          class="grid grid-cols-8 border-b border-gray-200 last:border-b-0"
+        >
+          <!-- 时间列 -->
+          <div class="border-r border-gray-200 p-4 text-center text-sm text-gray-600 font-medium">
+            {{ slot.label }}
           </div>
 
-          <!-- 每天的课程格子 -->
-          <div v-for="day in 7" :key="day" class="day-column border-r border-gray-200 last:border-r-0">
+          <!-- 课程列 -->
+          <div
+            v-for="(day, dayIndex) in weekDays"
+            :key="dayIndex"
+            class="relative min-h-[120px] border-r border-gray-200 p-2 last:border-r-0"
+          >
             <div
-              v-for="time in timeSlots"
-              :key="time"
-              class="relative h-24 border-b border-gray-200 p-1 last:border-b-0"
+              v-if="getCourseForSlot(slot.time, dayIndex)"
+              class="course-card cursor-pointer border-2 rounded-lg p-3 transition-all duration-200 hover:shadow-md"
+              :class="[getCourseForSlot(slot.time, dayIndex)?.color]"
+              @click="showCourseInfo(getCourseForSlot(slot.time, dayIndex))"
             >
-              <div
-                v-if="getCourse(day, time)"
-                class="course-card absolute left-1 right-1 top-1 flex flex-col border rounded-lg p-2"
-                :class="getCourse(day, time)?.color"
-              >
-                <div class="mb-1 text-sm font-bold">{{ getCourse(day, time)?.name }}</div>
-                <div class="mb-1.5 text-xs text-gray-600">{{ getCourse(day, time)?.time }}</div>
-                <div class="flex-grow space-y-1.5">
-                  <div class="flex items-center gap-1.5">
-                    <NIcon size="14"><PersonOutline /></NIcon>
-                    <span class="text-xs">班级：{{ getCourse(day, time)?.class }}</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <NIcon size="14"><LocationOutline /></NIcon>
-                    <span class="text-xs">教室：{{ getCourse(day, time)?.room }}</span>
-                  </div>
-                </div>
-                <div class="mt-1.5">
-                  <div class="text-center">
-                    <span
-                      class="inline-block min-w-20 cursor-pointer rounded-md bg-white/50 px-4 py-1 text-xs transition-colors duration-200 hover:bg-white/80"
-                    >
-                      修改
-                    </span>
-                  </div>
-                </div>
+              <div class="mb-1 text-sm font-semibold">
+                {{ getCourseForSlot(slot.time, dayIndex)?.name }}
+              </div>
+              <div class="mb-1 text-xs opacity-75">
+                {{ getCourseForSlot(slot.time, dayIndex)?.time }}
+              </div>
+              <div class="flex items-center gap-1 text-xs opacity-75">
+                <NIcon size="12"><PersonOutline /></NIcon>
+                <span>{{ getCourseForSlot(slot.time, dayIndex)?.teacher }}</span>
+              </div>
+              <div class="mt-1 flex items-center gap-1 text-xs opacity-75">
+                <NIcon size="12"><LocationOutline /></NIcon>
+                <span>{{ getCourseForSlot(slot.time, dayIndex)?.location }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- 课程详情弹窗 -->
+    <NModal v-model:show="showCourseDetail" class="course-detail-modal">
+      <div v-if="selectedCourse" class="rounded-lg bg-white p-4 shadow-lg">
+        <!-- 标题区域 -->
+        <div class="flex items-center gap-2 border-b border-gray-100 pb-2">
+          <div class="h-6 w-6 flex items-center justify-center rounded bg-blue-50">
+            <NIcon size="16" class="text-blue-600"><CalendarOutline /></NIcon>
+          </div>
+          <span class="text-base text-gray-800 font-semibold">课程详情</span>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="pt-2 space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <div class="text-xs text-gray-500 font-medium">课程名称</div>
+              <div class="text-sm font-semibold" :class="selectedCourse.color.split(' ')[2]">
+                {{ selectedCourse.name }}
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="text-xs text-gray-500 font-medium">上课时间</div>
+              <div class="text-sm text-gray-700 font-medium">{{ selectedCourse.time }}</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <div class="text-xs text-gray-500 font-medium">任课老师</div>
+              <div class="flex items-center gap-1">
+                <div class="h-5 w-5 flex items-center justify-center rounded-full bg-gray-100">
+                  <NIcon size="12" class="text-gray-600"><PersonOutline /></NIcon>
+                </div>
+                <span class="text-sm text-gray-700 font-medium">{{ selectedCourse.teacher }}</span>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="text-xs text-gray-500 font-medium">上课地点</div>
+              <div class="flex items-center gap-1">
+                <div class="h-5 w-5 flex items-center justify-center rounded-full bg-gray-100">
+                  <NIcon size="12" class="text-gray-600"><LocationOutline /></NIcon>
+                </div>
+                <span class="text-sm text-gray-700 font-medium">{{ selectedCourse.location }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 按钮区域 -->
+        <div class="mt-3 flex justify-end gap-2 border-t border-gray-100 pt-2">
+          <NButton size="small" class="px-3" @click="showCourseDetail = false">关闭</NButton>
+          <NButton type="primary" size="small" class="px-3" @click="editCourse(selectedCourse)">编辑课程</NButton>
+        </div>
+      </div>
+    </NModal>
   </div>
 </template>
 
 <style scoped>
 .course-card {
   height: calc(100% - 2px);
-  height: calc(190px - 0.5rem);
+  min-height: calc(120px - 0.5rem);
+}
+
+:deep(.course-detail-modal) {
+  width: 420px;
 }
 </style>

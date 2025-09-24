@@ -10,10 +10,10 @@ const message = useMessage();
 
 // 当前提醒
 const currentReminder = ref({
-  date: '下周一 (05.26)',
+  date: '下周一 (09.29)',
   time: '8:00-8:45',
-  course: '古诗静夜思',
-  status: '教案未准备！'
+  course: '古诗词欣赏',
+  status: '教案未准备'
 });
 
 // 按钮加载状态
@@ -25,7 +25,7 @@ const goToPrepare = () => {
   loading.value = true;
 
   // 显示提示信息
-  message.success('正在跳转到AI教案生成器...');
+  message.success('正在跳转到智能教案生成器...');
 
   // 短暂延迟后跳转，模拟加载过程
   setTimeout(() => {
