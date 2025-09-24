@@ -175,7 +175,7 @@ const local: App.I18n.Schema = {
     system2_child3: '预测报告',
     system3: '课堂互动',
     system3_child1: '实时问答',
-    system3_child2: '测验管理',
+    system3_child2: '互动管理',
     system4: '教学评估',
     system6: '个性作业',
     system6_child1: '智能组卷',

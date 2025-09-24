@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import {
   CalendarOutline,
   ChevronBackOutline,
@@ -8,9 +8,66 @@ import {
   PersonOutline
 } from '@vicons/ionicons5';
 
-// 当前日期和周次
-const currentDate = ref('2024/5');
-const currentWeek = ref('5.26-6.1');
+// 获取一周的开始日期（周一）
+const getStartOfWeek = (date: Date) => {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1); // 调整为周一开始
+  return new Date(d.setDate(diff));
+};
+
+// 当前日期对象
+const currentDate = ref(new Date());
+
+// 当前日期显示格式
+const currentDateDisplay = computed(() => {
+  const year = currentDate.value.getFullYear();
+  const month = currentDate.value.getMonth() + 1;
+  return `${year}/${month}`;
+});
+
+// 当前周次显示
+const currentWeek = computed(() => {
+  const startOfWeek = getStartOfWeek(currentDate.value);
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+  const formatDate = (date: Date) => {
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${month}.${day}`;
+  };
+
+  return `${formatDate(startOfWeek)}-${formatDate(endOfWeek)}`;
+});
+
+// 动态生成一周的日期数据
+const weekDays = computed(() => {
+  const startOfWeek = getStartOfWeek(currentDate.value);
+  const today = new Date();
+  const days = [];
+
+  const dayNames = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+
+  for (let i = 0; i < 7; i += 1) {
+    const date = new Date(startOfWeek);
+    date.setDate(startOfWeek.getDate() + i);
+
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    // 检查是否是今天
+    const isToday = date.toDateString() === today.toDateString();
+
+    days.push({
+      day: dayNames[i],
+      date: `${month}.${day}`,
+      isHighlighted: isToday
+    });
+  }
+
+  return days;
+});
 
 // 课程数据
 const courses = ref([
@@ -156,17 +213,6 @@ const courses = ref([
   }
 ]);
 
-// 日期数据
-const weekDays = [
-  { day: '星期一', date: '05.26' },
-  { day: '星期二', date: '05.27' },
-  { day: '星期三', date: '05.28', isHighlighted: true },
-  { day: '星期四', date: '05.29' },
-  { day: '星期五', date: '05.30' },
-  { day: '星期六', date: '05.31' },
-  { day: '星期日', date: '06.01' }
-];
-
 // 时间段
 const timeSlots = ['8:00', '9:00', '10:00', '11:00', '14:00', '15:00'];
 
@@ -177,12 +223,23 @@ const getCourse = (day: number, time: string) => {
 
 // 切换周次
 const changeWeek = (direction: 'prev' | 'next') => {
-  // 实际应用中这里应该更新日期和课程数据
-  currentWeek.value = direction === 'prev' ? '上周' : '下周';
+  const newDate = new Date(currentDate.value);
+  if (direction === 'prev') {
+    newDate.setDate(newDate.getDate() - 7);
+  } else {
+    newDate.setDate(newDate.getDate() + 7);
+  }
+  currentDate.value = newDate;
 };
 
 // 切换视图
 const currentView = ref('week');
+
+// 组件挂载时初始化
+onMounted(() => {
+  // 初始化为当前日期
+  currentDate.value = new Date();
+});
 </script>
 
 <template>
@@ -190,7 +247,7 @@ const currentView = ref('week');
     <div class="mb-4 text-center text-2xl font-bold">我的课程安排</div>
     <div class="calendar-header mb-4">
       <div class="w-full flex items-center justify-between">
-        <div class="text-xl font-bold">{{ currentDate }}</div>
+        <div class="text-xl font-bold">{{ currentDateDisplay }}</div>
         <div class="flex flex-1 items-center justify-center">
           <NTabs
             v-model:value="currentView"
