@@ -86,7 +86,7 @@ const courses = ref([
     time: '8:00-8:45',
     location: '初一2班',
     day: 1, // 周一
-    color: 'bg-blue-100 border-blue-200 text-blue-800',
+    color: 'bg-blue-100 border-blue-200 text-blue-600',
     status: 'upcoming'
   },
   {
@@ -96,7 +96,7 @@ const courses = ref([
     time: '9:00-9:45',
     location: '初一2班',
     day: 1, // 周一
-    color: 'bg-orange-100 border-orange-200 text-orange-800',
+    color: 'bg-orange-100 border-orange-200 text-orange-600',
     status: 'upcoming'
   },
   {
@@ -106,7 +106,7 @@ const courses = ref([
     time: '11:00-11:45',
     location: '初一2班',
     day: 2, // 周一
-    color: 'bg-orange-100 border-orange-200 text-orange-800',
+    color: 'bg-orange-100 border-orange-200 text-orange-600',
     status: 'upcoming'
   },
 
@@ -128,7 +128,7 @@ const courses = ref([
     time: '14:00-14:45',
     location: '初一2班',
     day: 2, // 周二
-    color: 'bg-purple-100 border-purple-200 text-purple-800',
+    color: 'bg-purple-100 border-purple-200 text-purple-600',
     status: 'ongoing'
   },
 
@@ -140,7 +140,7 @@ const courses = ref([
     time: '10:00-10:45',
     location: '初一2班',
     day: 3, // 周三
-    color: 'bg-purple-100 border-purple-200 text-purple-800',
+    color: 'bg-purple-100 border-purple-200 text-purple-600',
     status: 'ended'
   },
   {
@@ -150,7 +150,7 @@ const courses = ref([
     time: '11:00-11:45',
     location: '初一2班',
     day: 3, // 周三
-    color: 'bg-purple-100 border-purple-200 text-purple-800',
+    color: 'bg-purple-100 border-purple-200 text-purple-600',
     status: 'ended'
   },
   //   {
@@ -172,7 +172,7 @@ const courses = ref([
     time: '9:00-9:45',
     location: '初一2班',
     day: 4, // 周四
-    color: 'bg-green-100 border-green-200 text-green-800',
+    color: 'bg-green-100 border-green-200 text-green-600',
     status: 'upcoming'
   },
   {
@@ -182,7 +182,7 @@ const courses = ref([
     time: '14:00-14:45',
     location: '初一2班',
     day: 4, // 周四
-    color: 'bg-blue-100 border-blue-200 text-blue-800',
+    color: 'bg-blue-100 border-blue-200 text-blue-600',
     status: 'upcoming'
   },
 
@@ -194,7 +194,7 @@ const courses = ref([
     time: '8:00-8:45',
     location: '初一2班',
     day: 5, // 周五
-    color: 'bg-green-100 border-green-200 text-green-800',
+    color: 'bg-green-100 border-green-200 text-green-600',
     status: 'upcoming'
   },
   {
@@ -204,7 +204,7 @@ const courses = ref([
     time: '10:00-10:45',
     location: '初一2班',
     day: 5, // 周五
-    color: 'bg-indigo-100 border-indigo-200 text-indigo-800',
+    color: 'bg-indigo-100 border-indigo-200 text-indigo-600',
     status: 'upcoming'
   }
 ]);
