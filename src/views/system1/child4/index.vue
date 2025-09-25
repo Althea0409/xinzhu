@@ -4,7 +4,8 @@ import TabNavigation from './modules/TabNavigation.vue';
 import CourseFlow from './modules/CourseFlow.vue';
 import EditorArea from './modules/EditorArea.vue';
 import AiAssistant from './modules/AiAssistant.vue';
-import VersionHistory from './modules/VersionHistory.vue';
+import MeetingPanel from './modules/MeetingPanel.vue';
+// import VersionHistory from './modules/VersionHistory.vue';
 </script>
 
 <template>
@@ -33,9 +34,14 @@ import VersionHistory from './modules/VersionHistory.vue';
         </div>
 
         <!-- 右侧助手和历史 -->
-        <div class="col-span-3">
-          <AiAssistant />
-          <VersionHistory />
+        <div class="col-span-3 flex flex-col space-y-4">
+          <div class="flex-1">
+            <MeetingPanel />
+          </div>
+
+          <div class="flex-shrink-0">
+            <AiAssistant />
+          </div>
         </div>
       </div>
     </div>
