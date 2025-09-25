@@ -15,57 +15,113 @@ import FileUploader from './modules/FileUploader.vue';
 const teachingPlans = ref([
   {
     id: '1',
-    title: '初中数学概率教学方案',
-    school: '北京四中',
-    rating: 4.8,
-    downloads: 238,
+    title: '《观沧海》诗歌鉴赏教学方案',
+    school: '北京师范大学附属中学',
+    rating: 4.9,
+    downloads: 342,
     subjects: [
       {
         id: '1',
-        title: '概率基础',
-        description: '掌握基础概率计算方法，理解随机事件的特性'
+        title: '诗歌意境分析',
+        description: '通过朗读感受诗歌韵律，理解曹操豪迈壮志的情感表达'
       }
     ]
   },
   {
     id: '2',
-    title: '初中数学概率教学方案',
-    school: '北京四中',
-    rating: 4.8,
-    downloads: 236,
+    title: '《次北固山下》古诗文教学设计',
+    school: '上海市实验学校',
+    rating: 4.7,
+    downloads: 289,
     subjects: [
       {
         id: '2',
-        title: '概率进阶',
-        description: '掌握基础概率计算方法，学习条件概率应用'
+        title: '写景抒情手法',
+        description: '学习借景抒情的表现手法，体会诗人思乡之情'
       }
     ]
   },
   {
     id: '3',
-    title: '初中数学概率教学方案',
-    school: '北京四中',
+    title: '《钱塘湖春行》赏析课教案',
+    school: '杭州市第二中学',
     rating: 4.8,
-    downloads: 238,
+    downloads: 315,
     subjects: [
       {
         id: '3',
-        title: '概率高级',
-        description: '掌握基础概率计算方法，深入理解随机变量'
+        title: '春景描写技巧',
+        description: '掌握动静结合的写景方法，感受西湖春天的美丽'
       }
     ]
   },
   {
     id: '4',
-    title: '初中数学概率教学方案',
-    school: '北京四中',
-    rating: 4.8,
-    downloads: 238,
+    title: '《天净沙·秋思》情感主题教学',
+    school: '成都市第七中学',
+    rating: 4.6,
+    downloads: 267,
     subjects: [
       {
         id: '4',
-        title: '概率综合',
-        description: '掌握基础概率计算方法，应用于实际问题解决'
+        title: '散曲艺术特色',
+        description: '理解元曲的艺术特点，体会游子的思乡愁绪'
+      }
+    ]
+  },
+  {
+    id: '5',
+    title: '《济南的冬天》散文阅读指导',
+    school: '济南市历城第二中学',
+    rating: 4.8,
+    downloads: 298,
+    subjects: [
+      {
+        id: '5',
+        title: '散文语言特色',
+        description: '品味老舍先生优美的语言，学习写景散文的表达技巧'
+      }
+    ]
+  },
+  {
+    id: '6',
+    title: '《春》朱自清散文教学设计',
+    school: '南京师范大学附属中学',
+    rating: 4.9,
+    downloads: 356,
+    subjects: [
+      {
+        id: '6',
+        title: '修辞手法运用',
+        description: '学习比喻、拟人等修辞手法，感受春天的生机与活力'
+      }
+    ]
+  },
+  {
+    id: '7',
+    title: '《论语》十二章文言文教学',
+    school: '清华大学附属中学',
+    rating: 4.7,
+    downloads: 278,
+    subjects: [
+      {
+        id: '7',
+        title: '文言文阅读理解',
+        description: '掌握重点文言词汇和句式，理解孔子的教育思想和人生智慧'
+      }
+    ]
+  },
+  {
+    id: '8',
+    title: '《世说新语》两则品读课',
+    school: '华东师范大学第二附属中学',
+    rating: 4.5,
+    downloads: 234,
+    subjects: [
+      {
+        id: '8',
+        title: '古代小说特色',
+        description: '了解魏晋风度，学习通过对话和细节刻画人物性格的方法'
       }
     ]
   }
@@ -75,29 +131,26 @@ const teachingPlans = ref([
 const collaborationProjects = ref([
   {
     id: '1',
-    title: '初中物理实验教学联合项目',
+    title: '七年级语文古诗文教学研究项目',
     schools: [
-      { id: '1', name: '北京四中' },
-      { id: '2', name: '上海中学' },
-      { id: '3', name: '广州实验中学' }
+      { id: '1', name: '北京师范大学附属中学' },
+      { id: '2', name: '上海市实验学校' }
     ]
   },
   {
     id: '2',
-    title: '初中物理实验教学联合项目',
+    title: '现代散文阅读教学创新实践',
     schools: [
-      { id: '1', name: '北京四中' },
-      { id: '2', name: '上海中学' },
-      { id: '3', name: '广州实验中学' }
+      { id: '1', name: '成都市第七中学' },
+      { id: '2', name: '济南市历城第二中学' }
     ]
   },
   {
     id: '3',
-    title: '初中物理实验教学联合项目',
+    title: '初中语文写作能力培养联合研究',
     schools: [
-      { id: '1', name: '北京四中' },
-      { id: '2', name: '上海中学' },
-      { id: '3', name: '广州实验中学' }
+      { id: '1', name: '华东师范大学第二附属中学' },
+      { id: '2', name: '西安市铁一中学' }
     ]
   }
 ]);
@@ -271,22 +324,22 @@ function handleFileUpload(file: File) {
               <div class="space-y-3">
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-gray-600">已分享教案</span>
-                  <span class="text-sm text-indigo-700 font-medium">2,583 份</span>
+                  <span class="text-sm text-indigo-700 font-medium">3,247 份</span>
                 </div>
 
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-gray-600">二次创作数量</span>
-                  <span class="text-sm text-indigo-700 font-medium">5,217 次</span>
+                  <span class="text-sm text-indigo-700 font-medium">6,891 次</span>
                 </div>
 
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-gray-600">参与教师数量</span>
-                  <span class="text-sm text-indigo-700 font-medium">1,832 位</span>
+                  <span class="text-sm text-indigo-700 font-medium">2,156 位</span>
                 </div>
 
                 <div class="flex items-center justify-between">
                   <span class="text-xs text-gray-600">覆盖学校</span>
-                  <span class="text-sm text-indigo-700 font-medium">312 所</span>
+                  <span class="text-sm text-indigo-700 font-medium">428 所</span>
                 </div>
               </div>
 

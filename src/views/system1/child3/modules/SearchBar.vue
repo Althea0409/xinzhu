@@ -11,10 +11,10 @@ const searchQuery = ref('');
 const isInputFocused = ref(false);
 
 const popularTags = [
-  { id: '1', name: '数学' },
+  { id: '1', name: '语文' },
   { id: '2', name: '英语' },
   { id: '3', name: '物理' },
-  { id: '4', name: '知识点' },
+  { id: '4', name: '数学' },
   { id: '5', name: '试卷' }
 ];
 

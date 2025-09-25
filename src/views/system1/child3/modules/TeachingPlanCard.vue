@@ -75,7 +75,7 @@ const ratingStars = computed(() => {
           <span class="inline-block rounded-full bg-indigo-100 px-2 py-0.5 text-xs text-indigo-700">
             {{ props.plan.subjects[0]?.title }}
           </span>
-          <span class="inline-block rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700">数学</span>
+          <span class="inline-block rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700">初中语文</span>
         </div>
         <h3 class="line-clamp-2 rounded-md bg-white/80 p-2 text-base text-gray-800 font-bold backdrop-blur-sm">
           {{ plan.title }}
