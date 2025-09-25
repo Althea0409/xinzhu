@@ -77,7 +77,7 @@ async function sendMessage() {
       chatMessages.value.push({
         id: Date.now(),
         role: 'assistant',
-        content: `好的。我将基于已有的课程设计，以"小学语文人教版一年级下册《静夜思》教学设计生成"为主题，生成一份更加详细的教案。`
+        content: `好的。我将基于已有的课程设计，以"初中语文人教版七年级上册《观沧海》教学设计生成"为主题，生成一份更加详细的教案。`
       });
 
       scrollToBottom();
