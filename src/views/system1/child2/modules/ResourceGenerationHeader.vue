@@ -14,7 +14,7 @@ interface HeaderProps {
 
 const props = withDefaults(defineProps<HeaderProps>(), {
   title: '多媒体教学资源生成',
-  subtitle: '基于StyleGAN3的智能教学资源生成系统'
+  subtitle: '基于 ControlNet + IP-Adapter 的智能教学资源生成系统'
 });
 
 const hasNewFeatures = ref(true);
@@ -40,7 +40,7 @@ const hasNewFeatures = ref(true);
 
       <div class="mt-4">
         <div class="text-sm text-gray-500">
-          结合跨模态注意力机制与自适应风格迁移技术，自动生成教学相关的图片、视频等多媒体资源
+          结合 ControlNet 与 IP-Adapter 技术，自动生成教学相关的图片、视频等多媒体资源
         </div>
       </div>
 

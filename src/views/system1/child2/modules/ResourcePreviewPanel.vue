@@ -56,114 +56,118 @@ const resources = ref([
   {
     id: 1,
     type: 'image',
-    preview: 'https://img.freepik.com/free-vector/kids-learning-numbers-concept-illustration_114360-8198.jpg',
-    title: '小学一年级加减法数字认知基础',
-    tags: ['小学数学', '一年级', '加减法', '数字认知'],
-    description: '展示1-10数字及对应实物的直观图示，帮助建立数量概念，作为加减法运算的基础。',
+    preview: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=300&fit=crop',
+    title: '《观沧海》诗歌意境图',
+    tags: ['初中语文', '古诗词', '意境表达'],
+    description: '展现曹操登临碣石山观海的壮阔场景，体现诗人胸怀天下的雄心壮志和豪迈气概。',
     createTime: new Date().toLocaleString()
   },
   {
     id: 2,
     type: 'image',
-    preview: 'https://img.freepik.com/free-vector/addition-concept-illustration_114360-1684.jpg',
-    title: '小学一年级加法数学视觉化教具',
-    tags: ['小学数学', '加法', '教学图示', '视觉化'],
-    description: '利用水果、积木等实物图片展示加法过程，特别关注"凑十法"和数字分解组合的应用。',
+    preview: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=300&fit=crop',
+    title: '东汉末年历史背景图',
+    tags: ['初中语文', '历史背景', '时代特色'],
+    description: '展现东汉末年的历史背景，帮助学生理解曹操创作《观沧海》时的时代环境和心境。',
     createTime: new Date().toLocaleString()
   },
   {
     id: 3,
     type: 'image',
-    preview: 'https://img.freepik.com/free-vector/learning-concept-illustration_114360-6186.jpg',
-    title: '小学一年级减法概念图解',
-    tags: ['小学数学', '减法', '概念图解'],
-    description: '通过生活情境图解展示减法概念，重点展示过十减法的处理方法和减法计算过程。',
+    preview: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop',
+    title: '《观沧海》书法作品',
+    tags: ['初中语文', '书法艺术', '文字美感'],
+    description: '以楷书形式展现《观沧海》全诗，体现汉字的书法美感，增强学生对古诗词的审美体验。',
     createTime: new Date().toLocaleString()
   },
   {
     id: 4,
     type: 'video',
-    preview: 'https://img.freepik.com/free-vector/children-playing-number-game-illustration_74855-5293.jpg',
-    title: '小学一年级数字接龙游戏教学视频',
-    tags: ['一年级数学', '加减法', '教学游戏', '数字接龙'],
-    description: '展示"数字接龙"游戏的教学视频，学生按顺序说出一个数，下一位给这个数加5或减3，培养计算能力。',
-    duration: '3:42',
+    preview: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=300&fit=crop',
+    title: '《观沧海》朗诵视频',
+    tags: ['初中语文', '诗歌朗诵', '情感表达'],
+    description: '专业配音员朗诵《观沧海》，配合意境画面，展现诗歌的韵律美和情感内涵。',
+    duration: '3:25',
     format: 'MP4',
     resolution: '1080p',
-    size: '42MB',
+    size: '45MB',
+    voiceType: '专业男声',
+    background: '古典音乐',
+    scenes: ['诗歌背景介绍', '逐句朗诵解析', '整体情感表达'],
     createTime: new Date().toLocaleString()
   },
   {
     id: 5,
     type: 'video',
-    preview: 'https://img.freepik.com/free-vector/cash-register-flat-illustration_23-2149140765.jpg',
-    title: '小学一年级超市购物情境教学',
-    tags: ['一年级数学', '情境教学', '实际应用'],
-    description: '模拟超市购物场景视频，展示小明有50元买12元笔记本和8元钢笔后的找零计算，生动展示生活中的应用。',
+    preview: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+    title: '曹操生平与创作背景',
+    tags: ['初中语文', '作者介绍', '历史人物'],
+    description: '介绍曹操的生平事迹和《观沧海》的创作背景，帮助学生深入理解诗歌内涵。',
     duration: '5:15',
     format: 'MP4',
     resolution: '720p',
     size: '58MB',
+    content: ['曹操生平简介', '东汉末年历史背景', '诗歌创作缘由', '文学地位分析'],
     createTime: new Date().toLocaleString()
   },
   {
     id: 6,
     type: 'animation',
-    preview: 'https://img.freepik.com/free-vector/math-concept-illustration_114360-3972.jpg',
-    title: '加减法互逆关系动画演示',
-    tags: ['一年级数学', '加减关系', '互逆运算'],
-    description: '动画形式展示加减法的互逆关系，演示如何用加法验证减法和用减法验证加法的方法。',
+    preview: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=300&fit=crop',
+    title: '《观沧海》诗句动画解析',
+    tags: ['初中语文', '诗句解析', '动画教学'],
+    description: '逐句动画展示《观沧海》的诗句含义，通过视觉效果帮助学生理解诗歌的深层内涵。',
     duration: '4:30',
     format: 'HTML5',
     frames: 148,
     frameRate: '30fps',
-    style: '2D卡通',
-    interactions: ['暂停/播放控制', '步骤重放', '速度调节'],
+    style: '中国风动画',
+    interactions: ['暂停/播放控制', '逐句解析', '重点词汇标注'],
     createTime: new Date().toLocaleString()
   },
   {
     id: 7,
     type: 'animation',
-    preview: 'https://img.freepik.com/free-vector/flat-hand-drawn-school-math-concept_52683-9179.jpg',
-    title: '数字分解与重组动画教程',
-    tags: ['一年级数学', '加减法', '数字分解'],
-    description: '通过动画展示数字分解与重组的计算法，特别是数字跨十情况的处理方法，灵活运用凑十法。',
+    preview: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    title: '古诗词写作手法动画演示',
+    tags: ['初中语文', '写作手法', '借景抒情'],
+    description: '通过动画展示《观沧海》中借景抒情、虚实结合等写作手法，提升学生的文学鉴赏能力。',
     duration: '3:58',
     format: 'HTML5',
     frames: 132,
     frameRate: '30fps',
-    style: '手绘风格',
-    interactions: ['分步演示', '互动练习', '实时反馈'],
+    style: '教学动画',
+    interactions: ['分步演示', '手法标注', '实时解析'],
     createTime: new Date().toLocaleString()
   },
   {
     id: 8,
     type: 'audio',
-    preview: 'https://img.freepik.com/free-vector/cute-children-singing-song-white-background_1308-76193.jpg',
-    title: '小学一年级加减法口诀',
-    tags: ['一年级数学', '加减法', '口诀记忆'],
-    description: '朗朗上口的加减法口诀音频，帮助学生记忆基本加减法算式，提高计算速度。',
+    preview: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
+    title: '《观沧海》标准朗诵音频',
+    tags: ['初中语文', '诗歌朗诵', '语音示范'],
+    description: '专业播音员标准朗诵《观沧海》，展现古诗词的韵律美和节奏感，供学生模仿学习。',
     duration: '2:15',
     format: 'MP3',
     bitrate: '320kbps',
     size: '4.2MB',
-    voiceType: '儿童配音',
+    voiceType: '专业男声',
     language: '中文',
-    background: '轻音乐伴奏',
+    background: '古典音乐伴奏',
     tracks: [
-      { name: '1-5数字加减法口诀', time: '0:00-0:45' },
-      { name: '6-10数字加减法口诀', time: '0:46-1:30' },
-      { name: '过十加减法口诀', time: '1:31-2:15' }
+      { name: '诗歌背景介绍', time: '0:00-0:30' },
+      { name: '完整朗诵示范', time: '0:31-1:15' },
+      { name: '重点句式强调', time: '1:16-2:15' }
     ],
     createTime: new Date().toLocaleString()
   },
   {
     id: 9,
     type: 'audio',
-    preview: 'https://img.freepik.com/free-vector/mathematics-concept-illustration_114360-3972.jpg',
-    title: '加减法应用题讲解',
-    tags: ['一年级数学', '应用题', '问题解析'],
-    description: '教师讲解加减法应用题的音频，包含提取关键信息、选择运算方法和验证答案的完整思路。',
+    preview: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&h=300&fit=crop',
+    title: '《观沧海》文学赏析讲解',
+    tags: ['初中语文', '文学赏析', '深度解读'],
+    description: '语文教师深度解析《观沧海》的文学价值、艺术特色和思想内涵，提升学生的文学素养。',
     duration: '4:25',
     format: 'MP3',
     bitrate: '320kbps',
@@ -172,27 +176,26 @@ const resources = ref([
     language: '中文',
     background: '无背景音乐',
     tracks: [
-      { name: '应用题解题步骤讲解', time: '0:00-1:15' },
-      { name: '购物找零类题目示例', time: '1:16-2:40' },
-      { name: '比较大小类题目示例', time: '2:41-4:25' }
+      { name: '诗歌创作背景分析', time: '0:00-1:15' },
+      { name: '艺术手法解析', time: '1:16-2:40' },
+      { name: '思想情感探讨', time: '2:41-4:25' }
     ],
     createTime: new Date().toLocaleString()
   },
   {
     id: 10,
     type: 'interactive',
-    preview:
-      'https://cdn.wanx.aliyuncs.com/wanx/1741499227271127126/text_to_image_v2/89f41ffa337d460fa4fb3b0f26b28ed6_2.png?x-oss-process=image/resize,w_500/watermark,image_aW1nL3dhdGVyMjAyNDExMjkwLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSxtX2ZpeGVkLHdfMTQ1LGhfMjU=,t_80,g_se,x_10,y_10/format,webp',
-    title: '数学小侦探互动游戏',
-    tags: ['一年级数学', '互动课件', '推理能力'],
-    description: '基于"数学小侦探"活动设计的互动课件，学生需要通过已知条件推理出被隐藏的数字，培养逻辑思维。',
+    preview: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+    title: '《观沧海》诗词填空游戏',
+    tags: ['初中语文', '互动练习', '记忆训练'],
+    description: '基于《观沧海》设计的互动填空游戏，学生需要根据提示填入正确的诗句，加深对诗歌的记忆。',
     format: 'H5',
     platform: '网页/平板',
     interactive: true,
     fileSize: '12MB',
     scenes: 5,
     difficulty: ['初级', '中级', '高级'],
-    features: ['动态生成题目', '实时反馈', '进度记录', '成绩统计', '适应性难度调整'],
+    features: ['随机题目生成', '提示功能', '成绩记录', '错误分析', '学习进度跟踪'],
     supportedDevices: ['电脑', '平板', '手机'],
     minPlayTime: '15分钟',
     createTime: new Date().toLocaleString()
@@ -200,38 +203,37 @@ const resources = ref([
   {
     id: 11,
     type: 'interactive',
-    preview: 'https://img.freepik.com/free-vector/calculator-concept-illustration_114360-2686.jpg',
-    title: '计算冲关互动练习',
-    tags: ['一年级数学', '互动练习', '计算训练'],
-    description: '分为三个难度级别的加减法计算互动练习，学生可以根据自己水平选择适合的题目进行练习。',
+    preview: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    title: '古诗词赏析互动课件',
+    tags: ['初中语文', '诗词赏析', '互动教学'],
+    description: '《观沧海》赏析互动课件，包含诗句解析、写作背景、艺术手法等多个模块的深度学习内容。',
     format: 'H5',
     platform: '网页/平板/手机',
     interactive: true,
     fileSize: '15MB',
-    scenes: 3,
-    difficulty: ['基础', '提高', '挑战'],
-    features: ['计时模式', '错题重做', '奖励机制', '学习进度跟踪', '家长查看报告'],
+    scenes: 6,
+    difficulty: ['基础理解', '深度赏析', '拓展思考'],
+    features: ['多媒体展示', '互动问答', '知识点标注', '学习笔记', '测试评估'],
     supportedDevices: ['电脑', '平板', '手机'],
-    minPlayTime: '10分钟',
+    minPlayTime: '25分钟',
     createTime: new Date().toLocaleString()
   },
   {
     id: 12,
     type: 'interactive',
-    preview:
-      'https://hunyuan-prod-1258344703.cos.ap-guangzhou.myqcloud.com/text2img/856df1d997c24b4600ac1e7e1d73b6fc/20250414034654h0_654c8191fb09697772ddc1c320aa382257b.png?q-sign-algorithm=sha1&q-ak=AKIDRl074nOsGdJ9zjMsCRWP3ShmgS3VtX4S&q-sign-time=1744573614;1776109614&q-key-time=1744573614;1776109614&q-header-list=host&q-url-param-list=&q-signature=1c5dd3b19ac634c4c4ece0c06bf5f27e62efa093',
-    title: '虚拟超市购物模拟',
-    tags: ['一年级数学', '情境模拟', '实践应用'],
-    description: '虚拟超市环境中的互动购物游戏，学生需要计算购物总额和找零，将加减法应用于实际场景。',
+    preview: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=300&fit=crop',
+    title: '虚拟古诗词世界探索',
+    tags: ['初中语文', '沉浸体验', '文化探索'],
+    description: '虚拟现实环境中的《观沧海》文化探索，学生可以"穿越"到东汉末年，体验曹操创作时的历史情境。',
     format: 'H5',
     platform: '网页/平板',
     interactive: true,
     fileSize: '24MB',
     scenes: 4,
-    difficulty: ['初级', '中级'],
-    features: ['3D超市场景', '拖拽商品到购物车', '虚拟钱币支付', '计算找零', '多种结账方式'],
+    difficulty: ['历史了解', '文化体验'],
+    features: ['3D历史场景', '角色扮演', '历史对话', '文化知识问答', '沉浸式学习'],
     supportedDevices: ['电脑', '平板'],
-    minPlayTime: '20分钟',
+    minPlayTime: '30分钟',
     createTime: new Date().toLocaleString()
   }
 ]);
@@ -309,15 +311,15 @@ setTimeout(() => {
       <div v-else-if="currentState === generationStates.DISPLAY" class="display-state">
         <!-- 主题信息展示 -->
         <div class="theme-info mb-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-          <h2 class="mb-2 text-lg text-primary font-bold">小学一年级加减法 - 多媒体教学资源</h2>
+          <h2 class="mb-2 text-lg text-primary font-bold">《观沧海》- 多媒体教学资源</h2>
           <p class="text-sm text-gray-700 dark:text-gray-300">
-            这组教学资源专为小学一年级学生设计，重点帮助学生理解加减法概念、掌握计算技巧，
-            并在实际情境中应用所学知识。资源包括视觉教具、互动练习、动画演示和音频讲解等多种形式。
+            这组教学资源专为初中语文七年级学生设计，围绕曹操的经典诗作《观沧海》，
+            帮助学生深入理解古诗词的意境美、艺术手法和思想情感。资源包括诗歌意境图、朗诵视频、动画解析和互动课件等多种形式。
           </p>
           <div class="mt-2 flex flex-wrap gap-2">
-            <NTag type="success" size="small">适合小学一年级</NTag>
+            <NTag type="success" size="small">适合初中七年级</NTag>
             <NTag type="info" size="small">包含12个教学资源</NTag>
-            <NTag type="warning" size="small">设计遵循国家课程标准</NTag>
+            <NTag type="warning" size="small">人教版语文教材配套</NTag>
           </div>
         </div>
 

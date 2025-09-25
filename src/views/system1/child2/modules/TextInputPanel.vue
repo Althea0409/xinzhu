@@ -51,8 +51,8 @@ type SubjectKey =
 
 // 用户选择
 const userInputData = ref({
-  subject: 'math' as SubjectKey,
-  ageRange: 'primary-lower',
+  subject: 'chinese' as SubjectKey,
+  ageRange: 'junior-high',
   description: '',
   keywords: [] as string[]
 });
@@ -60,7 +60,22 @@ const userInputData = ref({
 // 建议关键词映射
 const keywordMap: Record<SubjectKey, string[]> = {
   math: ['加法', '减法', '乘法', '除法', '分数', '几何', '代数', '方程式', '统计', '概率'],
-  chinese: ['阅读理解', '写作', '古诗词', '文言文', '标点符号', '修辞手法', '文学常识', '成语'],
+  chinese: [
+    '观沧海',
+    '曹操',
+    '东临碣石',
+    '沧海',
+    '竦峙',
+    '萧瑟',
+    '洪波',
+    '日月之行',
+    '星汉灿烂',
+    '幸甚至哉',
+    '借景抒情',
+    '雄心壮志',
+    '豪迈气概',
+    '虚实结合'
+  ],
   english: ['字母', '单词', '句型', '语法', '阅读', '听力', '口语', '写作', '时态'],
   physics: ['力学', '电学', '热学', '光学', '声学', '磁学', '运动', '能量'],
   chemistry: ['元素', '化合物', '化学反应', '酸碱盐', '氧化还原', '原子结构'],
@@ -160,8 +175,9 @@ function generateDescription() {
           <NInput
             v-model:value="userInputData.description"
             type="textarea"
-            placeholder="请描述您想要生成的教学资源主题..."
-            :autosize="{ minRows: 3, maxRows: 5 }"
+            placeholder="请描述您想要生成的《观沧海》教学资源，例如：诗歌意境图片、朗诵视频、教学课件等..."
+            :rows="4"
+            class="w-full"
           />
         </div>
 
