@@ -1,228 +1,292 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import CourseCard from './modules/CourseCard.vue';
-import WaitingTaskCard from './modules/WaitingTaskCard.vue';
-import NotificationList from './modules/NotificationList.vue';
-import ClassComparisonChart from './modules/ClassComparisonChart.vue';
+import { onMounted, onUnmounted, ref } from 'vue';
+import { NButton, NCard, NIcon, NTag } from 'naive-ui';
+import { AnalyticsOutline } from '@vicons/ionicons5';
+import GradeDistribution from './modules/GradeDistribution.vue';
+import KnowledgeRadar from './modules/KnowledgeRadar.vue';
+import ErrorTop10 from './modules/ErrorTop10.vue';
+import ClassManagement from './modules/ClassManagement.vue';
 
-// 模拟课程数据
-const courses = ref([
-  {
-    id: '1',
-    name: '高等数学',
-    teacherId: 'T2024001',
-    className: '2024级数学1班',
-    channel: '线上授课',
-    studentCount: 48,
-    isActive: true
-  },
-  {
-    id: '2',
-    name: '大学英语',
-    teacherId: 'T2024002',
-    className: '2024级英语2班',
-    channel: '线下教学',
-    studentCount: 42,
-    isActive: false
-  },
-  {
-    id: '3',
-    name: '计算机基础',
-    teacherId: 'T2024003',
-    className: '2024级计算机1班',
-    channel: '混合教学',
-    studentCount: 45,
-    isActive: false
-  },
-  {
-    id: '4',
-    name: '物理学',
-    teacherId: 'T2024004',
-    className: '2024级物理1班',
-    channel: '线下教学',
-    studentCount: 38,
-    isActive: false
+// 班级基本信息
+const classInfo = ref({
+  className: '初一(2)班 ',
+  subject: '语文',
+  studentCount: 50,
+  semester: '2025年秋季学期',
+  teacher: '张老师'
+});
+
+// 整体统计数据
+const overallStats = ref({
+  averageScore: 85.2,
+  passRate: 92.8,
+  excellentRate: 35.7,
+  improvementRate: 12.5
+});
+
+// 最近更新时间 - 实时更新
+const lastUpdated = ref('');
+
+// 格式化时间函数
+const formatTime = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
+};
+
+// 更新时间
+const updateTime = () => {
+  lastUpdated.value = formatTime(new Date());
+};
+
+// 定时器
+let timer: NodeJS.Timeout | null = null;
+
+// 组件挂载时启动定时器
+onMounted(() => {
+  updateTime(); // 立即更新一次
+  timer = setInterval(updateTime, 60000); // 每分钟更新一次
+});
+
+// 组件卸载时清理定时器
+onUnmounted(() => {
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
   }
-]);
+});
 
-// 切换选中的课程
-function selectCourse(courseId: string) {
-  courses.value.forEach(course => {
-    course.isActive = course.id === courseId;
-  });
-}
-
-// 进度百分比
-const progressData = {
-  homeworkCompletion: 85,
-  attendanceRate: 92,
-  averageScore: 78,
-  participation: 65
+// 计算统计数据的颜色
+const getStatColor = (value: number, type: 'score' | 'rate') => {
+  if (type === 'score') {
+    if (value >= 90) return '#2B46FE';
+    if (value >= 80) return '#52c41a';
+    if (value >= 70) return '#faad14';
+    return '#ff4d4f';
+  }
+  if (value >= 90) return '#2B46FE';
+  if (value >= 80) return '#52c41a';
+  if (value >= 60) return '#faad14';
+  return '#ff4d4f';
 };
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 p-8">
-    <h1 class="mb-8 ml-3 text-2xl text-gray-800 font-bold">教学课程选择</h1>
-
-    <!-- 课程卡片横向滚动区域 -->
-    <div class="mb-10 rounded-lg bg-white p-6 shadow-sm">
-      <div class="mb-5 ml-3 flex items-center">
-        <div class="mr-3 h-5 w-1.5 rounded bg-blue-500"></div>
-        <h2 class="text-lg text-gray-700 font-bold">我的课程</h2>
-      </div>
-      <div class="flex gap-6 overflow-x-auto px-3 pb-4">
-        <CourseCard
-          v-for="course in courses"
-          :key="course.id"
-          :name="course.name"
-          :teacher-id="course.teacherId"
-          :class-name="course.className"
-          :channel="course.channel"
-          :student-count="course.studentCount"
-          :is-active="course.isActive"
-          class="cursor-pointer transition-all duration-300 hover:shadow-md"
-          @click="selectCourse(course.id)"
-        />
-      </div>
-    </div>
-
-    <!-- 主要内容区域：两列布局 -->
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-      <!-- 左侧区域 - 2/3 宽度 -->
-      <div class="lg:col-span-2 space-y-8">
-        <!-- 待办事项和通知公告区域 -->
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div class="rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
-            <WaitingTaskCard />
-          </div>
-          <div class="rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
-            <NotificationList />
+  <div class="min-h-screen p-6">
+    <!-- 页面标题区域 -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="mb-2 text-3xl text-gray-800 font-bold">{{ classInfo.className }} 初中语文教学数据看板</h1>
+          <div class="flex items-center text-sm text-gray-600 space-x-4">
+            <span>{{ classInfo.semester }}</span>
+            <span>•</span>
+            <span>任课教师：{{ classInfo.teacher }}</span>
+            <span>•</span>
+            <span>学生人数：{{ classInfo.studentCount }}人</span>
+            <span>•</span>
+            <span>最后更新：{{ lastUpdated }}</span>
           </div>
         </div>
-
-        <!-- 班级对比图表 -->
-        <div class="rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
-          <ClassComparisonChart />
-        </div>
-      </div>
-
-      <!-- 右侧区域 - 1/3 宽度 -->
-      <div class="space-y-8">
-        <!-- 学生进度区域 -->
-        <div class="rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
-          <div class="mb-6 flex items-center">
-            <div class="mr-3 h-4 w-4 rounded-full bg-blue-500"></div>
-            <h3 class="text-gray-700 font-bold">学生进度</h3>
-          </div>
-
-          <div class="px-3 space-y-6">
-            <div class="border-b pb-5">
-              <div class="mb-3 flex justify-between">
-                <span class="text-sm text-gray-600">作业完成率</span>
-                <span class="text-sm text-gray-800 font-medium">{{ progressData.homeworkCompletion }}%</span>
-              </div>
-              <div class="h-2.5 w-full rounded-full bg-gray-200">
-                <div class="blue-bar progress-bar"></div>
-              </div>
-            </div>
-
-            <div class="border-b pb-5">
-              <div class="mb-3 flex justify-between">
-                <span class="text-sm text-gray-600">课堂出勤率</span>
-                <span class="text-sm text-gray-800 font-medium">{{ progressData.attendanceRate }}%</span>
-              </div>
-              <div class="h-2.5 w-full rounded-full bg-gray-200">
-                <div class="progress-bar green-bar"></div>
-              </div>
-            </div>
-
-            <div class="border-b pb-5">
-              <div class="mb-3 flex justify-between">
-                <span class="text-sm text-gray-600">平均成绩</span>
-                <span class="text-sm text-gray-800 font-medium">{{ progressData.averageScore }}%</span>
-              </div>
-              <div class="h-2.5 w-full rounded-full bg-gray-200">
-                <div class="progress-bar orange-bar"></div>
-              </div>
-            </div>
-
-            <div class="pb-2">
-              <div class="mb-3 flex justify-between">
-                <span class="text-sm text-gray-600">课程参与度</span>
-                <span class="text-sm text-gray-800 font-medium">{{ progressData.participation }}%</span>
-              </div>
-              <div class="h-2.5 w-full rounded-full bg-gray-200">
-                <div class="progress-bar purple-bar"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 近期活动区域 -->
-        <div class="rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
-          <div class="mb-6 flex items-center">
-            <div class="mr-3 h-4 w-4 rounded-full bg-blue-500"></div>
-            <h3 class="text-gray-700 font-bold">近期活动</h3>
-          </div>
-
-          <div class="px-3 space-y-5">
-            <div class="flex items-start rounded-md p-3 transition-colors hover:bg-gray-50">
-              <div class="mr-4 mt-0.5 rounded-md bg-red-100 px-2.5 py-1 text-xs text-red-600 font-medium">今天</div>
-              <div>
-                <div class="text-sm text-gray-800 font-medium">期中测试</div>
-                <div class="mt-1.5 text-xs text-gray-500">9:00 - 11:00</div>
-              </div>
-            </div>
-
-            <div class="flex items-start rounded-md p-3 transition-colors hover:bg-gray-50">
-              <div class="mr-4 mt-0.5 rounded-md bg-blue-100 px-2.5 py-1 text-xs text-blue-600 font-medium">明天</div>
-              <div>
-                <div class="text-sm text-gray-800 font-medium">教学研讨会</div>
-                <div class="mt-1.5 text-xs text-gray-500">14:00 - 16:00</div>
-              </div>
-            </div>
-
-            <div class="flex items-start rounded-md p-3 transition-colors hover:bg-gray-50">
-              <div class="mr-4 mt-0.5 rounded-md bg-purple-100 px-2.5 py-1 text-xs text-purple-600 font-medium">
-                下周
-              </div>
-              <div>
-                <div class="text-sm text-gray-800 font-medium">学生答辩</div>
-                <div class="mt-1.5 text-xs text-gray-500">全天</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <NButton type="primary" size="large" style="background-color: #2b46fe; border-color: #2b46fe">
+          <!-- @vue-ignore: naive-ui 按钮图标插槽类型提示兼容 -->
+          <template #icon>
+            <NIcon><AnalyticsOutline /></NIcon>
+          </template>
+          生成报告
+        </NButton>
       </div>
     </div>
+
+    <!-- 核心指标卡片 -->
+    <div class="mb-8">
+      <NGrid :cols="4" :x-gap="16" responsive="screen">
+        <NGridItem>
+          <NCard class="text-center transition-all duration-300 hover:shadow-lg" style="border-left: 4px solid #2b46fe">
+            <NStatistic label="班级平均分" :value="overallStats.averageScore" :precision="1">
+              <template #suffix>分</template>
+            </NStatistic>
+            <div class="mt-2">
+              <NTag
+                :color="{ color: getStatColor(overallStats.averageScore, 'score'), textColor: 'white' }"
+                size="small"
+              >
+                {{ overallStats.averageScore >= 85 ? '优秀' : overallStats.averageScore >= 75 ? '良好' : '待提升' }}
+              </NTag>
+            </div>
+          </NCard>
+        </NGridItem>
+
+        <NGridItem>
+          <NCard class="text-center transition-all duration-300 hover:shadow-lg" style="border-left: 4px solid #52c41a">
+            <NStatistic label="及格率" :value="overallStats.passRate" :precision="1">
+              <template #suffix>%</template>
+            </NStatistic>
+            <div class="mt-2">
+              <NTag :color="{ color: getStatColor(overallStats.passRate, 'rate'), textColor: 'white' }" size="small">
+                {{ overallStats.passRate >= 90 ? '优秀' : overallStats.passRate >= 80 ? '良好' : '待提升' }}
+              </NTag>
+            </div>
+          </NCard>
+        </NGridItem>
+
+        <NGridItem>
+          <NCard class="text-center transition-all duration-300 hover:shadow-lg" style="border-left: 4px solid #faad14">
+            <NStatistic label="优秀率" :value="overallStats.excellentRate" :precision="1">
+              <template #suffix>%</template>
+            </NStatistic>
+            <div class="mt-2">
+              <NTag
+                :color="{ color: getStatColor(overallStats.excellentRate, 'rate'), textColor: 'white' }"
+                size="small"
+              >
+                {{ overallStats.excellentRate >= 30 ? '优秀' : overallStats.excellentRate >= 20 ? '良好' : '待提升' }}
+              </NTag>
+            </div>
+          </NCard>
+        </NGridItem>
+
+        <NGridItem>
+          <NCard class="text-center transition-all duration-300 hover:shadow-lg" style="border-left: 4px solid #722ed1">
+            <NStatistic label="进步率" :value="overallStats.improvementRate" :precision="1">
+              <template #suffix>%</template>
+            </NStatistic>
+            <div class="mt-2">
+              <NTag :color="{ color: '#722ed1', textColor: 'white' }" size="small">
+                {{ overallStats.improvementRate > 0 ? '上升趋势' : '需要关注' }}
+              </NTag>
+            </div>
+          </NCard>
+        </NGridItem>
+      </NGrid>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <NGrid :cols="3" :x-gap="16" :y-gap="16" responsive="screen">
+      <!-- 成绩分布图 -->
+      <NGridItem :span="2">
+        <div class="h-full">
+          <GradeDistribution />
+        </div>
+      </NGridItem>
+
+      <!-- 班级管理 -->
+      <NGridItem>
+        <div class="h-full">
+          <ClassManagement />
+        </div>
+      </NGridItem>
+
+      <!-- 知识点掌握雷达图 -->
+      <NGridItem>
+        <div class="h-full">
+          <KnowledgeRadar />
+        </div>
+      </NGridItem>
+
+      <!-- 错题Top10 -->
+      <NGridItem :span="2">
+        <div class="h-full">
+          <ErrorTop10 />
+        </div>
+      </NGridItem>
+    </NGrid>
+
+    <!-- 快速操作区域 -->
+    <!--
+ <div class="mt-8">
+      <NCard title="快速操作" class="hover:shadow-lg transition-all duration-300">
+        <NSpace size="large">
+          <NButton type="primary" size="large" style="background-color: #2B46FE; border-color: #2B46FE;">
+            <template #icon>
+              <NIcon><BookOutline /></NIcon>
+            </template>
+            布置作业
+          </NButton>
+          
+          <NButton type="default" size="large">
+            <template #icon>
+              <NIcon><PeopleOutline /></NIcon>
+            </template>
+            学生管理
+          </NButton>
+          
+          <NButton type="default" size="large">
+            <template #icon>
+              <NIcon><TrendingUpOutline /></NIcon>
+            </template>
+            成绩分析
+          </NButton>
+          
+          <NButton type="default" size="large">
+            <template #icon>
+              <NIcon><AnalyticsOutline /></NIcon>
+            </template>
+            导出数据
+          </NButton>
+        </NSpace>
+      </NCard>
+    </div> 
+-->
   </div>
 </template>
 
 <style scoped>
-.progress-bar {
-  height: 100%;
-  border-radius: 9999px;
-  transition: width 0.3s ease;
+/* 自定义样式 */
+.n-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(43, 70, 254, 0.08);
 }
 
-.blue-bar {
-  width: v-bind('progressData.homeworkCompletion + "%"');
-  background-color: #3b82f6;
+.n-card:hover {
+  box-shadow: 0 8px 24px rgba(43, 70, 254, 0.15);
 }
 
-.green-bar {
-  width: v-bind('progressData.attendanceRate + "%"');
-  background-color: #22c55e;
+.n-statistic {
+  --n-value-font-size: 28px;
+  --n-value-font-weight: 700;
+  --n-label-font-size: 14px;
+  --n-label-text-color: #666;
 }
 
-.orange-bar {
-  width: v-bind('progressData.averageScore + "%"');
-  background-color: #f97316;
+/* 响应式布局 */
+@media (max-width: 1200px) {
+  .n-grid-item[span='2'] {
+    grid-column: span 3;
+  }
 }
 
-.purple-bar {
-  width: v-bind('progressData.participation + "%"');
-  background-color: #a855f7;
+@media (max-width: 768px) {
+  .n-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .n-grid-item {
+    grid-column: span 1 !important;
+  }
+}
+
+/* 渐变背景 */
+.bg-gradient-to-br {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+}
+
+/* 主题色应用 */
+:deep(.n-button--primary-type) {
+  background-color: #2b46fe !important;
+  border-color: #2b46fe !important;
+}
+
+:deep(.n-button--primary-type:hover) {
+  background-color: #1e3bfe !important;
+  border-color: #1e3bfe !important;
+}
+
+:deep(.n-button--primary-type:focus) {
+  background-color: #1e3bfe !important;
+  border-color: #1e3bfe !important;
 }
 </style>
