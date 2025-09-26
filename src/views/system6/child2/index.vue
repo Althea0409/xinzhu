@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>system6_child2</div>
+  <div>批改分析</div>
 </template>
 
 <style scoped></style>
