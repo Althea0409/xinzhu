@@ -230,7 +230,7 @@ const local: App.I18n.Schema = {
     home: {
       branchDesc:
         '为了方便大家开发和更新合并，我们对main分支的代码进行了精简，只保留了首页菜单，其余内容已移至example分支进行维护。预览地址显示的内容即为example分支的内容。',
-      greeting: '早安，{userName}, 欢迎使用新竹ai备课系统!',
+      greeting: '早安，{userName}, 欢迎使用明蹊ai备课系统!',
       weatherDesc: '今日多云转晴，20℃ - 25℃!',
       projectCount: '项目数',
       todo: '待办',
