@@ -3,21 +3,24 @@
 import { ref } from 'vue';
 import { StudentTrackingCard } from './modules/student-tracking-card';
 import StudentDetailModal from './modules/student-detail-modal/student-detail-modal.vue';
+import LearningBehaviorAnalysis from './modules/learning-behavior-analysis/learning-behavior-analysis.vue';
+import SkillGraph from './modules/skill-graph/skill-graph.vue';
+import KnowledgeGraph from './modules/knowledge-graph/knowledge-graph.vue';
 import type { StudentInfo } from './modules/types';
 
 /** 班级选项 */
 const classOptions = [
   { label: '全部班级', value: '' },
-  { label: '初三(1)班', value: '初三(1)班' },
-  { label: '初三(2)班', value: '初三(2)班' },
-  { label: '初三(3)班', value: '初三(3)班' }
+  { label: '初一(1)班', value: '初一(1)班' },
+  { label: '初一(2)班', value: '初一(2)班' },
+  { label: '初一(3)班', value: '初一(3)班' }
 ];
 
 /** 学科选项 */
 const subjectOptions = [
   { label: '全部学科', value: '' },
-  { label: '数学', value: '数学' },
   { label: '语文', value: '语文' },
+  { label: '数学', value: '数学' },
   { label: '英语', value: '英语' },
   { label: '物理', value: '物理' },
   { label: '化学', value: '化学' }
@@ -45,90 +48,139 @@ const studentsList = ref<StudentInfo[]>([
   {
     id: 1,
     name: '陈晓明',
-    className: '初三(1)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 1, name: '三角函数', type: 'math' },
-      { id: 2, name: '几何证明', type: 'math' }
+      { id: 1, name: '现代文阅读', type: 'chinese' },
+      { id: 2, name: '文言文基础', type: 'chinese' }
     ],
     studyStatus: 'middle-excellent'
   },
   {
     id: 2,
     name: '王思雨',
-    className: '初三(2)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 3, name: '时态语法', type: 'english' },
-      { id: 4, name: '阅读理解', type: 'chinese' }
+      { id: 3, name: '诗歌鉴赏', type: 'chinese' },
+      { id: 4, name: '作文写作', type: 'chinese' }
     ],
     studyStatus: 'normal'
   },
   {
     id: 3,
     name: '李华',
-    className: '初三(3)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 5, name: '物理力学', type: 'physics' },
-      { id: 6, name: '化学方程式', type: 'chemistry' }
+      { id: 5, name: '字词积累', type: 'chinese' },
+      { id: 6, name: '散文阅读', type: 'chinese' }
     ],
     studyStatus: 'excellent'
   },
   {
     id: 4,
     name: '张小芳',
-    className: '初三(1)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 7, name: '政治理论', type: 'politics' },
-      { id: 8, name: '历史年表', type: 'history' }
+      { id: 7, name: '古诗词背诵', type: 'chinese' },
+      { id: 8, name: '课外阅读', type: 'chinese' }
     ],
     studyStatus: 'needs-improvement'
   },
   {
     id: 5,
     name: '刘明',
-    className: '初三(2)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 9, name: '生物分类', type: 'biology' },
-      { id: 10, name: '地理地形', type: 'geography' }
+      { id: 9, name: '文言文基础', type: 'chinese' },
+      { id: 10, name: '作文写作', type: 'chinese' }
     ],
     studyStatus: 'middle-excellent'
   },
   {
     id: 6,
     name: '王强',
-    className: '初三(3)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 11, name: '三角函数', type: 'math' },
-      { id: 12, name: '英语听力', type: 'english' }
+      { id: 11, name: '字词积累', type: 'chinese' },
+      { id: 12, name: '现代文阅读', type: 'chinese' }
     ],
     studyStatus: 'normal'
   },
   {
     id: 7,
     name: '赵敏',
-    className: '初三(1)班',
+    className: '初一(2)班',
     subjects: [
-      { id: 13, name: '物理电学', type: 'physics' },
-      { id: 14, name: '化学实验', type: 'chemistry' }
+      { id: 13, name: '文言文基础', type: 'chinese' },
+      { id: 14, name: '诗歌鉴赏', type: 'chinese' }
     ],
     studyStatus: 'excellent'
   },
   {
-    id: 8,
-    name: '孙伟',
-    className: '初三(2)班',
+    id: 9,
+    name: '李小明',
+    className: '初一(2)班',
     subjects: [
-      { id: 15, name: '文言文', type: 'chinese' },
-      { id: 16, name: '英语写作', type: 'english' }
+      { id: 17, name: '散文阅读', type: 'chinese' },
+      { id: 18, name: '文言文基础', type: 'chinese' }
     ],
-    studyStatus: 'needs-improvement'
+    studyStatus: 'excellent'
+  },
+  {
+    id: 10,
+    name: '王小红',
+    className: '初一(2)班',
+    subjects: [
+      { id: 19, name: '作文写作', type: 'chinese' },
+      { id: 20, name: '古诗词背诵', type: 'chinese' }
+    ],
+    studyStatus: 'normal'
+  },
+  {
+    id: 11,
+    name: '张小华',
+    className: '初一(2)班',
+    subjects: [
+      { id: 21, name: '字词积累', type: 'chinese' },
+      { id: 22, name: '课外阅读', type: 'chinese' }
+    ],
+    studyStatus: 'middle-excellent'
+  },
+  {
+    id: 12,
+    name: '刘小强',
+    className: '初一(2)班',
+    subjects: [
+      { id: 23, name: '散文阅读', type: 'chinese' },
+      { id: 24, name: '文言文基础', type: 'chinese' }
+    ],
+    studyStatus: 'excellent'
+  },
+  {
+    id: 13,
+    name: '陈小美',
+    className: '初一(2)班',
+    subjects: [
+      { id: 25, name: '文言文基础', type: 'chinese' },
+      { id: 26, name: '作文写作', type: 'chinese' }
+    ],
+    studyStatus: 'normal'
   }
 ]);
 
 /** 当前选中的学生 */
-const selectedStudent = ref<StudentInfo | null>(null);
+const selectedStudent = ref<StudentInfo | undefined>(undefined);
 
 /** 是否显示学生详情弹窗 */
 const showDetailModal = ref(false);
+
+/** 是否显示学习行为分析弹窗 */
+const showLearningBehaviorModal = ref(false);
+
+/** 是否显示技能图谱弹窗 */
+const showSkillGraphModal = ref(false);
+
+/** 是否显示知识图谱弹窗 */
+const showKnowledgeGraphModal = ref(false);
 
 /** 处理学生卡片点击事件 */
 function handleStudentClick(student: StudentInfo) {
@@ -139,6 +191,39 @@ function handleStudentClick(student: StudentInfo) {
 /** 关闭学生详情弹窗 */
 function closeDetailModal() {
   showDetailModal.value = false;
+}
+
+/** 打开学习行为分析弹窗 */
+function openLearningBehaviorModal(student: StudentInfo) {
+  selectedStudent.value = student;
+  showLearningBehaviorModal.value = true;
+}
+
+/** 关闭学习行为分析弹窗 */
+function closeLearningBehaviorModal() {
+  showLearningBehaviorModal.value = false;
+}
+
+/** 打开技能图谱弹窗 */
+function openSkillGraphModal(student: StudentInfo) {
+  selectedStudent.value = student;
+  showSkillGraphModal.value = true;
+}
+
+/** 关闭技能图谱弹窗 */
+function closeSkillGraphModal() {
+  showSkillGraphModal.value = false;
+}
+
+/** 打开知识图谱弹窗 */
+function openKnowledgeGraphModal(student: StudentInfo) {
+  selectedStudent.value = student;
+  showKnowledgeGraphModal.value = true;
+}
+
+/** 关闭知识图谱弹窗 */
+function closeKnowledgeGraphModal() {
+  showKnowledgeGraphModal.value = false;
 }
 
 /** 重置筛选条件 */
@@ -166,7 +251,8 @@ function applyFilters() {
     <div class="mb-8 rounded-lg bg-white p-5 shadow-sm">
       <div class="mb-4 flex items-center">
         <h3 class="text-base text-[#333333] font-medium">数据筛选</h3>
-        <div class="ml-auto flex space-x-3">
+        <div class="ml-auto flex items-center space-x-3">
+          <!-- 筛选按钮 -->
           <button
             class="rounded bg-[#EEF1FF] px-4 py-1.5 text-sm text-[#2B46FE] hover:bg-[#DCE1FF]"
             @click="resetFilters"
@@ -237,6 +323,26 @@ function applyFilters() {
       v-model:show="showDetailModal"
       :student="selectedStudent"
       @close="closeDetailModal"
+      @open-learning-behavior="openLearningBehaviorModal"
+      @open-skill-graph="openSkillGraphModal"
+      @open-knowledge-graph="openKnowledgeGraphModal"
+    />
+
+    <!-- 学习行为分析弹窗 -->
+    <LearningBehaviorAnalysis
+      v-model:show="showLearningBehaviorModal"
+      :student="selectedStudent || undefined"
+      @close="closeLearningBehaviorModal"
+    />
+
+    <!-- 技能图谱弹窗 -->
+    <SkillGraph v-model:show="showSkillGraphModal" :student="selectedStudent ?? null" @close="closeSkillGraphModal" />
+
+    <!-- 知识图谱弹窗 -->
+    <KnowledgeGraph
+      v-model:show="showKnowledgeGraphModal"
+      :student="selectedStudent ?? null"
+      @close="closeKnowledgeGraphModal"
     />
   </div>
 </template>

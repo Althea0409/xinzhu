@@ -172,7 +172,6 @@ const local: App.I18n.Schema = {
     system2: '学情分析',
     system2_child1: '数据看板',
     system2_child2: '学生画像',
-    system2_child3: '预测报告',
     system3: '课堂互动',
     system3_child1: '实时问答',
     system3_child2: '互动管理',

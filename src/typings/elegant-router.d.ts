@@ -31,7 +31,6 @@ declare module "@elegant-router/types" {
     "system2": "/system2";
     "system2_child1": "/system2/child1";
     "system2_child2": "/system2/child2";
-    "system2_child3": "/system2/child3";
     "system3": "/system3";
     "system3_child1": "/system3/child1";
     "system3_child2": "/system3/child2";
@@ -109,7 +108,6 @@ declare module "@elegant-router/types" {
     | "system1_child4"
     | "system2_child1"
     | "system2_child2"
-    | "system2_child3"
     | "system3_child1"
     | "system3_child2"
     | "system4"

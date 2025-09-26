@@ -11,7 +11,45 @@ declare module 'naive-ui' {
   import type { DefineComponent } from 'vue';
 
   // 组件相关
-  const NButton: DefineComponent<any, any, any>;
+  const NButton: DefineComponent<
+    {
+      type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error';
+      size?: 'tiny' | 'small' | 'medium' | 'large';
+      quaternary?: boolean;
+      circle?: boolean;
+      disabled?: boolean;
+      loading?: boolean;
+      [key: string]: any;
+    },
+    {
+      icon?: any;
+      default?: any;
+      header?: any; // 补充 header slot 类型
+      [key: string]: any;
+    },
+    any
+  >;
+  const NModal: DefineComponent<
+    {
+      show?: boolean;
+      preset?: 'card' | 'dialog' | 'confirm';
+      title?: string;
+      size?: 'small' | 'medium' | 'large' | 'huge';
+      bordered?: boolean;
+      segmented?: boolean | { content?: boolean; footer?: boolean };
+      maskClosable?: boolean;
+      [key: string]: any;
+    },
+    {
+      header?: any;
+      icon?: any;
+      default?: any;
+      footer?: any;
+      action?: any;
+      [key: string]: any;
+    },
+    any
+  >;
   const NCard: DefineComponent<
     {
       title?: string;
@@ -42,7 +80,27 @@ declare module 'naive-ui' {
   const NListItem: DefineComponent<any, any, any>;
   const NLoadingBarProvider: DefineComponent<any, any, any>;
   const NMessageProvider: DefineComponent<any, any, any>;
-  const NModal: DefineComponent<any, any, any>;
+  const NModal: DefineComponent<
+    {
+      show?: boolean;
+      preset?: 'card' | 'dialog' | 'confirm';
+      title?: string;
+      size?: 'small' | 'medium' | 'large' | 'huge';
+      bordered?: boolean;
+      segmented?: boolean | { content?: boolean; footer?: boolean };
+      maskClosable?: boolean;
+      [key: string]: any;
+    },
+    {
+      header?: any;
+      icon?: any;
+      default?: any;
+      footer?: any;
+      action?: any;
+      [key: string]: any;
+    },
+    any
+  >;
   const NNotificationProvider: DefineComponent<any, any, any>;
   const NRadio: DefineComponent<any, any, any>;
   const NRadioGroup: DefineComponent<any, any, any>;

@@ -158,16 +158,6 @@ export const generatedRoutes: GeneratedRoute[] = [
           i18nKey: 'route.system2_child2',
           icon: 'mdi:account-box'
         }
-      },
-      {
-        name: 'system2_child3',
-        path: '/system2/child3',
-        component: 'view.system2_child3',
-        meta: {
-          title: 'system2_child3',
-          i18nKey: 'route.system2_child3',
-          icon: 'eos-icons:storage-class'
-        }
       }
     ]
   },

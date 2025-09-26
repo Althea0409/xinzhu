@@ -84,7 +84,8 @@ const radarData = computed<RadarData[]>(() => {
 });
 
 // 根据学生ID生成个性化的学习行为数据
-const learningBehaviors = computed(() => {
+// eslint-disable-next-line no-underscore-dangle
+const _learningBehaviors = computed(() => {
   const studentId = props.student.id.toString();
 
   if (studentId.includes('01')) {
@@ -292,7 +293,8 @@ const learningBehaviors = computed(() => {
 // });
 
 // 根据学生ID生成个性化的学生特点
-const studentPersonality = computed<StudentPersonality>(() => {
+// eslint-disable-next-line no-underscore-dangle
+const _studentPersonality = computed<StudentPersonality>(() => {
   const studentId = props.student.id.toString();
 
   if (studentId.includes('01')) {
@@ -330,7 +332,8 @@ const studentPersonality = computed<StudentPersonality>(() => {
 });
 
 // 根据学生ID生成个性化的学习轨迹
-const learningTrajectory = computed<LearningTrajectory[]>(() => {
+// eslint-disable-next-line no-underscore-dangle
+const _learningTrajectory = computed<LearningTrajectory[]>(() => {
   const studentId = props.student.id.toString();
   const currentMonth = new Date().getMonth() + 1;
 
@@ -365,7 +368,8 @@ const learningTrajectory = computed<LearningTrajectory[]>(() => {
 });
 
 // 根据学生ID生成个性化的学习问题与改进建议
-const learningIssues = computed(() => {
+// eslint-disable-next-line no-underscore-dangle
+const _learningIssues = computed(() => {
   const studentId = props.student.id.toString();
 
   if (studentId.includes('01')) {
@@ -451,334 +455,334 @@ const recommendedResources = computed<LearningResource[]>(() => {
     return [
       {
         id: 'res001',
-        title: '创新性数学思维训练',
+        title: '现代文阅读理解技巧训练',
         type: '习题',
-        tags: ['数学', '创新思维', '挑战性问题'],
+        tags: ['现代文阅读', '理解技巧', '答题方法'],
         difficulty: '挑战',
         duration: '45分钟',
         matchScore: 96,
         link: '#',
-        reason: '针对该生创新思维不足的问题，提供非常规数学问题训练'
+        reason: '针对该生现代文阅读理解能力不足的问题，提供系统性的阅读技巧训练'
       },
       {
         id: 'res002',
-        title: '科学探究方法与实践',
+        title: '古诗词鉴赏方法与实践',
         type: '实验',
-        tags: ['科学', '探究能力', '实验设计'],
+        tags: ['古诗词', '鉴赏能力', '文学素养'],
         difficulty: '提高',
         duration: '60分钟',
         matchScore: 94,
         link: '#',
-        reason: '帮助提升探究能力，培养科学研究思维'
+        reason: '帮助提升古诗词鉴赏能力，培养文学审美思维'
       },
       {
         id: 'res003',
-        title: '团队协作与有效沟通',
+        title: '作文构思与表达技巧',
         type: '互动课件',
-        tags: ['软技能', '团队协作', '沟通'],
+        tags: ['写作技巧', '构思方法', '表达能力'],
         difficulty: '基础',
         duration: '30分钟',
         matchScore: 92,
         link: '#',
-        reason: '针对团队协作能力不足的情况，提供实用的合作技巧'
+        reason: '针对写作表达能力不足的情况，提供实用的写作技巧'
       },
       {
         id: 'res004',
-        title: '高效在线学习策略',
+        title: '语文学习方法指导',
         type: '文档',
-        tags: ['学习方法', '时间管理', '自律'],
+        tags: ['学习方法', '语文素养', '自主学习'],
         difficulty: '基础',
         duration: '15分钟',
         matchScore: 90,
         link: '#',
-        reason: '帮助解决在线学习时间减少的问题，提高学习效率'
+        reason: '帮助建立科学的语文学习方法，提高学习效率'
       },
       {
         id: 'res013',
-        title: 'AI个性化数学辅导',
+        title: 'AI个性化语文辅导',
         type: 'AI辅导',
-        tags: ['数学', '一对一', '适应性学习'],
+        tags: ['语文', '一对一', '适应性学习'],
         difficulty: '提高',
         duration: '按需',
         matchScore: 97,
         link: '#',
-        reason: '基于该生学习特点的智能辅导，针对性解决薄弱环节'
+        reason: '基于该生语文学习特点的智能辅导，针对性解决薄弱环节'
       },
       // 视频资源 - 保留
       {
         id: 'res101',
-        title: '创新思维解题技巧视频课程',
+        title: '语文创新思维培养课程',
         type: '视频',
-        tags: ['数学', '创新思维', '解题技巧'],
+        tags: ['语文思维', '创新能力', '思维训练'],
         difficulty: '提高',
         duration: '35分钟',
         matchScore: 94,
         link: '#',
-        reason: '通过视频讲解创新性解题思路，帮助突破思维定式'
+        reason: '通过视频讲解语文创新思维方法，帮助突破传统思维模式'
       },
       {
         id: 'res102',
-        title: '探究性学习方法与案例分析',
+        title: '文言文阅读方法与技巧',
         type: '视频',
-        tags: ['探究能力', '学习方法', '案例分析'],
+        tags: ['文言文', '阅读方法', '翻译技巧'],
         difficulty: '提高',
         duration: '28分钟',
         matchScore: 92,
         link: '#',
-        reason: '通过真实案例视频分析探究性学习方法的应用'
+        reason: '通过真实案例视频分析文言文阅读方法的应用'
       },
       // 习题资源 - 保留
       {
         id: 'res103',
-        title: '团队合作能力强化练习',
+        title: '语文综合能力测评练习',
         type: '习题',
-        tags: ['团队协作', '沟通', '合作能力'],
+        tags: ['综合能力', '测评练习', '能力提升'],
         difficulty: '基础',
         duration: '25分钟',
         matchScore: 93,
         link: '#',
-        reason: '针对团队协作能力不足设计的情境式习题，强化协作意识'
+        reason: '针对语文综合能力设计的测评练习，全面提升语文素养'
       },
       {
         id: 'res104',
-        title: '数学应用能力进阶训练',
+        title: '语文学习习惯培养练习',
         type: '习题',
-        tags: ['数学', '应用能力', '实际问题'],
+        tags: ['学习习惯', '语文素养', '自主学习'],
         difficulty: '提高',
         duration: '40分钟',
         matchScore: 95,
         link: '#',
-        reason: '提供生活中的实际问题，训练数学知识的应用能力'
+        reason: '培养良好的语文学习习惯，提高语文学习的自主性'
       }
     ];
   } else if (studentId.includes('02')) {
     return [
       {
         id: 'res005',
-        title: '数学基础概念强化训练',
+        title: '语文基础知识强化训练',
         type: '视频',
-        tags: ['数学', '基础知识', '概念理解'],
+        tags: ['语文基础', '字词句', '语法知识'],
         difficulty: '基础',
         duration: '40分钟',
         matchScore: 98,
         link: '#',
-        reason: '针对基础知识不扎实的问题，系统梳理核心概念'
+        reason: '针对语文基础知识不扎实的问题，系统梳理核心知识点'
       },
       {
         id: 'res006',
-        title: '专注力提升与学习效率',
+        title: '阅读专注力提升训练',
         type: '互动课件',
-        tags: ['学习技巧', '专注力', '效率'],
+        tags: ['阅读技巧', '专注力', '理解能力'],
         difficulty: '基础',
         duration: '25分钟',
         matchScore: 95,
         link: '#',
-        reason: '帮助提高注意力集中度，解决学习分心问题'
+        reason: '帮助提高阅读时的注意力集中度，解决阅读分心问题'
       },
       {
         id: 'res007',
-        title: '系统化学习方法指导',
+        title: '语文知识体系构建指导',
         type: '文档',
-        tags: ['学习方法', '知识体系', '思维导图'],
+        tags: ['知识体系', '语文框架', '思维导图'],
         difficulty: '提高',
         duration: '30分钟',
         matchScore: 94,
         link: '#',
-        reason: '提供系统学习的方法和工具，解决知识点零散问题'
+        reason: '提供系统的语文知识体系构建方法，解决知识点零散问题'
       },
       {
         id: 'res008',
-        title: '英语听力强化训练',
+        title: '古文阅读理解强化训练',
         type: '习题',
-        tags: ['英语', '听力', '基础训练'],
+        tags: ['古文阅读', '理解能力', '基础训练'],
         difficulty: '提高',
         matchScore: 92,
         duration: '35分钟',
         link: '#',
-        reason: '针对英语听力较弱的情况，提供有针对性的训练'
+        reason: '针对古文阅读较弱的情况，提供有针对性的训练'
       },
       {
         id: 'res014',
-        title: '注意力训练助手',
+        title: '语文学习习惯养成助手',
         type: 'AI辅导',
-        tags: ['专注力', '时间管理', '学习习惯'],
+        tags: ['学习习惯', '时间管理', '语文素养'],
         difficulty: '基础',
         duration: '每天15分钟',
         matchScore: 96,
         link: '#',
-        reason: '通过AI监测学习状态，适时提醒，培养专注学习习惯'
+        reason: '通过AI监测语文学习状态，适时提醒，培养良好学习习惯'
       },
       {
         id: 'res015',
-        title: '作业质量自查工具',
+        title: '作文质量自评工具',
         type: '互动课件',
-        tags: ['学习效率', '自我评估', '质量控制'],
+        tags: ['写作能力', '自我评估', '质量提升'],
         difficulty: '基础',
         duration: '10分钟',
         matchScore: 91,
         link: '#',
-        reason: '帮助建立作业自查习惯，提高作业质量和完成度'
+        reason: '帮助建立作文自评习惯，提高写作质量和表达能力'
       },
       // 视频资源 - 保留
       {
         id: 'res105',
-        title: '数学概念可视化解析',
+        title: '语文概念可视化解析',
         type: '视频',
-        tags: ['数学', '概念理解', '可视化教学'],
+        tags: ['语文概念', '可视化教学', '理解方法'],
         difficulty: '基础',
         duration: '32分钟',
         matchScore: 96,
         link: '#',
-        reason: '通过动画和可视化方式讲解抽象数学概念，加深理解'
+        reason: '通过动画和可视化方式讲解抽象语文概念，加深理解'
       },
       {
         id: 'res106',
-        title: '如何构建完整知识体系',
+        title: '如何构建语文知识体系',
         type: '视频',
-        tags: ['学习方法', '知识体系', '思维导图'],
+        tags: ['知识体系', '语文框架', '学习方法'],
         difficulty: '提高',
         duration: '25分钟',
         matchScore: 93,
         link: '#',
-        reason: '专业讲师指导如何将零散知识点构建成体系'
+        reason: '专业教师指导如何将零散的语文知识点构建成完整体系'
       },
       // 习题资源 - 保留
       {
         id: 'res107',
-        title: '数学基础概念巩固练习',
+        title: '语文基础知识巩固练习',
         type: '习题',
-        tags: ['数学', '基础概念', '巩固练习'],
+        tags: ['语文基础', '知识巩固', '基础练习'],
         difficulty: '基础',
         duration: '30分钟',
         matchScore: 97,
         link: '#',
-        reason: '针对基础知识不扎实设计的练习，强化核心概念掌握'
+        reason: '针对语文基础知识不扎实设计的练习，强化核心概念掌握'
       },
       {
         id: 'res108',
-        title: '专注力训练习题集',
+        title: '语文阅读专注力训练',
         type: '习题',
-        tags: ['专注力', '思维训练', '注意力集中'],
+        tags: ['阅读专注力', '思维训练', '注意力集中'],
         difficulty: '基础',
         duration: '20分钟',
         matchScore: 94,
         link: '#',
-        reason: '通过特别设计的习题训练专注力和持续注意力'
+        reason: '通过特别设计的语文阅读习题训练专注力和持续注意力'
       }
     ];
   } else if (studentId.includes('03')) {
     return [
       {
         id: 'res009',
-        title: '深度思考：从表象到本质',
+        title: '语文深度思考：从文本到内涵',
         type: '讨论',
-        tags: ['批判性思维', '深度学习', '分析能力'],
+        tags: ['批判性思维', '深度阅读', '文本分析'],
         difficulty: '提高',
         duration: '50分钟',
         matchScore: 95,
         link: '#',
-        reason: '培养深度思考习惯，提升学习深度'
+        reason: '培养语文深度思考习惯，提升文本理解深度'
       },
       {
         id: 'res010',
-        title: '抽象概念可视化学习',
+        title: '语文抽象概念可视化学习',
         type: '互动课件',
-        tags: ['理论学习', '可视化', '概念理解'],
+        tags: ['语文理论', '可视化', '概念理解'],
         difficulty: '提高',
         matchScore: 94,
         duration: '35分钟',
         link: '#',
-        reason: '通过可视化方式学习抽象概念，增强理解'
+        reason: '通过可视化方式学习语文抽象概念，增强理解'
       },
       {
         id: 'res011',
-        title: '科学实验技能提升',
+        title: '语文实践技能提升',
         type: '实验',
-        tags: ['科学', '动手能力', '实验技巧'],
+        tags: ['语文实践', '应用能力', '表达技巧'],
         difficulty: '提高',
         duration: '60分钟',
         matchScore: 92,
         link: '#',
-        reason: '提升科学实验操作能力，弥补动手能力不足'
+        reason: '提升语文实践应用能力，弥补表达能力不足'
       },
       {
         id: 'res012',
-        title: '自律习惯养成与学习规划',
+        title: '语文学习习惯养成与规划',
         type: '项目',
-        tags: ['自律', '时间管理', '目标设定'],
+        tags: ['学习习惯', '时间管理', '目标设定'],
         difficulty: '基础',
         duration: '两周',
         matchScore: 90,
         link: '#',
-        reason: '帮助建立自律习惯，提高学习规律性'
+        reason: '帮助建立良好的语文学习习惯，提高学习规律性'
       },
       {
         id: 'res016',
-        title: '智能学习进度追踪',
+        title: '智能语文学习进度追踪',
         type: 'AI辅导',
-        tags: ['自律', '进度管理', '目标达成'],
+        tags: ['学习管理', '进度管理', '目标达成'],
         difficulty: '基础',
         duration: '持续使用',
         matchScore: 93,
         link: '#',
-        reason: '通过AI助手监控学习进度，提供及时反馈和调整建议'
+        reason: '通过AI助手监控语文学习进度，提供及时反馈和调整建议'
       },
       {
         id: 'res017',
-        title: '问题深度探究引导',
+        title: '语文问题深度探究引导',
         type: 'AI辅导',
         tags: ['深度思考', '提问技巧', '探究学习'],
         difficulty: '提高',
         duration: '按需',
         matchScore: 96,
         link: '#',
-        reason: '引导学生思考更深层次的问题，培养批判性思维能力'
+        reason: '引导学生思考更深层次的语文问题，培养批判性思维能力'
       },
       // 视频资源 - 保留
       {
         id: 'res109',
-        title: '批判性思维发展视频课程',
+        title: '语文批判性思维发展课程',
         type: '视频',
-        tags: ['批判性思维', '深度思考', '分析能力'],
+        tags: ['批判性思维', '深度思考', '文本分析'],
         difficulty: '提高',
         duration: '45分钟',
         matchScore: 94,
         link: '#',
-        reason: '通过实例讲解批判性思维的方法和应用技巧'
+        reason: '通过实例讲解语文批判性思维的方法和应用技巧'
       },
       {
         id: 'res110',
-        title: '理论学习实用技巧',
+        title: '语文理论学习实用技巧',
         type: '视频',
-        tags: ['理论学习', '学习方法', '抽象思维'],
+        tags: ['语文理论', '学习方法', '抽象思维'],
         difficulty: '基础',
         duration: '30分钟',
         matchScore: 93,
         link: '#',
-        reason: '讲解如何高效学习理论知识，提高学习耐心'
+        reason: '讲解如何高效学习语文理论知识，提高学习耐心'
       },
       // 习题资源 - 保留
       {
         id: 'res111',
-        title: '深度思考能力训练题集',
+        title: '语文深度思考能力训练',
         type: '习题',
-        tags: ['深度思考', '分析能力', '批判性思维'],
+        tags: ['深度思考', '文本分析', '批判性思维'],
         difficulty: '提高',
         duration: '40分钟',
         matchScore: 95,
         link: '#',
-        reason: '提供需要深度分析的问题，训练批判性思维能力'
+        reason: '提供需要深度分析的语文问题，训练批判性思维能力'
       },
       {
         id: 'res112',
-        title: '自律能力培养练习',
+        title: '语文学习自律能力培养',
         type: '习题',
-        tags: ['自律', '时间管理', '目标执行'],
+        tags: ['学习自律', '时间管理', '目标执行'],
         difficulty: '基础',
         duration: '25分钟',
         matchScore: 92,
         link: '#',
-        reason: '提供自律行为训练的相关任务和练习，培养自律习惯'
+        reason: '提供语文学习自律行为训练的相关任务和练习，培养学习习惯'
       }
     ];
   }
@@ -787,115 +791,115 @@ const recommendedResources = computed<LearningResource[]>(() => {
   return [
     {
       id: 'res018',
-      title: '个性化学习策略指导',
+      title: '个性化语文学习策略指导',
       type: 'AI辅导',
-      tags: ['学习方法', '个性化', '能力提升'],
+      tags: ['语文学习', '个性化', '能力提升'],
       difficulty: '提高',
       duration: '按需',
       matchScore: 93,
       link: '#',
-      reason: '根据学生特点提供定制化学习建议和方法指导'
+      reason: '根据学生语文学习特点提供定制化学习建议和方法指导'
     },
     {
       id: 'res019',
-      title: '学科知识图谱构建',
+      title: '语文知识图谱构建',
       type: '互动课件',
-      tags: ['知识体系', '思维导图', '学科关联'],
+      tags: ['语文知识体系', '思维导图', '知识关联'],
       difficulty: '提高',
       duration: '45分钟',
       matchScore: 91,
       link: '#',
-      reason: '帮助学生建立知识体系，理解知识点之间的联系'
+      reason: '帮助学生建立语文知识体系，理解知识点之间的联系'
     },
     {
       id: 'res020',
-      title: '双语阅读技能提升',
+      title: '语文阅读技能提升',
       type: '文档',
-      tags: ['阅读能力', '语言学习', '理解力'],
+      tags: ['阅读能力', '语文学习', '理解力'],
       difficulty: '基础',
       duration: '30分钟',
       matchScore: 88,
       link: '#',
-      reason: '提高阅读理解能力，增强语言表达和理解能力'
+      reason: '提高语文阅读理解能力，增强语言表达和理解能力'
     },
     {
       id: 'res021',
-      title: '学习动机与目标设定',
+      title: '语文学习动机与目标设定',
       type: '讨论',
       tags: ['学习动机', '目标管理', '自我激励'],
       difficulty: '基础',
       duration: '40分钟',
       matchScore: 87,
       link: '#',
-      reason: '帮助学生明确学习目标，增强内在学习动机'
+      reason: '帮助学生明确语文学习目标，增强内在学习动机'
     },
     // 视频资源 - 保留3个
     {
       id: 'res113',
-      title: '学习方法精讲：如何高效学习',
+      title: '语文学习方法精讲：如何高效学习',
       type: '视频',
-      tags: ['学习方法', '效率提升', '学习技巧'],
+      tags: ['语文学习方法', '效率提升', '学习技巧'],
       difficulty: '基础',
       duration: '35分钟',
       matchScore: 90,
       link: '#',
-      reason: '通过视频讲解高效学习的方法和技巧，适合各类学习风格'
+      reason: '通过视频讲解高效语文学习的方法和技巧，适合各类学习风格'
     },
     {
       id: 'res114',
-      title: '思维导图绘制实战教程',
+      title: '语文思维导图绘制实战教程',
       type: '视频',
-      tags: ['思维导图', '知识整理', '学习工具'],
+      tags: ['思维导图', '语文知识整理', '学习工具'],
       difficulty: '基础',
       duration: '28分钟',
       matchScore: 89,
       link: '#',
-      reason: '详细讲解思维导图的绘制方法和应用场景，帮助构建知识体系'
+      reason: '详细讲解语文思维导图的绘制方法和应用场景，帮助构建语文知识体系'
     },
     {
       id: 'res117',
-      title: '创新思维解题技巧视频课程',
+      title: '语文创新思维解题技巧视频课程',
       type: '视频',
-      tags: ['创新思维', '解题技巧', '思维拓展'],
+      tags: ['语文创新思维', '解题技巧', '思维拓展'],
       difficulty: '提高',
       duration: '42分钟',
       matchScore: 86,
       link: '#',
-      reason: '帮助学生打破常规思维，培养创新解题能力'
+      reason: '帮助学生打破常规思维，培养语文创新解题能力'
     },
     // 习题资源 - 保留3个
     {
       id: 'res115',
-      title: '综合能力测评练习',
+      title: '语文综合能力测评练习',
       type: '习题',
-      tags: ['综合能力', '自我评估', '能力提升'],
+      tags: ['语文综合能力', '自我评估', '能力提升'],
       difficulty: '提高',
       duration: '50分钟',
       matchScore: 92,
       link: '#',
-      reason: '全面测试学生各方面能力，帮助发现优势和不足'
+      reason: '全面测试学生语文各方面能力，帮助发现优势和不足'
     },
     {
       id: 'res116',
-      title: '学习习惯培养练习集',
+      title: '语文学习习惯培养练习集',
       type: '习题',
-      tags: ['学习习惯', '时间管理', '效率提升'],
+      tags: ['语文学习习惯', '时间管理', '效率提升'],
       difficulty: '基础',
       duration: '30分钟',
       matchScore: 88,
       link: '#',
-      reason: '通过实践练习培养良好的学习习惯和时间管理能力'
+      reason: '通过实践练习培养良好的语文学习习惯和时间管理能力'
     },
     {
       id: 'res120',
-      title: '创新思维拓展训练',
+      title: '语文创新思维拓展训练',
       type: '习题',
-      tags: ['创新思维', '发散思考', '创造力'],
+      tags: ['语文创新思维', '发散思考', '创造力'],
       difficulty: '提高',
       duration: '40分钟',
       matchScore: 87,
       link: '#',
-      reason: '通过专题练习培养创新思维和发散思考能力'
+      reason: '通过专题练习培养语文创新思维和发散思考能力'
     }
   ];
 });
@@ -931,10 +935,12 @@ function getPolygonPoints() {
 }
 
 /** 雷达图多边形顶点坐标 */
-const radarPoints = computed(() => getPolygonPoints());
+// eslint-disable-next-line no-underscore-dangle
+const _radarPoints = computed(() => getPolygonPoints());
 
 /** 获取标签位置样式 */
-function getLabelPosition(index: number, total: number) {
+// eslint-disable-next-line no-underscore-dangle
+function _getLabelPosition(index: number, total: number) {
   const angle = (Math.PI * 2 * index) / total - Math.PI / 2;
   const radius = 50;
   const centerX = 50;
@@ -951,34 +957,34 @@ function getLabelPosition(index: number, total: number) {
 }
 
 /** 可用于显示的标签 */
-const labels = ['知识', '思\n维', '探究', '表\n达'];
+// eslint-disable-next-line no-underscore-dangle
+const _labels = ['知识', '思\n维', '探究', '表\n达'];
 
 // 激活的标签页
 const activeTab = ref('analysis');
 
 // 资源推荐相关变量
-const resourceTabValue = ref('ai'); // 资源类型标签页，默认选择AI辅导
-const currentPage = ref(1); // 当前分页
+const resourceTabValue = ref('all'); // 资源类型标签页，默认选择全部
+// eslint-disable-next-line no-underscore-dangle
+const _currentPage = ref(1); // 当前分页
+
+// 资源类型选项
+const resourceTypes = [
+  { label: '全部', value: 'all' },
+  { label: '视频', value: '视频' },
+  { label: '习题', value: '习题' },
+  { label: 'AI辅导', value: 'AI辅导' },
+  { label: '互动课件', value: '互动课件' },
+  { label: '文档', value: '文档' },
+  { label: '讨论', value: '讨论' }
+];
 
 // 根据类型筛选资源
 const filteredResources = computed(() => {
-  const typeMap = {
-    video: '视频',
-    doc: '文档',
-    exercise: '习题',
-    interactive: '互动课件',
-    ai: 'AI辅导'
-  };
-
-  // 默认显示AI辅导资源
-  if (!resourceTabValue.value || !typeMap[resourceTabValue.value as keyof typeof typeMap]) {
-    // 如果没有有效的选择，默认使用AI辅导作为默认值
-    return recommendedResources.value.filter(resource => resource.type === 'AI辅导');
+  if (resourceTabValue.value === 'all') {
+    return recommendedResources.value;
   }
-
-  return recommendedResources.value.filter(
-    resource => resource.type === typeMap[resourceTabValue.value as keyof typeof typeMap]
-  );
+  return recommendedResources.value.filter(resource => resource.type === resourceTabValue.value);
 });
 
 // 获取资源预计提升的能力点
@@ -1042,538 +1048,1014 @@ onMounted(() => {
       class="overflow-hidden"
     >
       <NTabs v-model:value="activeTab" type="line" animated>
-        <NTabPane name="analysis" tab="学情分析">
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <!-- 左侧：基本信息和学习特征 -->
-            <div class="space-y-6">
-              <!-- 基本信息 -->
-              <section class="rounded-md bg-gray-50 p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">基本信息</h3>
-                <div class="text-sm text-gray-600 space-y-2">
-                  <div class="flex items-center">
-                    <span class="w-20">班级:</span>
-                    <span>{{ props.student.className }}</span>
-                  </div>
-                  <div class="flex items-center">
-                    <span class="w-20">学号:</span>
-                    <span>{{ props.student.id }}</span>
-                  </div>
+        <NTabPane name="learning-behavior" tab="学习行为分析">
+          <div class="p-6">
+            <!-- 页面标题区域 -->
+            <div class="mb-6 border border-blue-100 rounded-lg from-blue-50 to-indigo-50 bg-gradient-to-r p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="mb-2 text-xl text-gray-800 font-bold">初中语文学习行为分析</h3>
+                  <p class="text-sm text-gray-600">
+                    基于{{ props.student.name }}的学习数据，深度分析学习行为模式与 习惯特征
+                  </p>
                 </div>
-              </section>
-
-              <!-- 学科表现显示 -->
-              <!--
- <section class="rounded-md bg-gray-50 p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">学科表现</h3>
-                <div class="space-y-3">
-                  <div v-if="subjectPerformance.math">
-                    <div class="mb-1 flex items-center justify-between">
-                      <span class="text-sm font-medium">数学</span>
-                      <span
-                        class="text-sm"
-                        :class="subjectPerformance.math.score >= 90 ? 'text-green-600' : 'text-blue-600'"
-                      >
-                        {{ subjectPerformance.math.score }}分
-                      </span>
-                    </div>
-                    <NProgress
-                      type="line"
-                      :percentage="subjectPerformance.math.score"
-                      :height="8"
-                      :border-radius="4"
-                      :color="subjectPerformance.math.score >= 90 ? '#18a058' : '#2080f0'"
-                      :show-indicator="false"
-                    />
-                    <div class="mt-1 flex justify-between text-xs text-gray-500">
-                      <span>班级排名: {{ subjectPerformance.math.rank }}</span>
-                      <span>{{ subjectPerformance.math.trend }}</span>
-                    </div>
-                  </div>
+                <div class="flex items-center gap-3">
+                  <NTag type="primary" size="medium">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-analytics" />
+                    </template>
+                    分析完成
+                  </NTag>
+                  <NTag type="info" size="medium">基于{{ props.student.name }}的学习数据</NTag>
                 </div>
-              </section> 
--->
-
-              <!-- 学习特征 -->
-              <section class="rounded-md bg-gray-50 p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">学习行为数据</h3>
-                <div class="space-y-3">
-                  <div v-for="item in learningBehaviors" :key="item.name">
-                    <div class="mb-1 flex items-center justify-between">
-                      <span class="text-sm text-gray-600">{{ item.name }}</span>
-                      <span class="text-sm font-medium">{{ item.value }}%</span>
-                    </div>
-                    <NProgress
-                      type="line"
-                      :percentage="item.value"
-                      :height="8"
-                      :border-radius="4"
-                      :color="item.value > 85 ? '#18a058' : item.value > 70 ? '#2080f0' : '#f0a020'"
-                      :show-indicator="false"
-                    />
-                  </div>
-                </div>
-              </section>
-
-              <!-- 学习问题与改进建议 -->
-              <section class="rounded-md bg-gray-50 p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">问题分析与改进建议</h3>
-                <div class="space-y-4">
-                  <div
-                    v-for="(item, index) in learningIssues"
-                    :key="index"
-                    class="border-l-4 border-blue-500 rounded bg-white p-3"
-                  >
-                    <div class="mb-1 text-sm text-gray-700 font-medium">{{ item.issue }}</div>
-                    <div class="text-xs text-gray-600">{{ item.suggestion }}</div>
-                  </div>
-                </div>
-              </section>
-
-              <!-- 综合能力评估卡片 -->
-              <section class="rounded-md bg-[#F9FAFB] p-4">
-                <h3 class="mb-4 text-base text-gray-700 font-medium">综合能力评估</h3>
-                <!-- 红框中显示的三个卡片布局 -->
-                <div class="flex flex-col space-y-4">
-                  <!-- 学科平衡分析 - 蓝色背景 -->
-                  <div class="relative border-l-[6px] border-blue-500 rounded-md bg-blue-50 p-4 pl-5">
-                    <div class="mb-2 text-sm text-blue-700 font-medium">学科平衡分析</div>
-                    <div class="text-xs text-blue-700 leading-relaxed">
-                      该生数学成绩突出，语文和英语成绩稳定，具有较全面的学科发展。建议适当平衡各学科学习时间，以维持优势。
-                    </div>
-                  </div>
-
-                  <!-- 学习方法建议 - 绿色背景 -->
-                  <div class="relative border-l-[6px] border-green-500 rounded-md bg-green-50 p-4 pl-5">
-                    <div class="mb-2 text-sm text-green-700 font-medium">学习方法建议</div>
-                    <div class="text-xs text-green-700 leading-relaxed">
-                      根据该生混合型学习特点，推荐采用多样化学习方法。可增加视觉辅助学习内容，提升学习效率和记忆效果。
-                    </div>
-                  </div>
-
-                  <!-- 能力提升重点 - 紫色背景 -->
-                  <div class="relative border-l-[6px] border-purple-500 rounded-md bg-purple-50 p-4 pl-5">
-                    <div class="mb-2 text-sm text-purple-700 font-medium">能力提升重点</div>
-                    <div class="text-xs text-purple-700 leading-relaxed">
-                      建议重点提升学习效率和专注度，培养深度思考习惯。可通过思维导图等工具建立知识体系，强化知识间联系。
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-            <!-- 右侧：能力雷达图 -->
-            <div class="space-y-6">
-              <section class="rounded-md bg-gray-50 p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">能力雷达图</h3>
-                <div class="relative h-64 w-full">
-                  <div class="radar-chart-container">
-                    <!-- 雷达环 -->
-                    <div
-                      v-for="(_, index) in 3"
-                      :key="index"
-                      class="radar-circle"
-                      :class="`radar-scale-${(index + 1) * 33}`"
-                    ></div>
-
-                    <!-- 雷达轴 -->
-                    <div
-                      v-for="(_, index) in 5"
-                      :key="index"
-                      class="radar-axis"
-                      :class="`radar-angle-${index * 72}`"
-                    ></div>
-
-                    <!-- 雷达标签 -->
-                    <div
-                      v-for="(label, index) in labels"
-                      :key="index"
-                      class="radar-label"
-                      :style="getLabelPosition(index, labels.length)"
-                    >
-                      {{ label }}
-                    </div>
-
-                    <!-- 数据图形 -->
-                    <svg class="absolute inset-0 h-full w-full overflow-visible" viewBox="0 0 100 100">
-                      <!-- 填充区域 -->
-                      <polygon
-                        :points="radarPoints"
-                        fill="rgba(59, 130, 246, 0.2)"
-                        stroke="#3b82f6"
-                        stroke-width="2"
-                      ></polygon>
-
-                      <!-- 数据点 -->
-                      <template v-for="(item, index) in radarData" :key="index">
-                        <circle
-                          :cx="calculateRadarPoint(item.value, index, radarData.length).x"
-                          :cy="calculateRadarPoint(item.value, index, radarData.length).y"
-                          r="3"
-                          fill="#3b82f6"
-                        ></circle>
-                      </template>
-                    </svg>
-                  </div>
-                </div>
-              </section>
-
-              <!-- 学习风格分析 -->
-              <section class="rounded-md bg-[#F9FAFB] p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">学习风格分析</h3>
-                <div class="space-y-3">
-                  <div class="flex items-center">
-                    <div class="mr-2 text-sm text-gray-600">学习风格：</div>
-                    <div class="text-sm font-medium">{{ studentPersonality.learningStyle }}</div>
-                  </div>
-
-                  <div>
-                    <div class="mb-1 text-sm text-gray-600">优势：</div>
-                    <div class="flex flex-wrap gap-1">
-                      <NTag
-                        v-for="item in studentPersonality.strengths"
-                        :key="item"
-                        size="small"
-                        class="border-0 rounded bg-green-50 text-green-600"
-                      >
-                        {{ item }}
-                      </NTag>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="mb-1 text-sm text-gray-600">待提升：</div>
-                    <div class="flex flex-wrap gap-1">
-                      <NTag
-                        v-for="item in studentPersonality.weaknesses"
-                        :key="item"
-                        size="small"
-                        class="border-0 rounded bg-orange-50 text-orange-500"
-                      >
-                        {{ item }}
-                      </NTag>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div class="mb-1 text-sm text-gray-600">兴趣点：</div>
-                    <div class="flex flex-wrap gap-1">
-                      <NTag
-                        v-for="item in studentPersonality.interests"
-                        :key="item"
-                        size="small"
-                        class="border-0 rounded bg-blue-50 text-blue-500"
-                      >
-                        {{ item }}
-                      </NTag>
-                    </div>
-                  </div>
-
-                  <div class="mt-2">
-                    <div class="text-sm text-gray-600 font-medium">个性化学习建议：</div>
-                    <div class="mt-1 text-xs text-gray-600">
-                      作为{{ studentPersonality.learningStyle }}，建议优先使用以下学习资源类型：
-                      <span v-for="(item, index) in studentPersonality.preferredResources" :key="index">
-                        {{ item }}{{ index < studentPersonality.preferredResources.length - 1 ? '、' : '' }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <!-- 近期学习轨迹 -->
-              <section class="rounded-md bg-[#F9FAFB] p-4">
-                <h3 class="mb-3 text-base text-gray-700 font-medium">近期学习轨迹</h3>
-                <div class="space-y-4">
-                  <div v-for="(item, index) in learningTrajectory" :key="index" class="relative pl-6">
-                    <!-- 时间线 -->
-                    <div class="absolute left-0 top-0 h-full w-0.5 bg-blue-500"></div>
-                    <!-- 时间点 -->
-                    <div class="absolute left-0 top-0 mt-0 h-3 w-3 rounded-full bg-blue-500 -ml-[5px]"></div>
-
-                    <div class="text-xs text-gray-500">{{ item.date }}</div>
-                    <div class="text-sm font-medium">{{ item.event }}</div>
-                    <div v-if="item.score" class="mt-0.5 text-xs text-gray-600">得分: {{ item.score }}</div>
-                    <div v-if="item.improvement" class="mt-0.5 text-xs text-gray-600">提升: {{ item.improvement }}</div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </NTabPane>
-
-        <!-- 个性化资源推荐 -->
-        <NTabPane name="resources" tab="资源推荐">
-          <div class="p-4">
-            <div class="mb-4 flex items-center justify-between">
-              <h3 class="text-base text-gray-700 font-medium">个性化学习资源推荐</h3>
-              <div class="flex items-center gap-2">
-                <NTag type="primary">匹配度: 94%</NTag>
-                <NTag type="info">基于{{ props.student.name }}的学情分析智能推荐</NTag>
               </div>
             </div>
 
-            <!-- 优先解决问题区域 -->
-            <section class="mb-6 rounded-md bg-[#F9FAFB] p-4">
-              <h4 class="mb-3 text-base text-gray-700 font-medium">优先解决问题</h4>
-              <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
-                <div
-                  v-for="(item, index) in learningIssues.slice(0, 3)"
-                  :key="index"
-                  class="border-l-4 rounded bg-white p-3"
-                  :class="{
-                    'border-blue-500': index === 0,
-                    'border-green-500': index === 1,
-                    'border-purple-500': index === 2
-                  }"
-                >
-                  <div
-                    class="mb-1 text-sm font-medium"
-                    :class="{
-                      'text-blue-700': index === 0,
-                      'text-green-700': index === 1,
-                      'text-purple-700': index === 2
-                    }"
-                  >
-                    {{ item.issue }}
+            <!-- 学习行为数据展示 -->
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <!-- 学习时长统计 -->
+              <section
+                class="border border-gray-200 rounded-lg bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
+              >
+                <div class="mb-4 flex items-center justify-between">
+                  <h4 class="text-lg text-gray-800 font-semibold">学习时长统计</h4>
+                  <div class="i-carbon-time text-xl text-blue-500" />
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border border-blue-100 rounded-md bg-blue-50 p-3">
+                    <span class="text-sm text-gray-700 font-medium">日均学习时长</span>
+                    <span class="text-xl text-blue-600 font-bold">2.5小时</span>
                   </div>
-                  <div class="mb-2 text-xs text-gray-600">{{ item.suggestion }}</div>
-                  <NButton
-                    size="tiny"
-                    quaternary
-                    :class="{
-                      'text-blue-600': index === 0,
-                      'text-green-600': index === 1,
-                      'text-purple-600': index === 2
-                    }"
-                  >
-                    查看解决方案 →
+                  <div class="flex items-center justify-between border border-green-100 rounded-md bg-green-50 p-3">
+                    <span class="text-sm text-gray-700 font-medium">本周总时长</span>
+                    <span class="text-xl text-green-600 font-bold">18小时</span>
+                  </div>
+                  <div class="flex items-center justify-between border border-purple-100 rounded-md bg-purple-50 p-3">
+                    <span class="text-sm text-gray-700 font-medium">专注度评分</span>
+                    <span class="text-xl text-purple-600 font-bold">85%</span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 学习习惯分析 -->
+              <section
+                class="border border-gray-200 rounded-lg bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
+              >
+                <div class="mb-4 flex items-center justify-between">
+                  <h4 class="text-lg text-gray-800 font-semibold">学习习惯分析</h4>
+                  <div class="i-carbon-user-activity text-xl text-green-500" />
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between border border-gray-100 rounded-md bg-gray-50 p-3">
+                    <span class="text-sm text-gray-700 font-medium">最佳学习时段</span>
+                    <NTag type="success" size="medium">19:00-21:00</NTag>
+                  </div>
+                  <div class="flex items-center justify-between border border-gray-100 rounded-md bg-gray-50 p-3">
+                    <span class="text-sm text-gray-700 font-medium">学习连续性</span>
+                    <NTag type="info" size="medium">良好</NTag>
+                  </div>
+                  <div class="flex items-center justify-between border border-gray-100 rounded-md bg-gray-50 p-3">
+                    <span class="text-sm text-gray-700 font-medium">复习频率</span>
+                    <NTag type="warning" size="medium">需提升</NTag>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- 行为趋势图表区域 -->
+            <section class="mt-6 border border-gray-200 rounded-lg bg-white p-6 shadow-sm">
+              <div class="mb-4 flex items-center justify-between">
+                <h4 class="text-lg text-gray-800 font-semibold">学习行为趋势</h4>
+                <div class="flex items-center gap-2">
+                  <NButton size="small" type="primary" ghost>
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-reset" />
+                    </template>
+                    重新分析
                   </NButton>
+                  <NButton size="small" type="default" ghost>
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-download" />
+                    </template>
+                    导出报告
+                  </NButton>
+                </div>
+              </div>
+              <div
+                class="h-64 flex items-center justify-center border border-gray-200 rounded-lg from-gray-50 to-blue-50 bg-gradient-to-br"
+              >
+                <div class="text-center text-gray-500">
+                  <div class="i-carbon-analytics mb-3 text-5xl text-blue-400" />
+                  <p class="mb-1 text-lg text-gray-700 font-medium">学习行为趋势图表</p>
+                  <p class="text-sm text-gray-500">显示最近30天的学习行为变化</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </NTabPane>
+
+        <NTabPane name="skill-graph" tab="技能图谱">
+          <div class="p-6">
+            <!-- 页面标题区域 -->
+            <div class="mb-6 border border-blue-100 rounded-lg from-blue-50 to-indigo-50 bg-gradient-to-r p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="mb-2 text-xl text-gray-800 font-bold">初中语文技能图谱分析</h3>
+                  <p class="text-sm text-gray-600">
+                    基于{{ props.student.name }}的语文学习数据，全面分析语文核心技能掌握情况
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <NTag type="primary" size="large">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-skill-level text-sm" />
+                    </template>
+                    技能评估
+                  </NTag>
+                  <NTag type="info" size="large">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-user-avatar text-sm" />
+                    </template>
+                    {{ props.student.name }}的语文能力画像
+                  </NTag>
+                </div>
+              </div>
+            </div>
+
+            <!-- 技能统计概览 -->
+            <div class="grid grid-cols-4 mb-8 gap-4">
+              <div class="border border-green-200 rounded-lg from-green-50 to-emerald-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-green-700 font-bold">5</div>
+                    <div class="text-sm text-green-600 font-medium">优秀技能</div>
+                  </div>
+                  <div class="i-carbon-checkmark-filled text-2xl text-green-500" />
+                </div>
+              </div>
+              <div class="border border-blue-200 rounded-lg from-blue-50 to-cyan-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-blue-700 font-bold">3</div>
+                    <div class="text-sm text-blue-600 font-medium">良好技能</div>
+                  </div>
+                  <div class="i-carbon-thumbs-up text-2xl text-blue-500" />
+                </div>
+              </div>
+              <div class="border border-yellow-200 rounded-lg from-yellow-50 to-amber-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-yellow-700 font-bold">2</div>
+                    <div class="text-sm text-yellow-600 font-medium">待提升技能</div>
+                  </div>
+                  <div class="i-carbon-warning text-2xl text-yellow-500" />
+                </div>
+              </div>
+              <div class="border border-purple-200 rounded-lg from-purple-50 to-violet-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-purple-700 font-bold">85%</div>
+                    <div class="text-sm text-purple-600 font-medium">综合掌握度</div>
+                  </div>
+                  <div class="i-carbon-analytics text-2xl text-purple-500" />
+                </div>
+              </div>
+            </div>
+
+            <!-- 语文技能分类展示 -->
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              <!-- 语文核心技能 -->
+              <section
+                class="border border-blue-200 rounded-xl from-blue-50 to-indigo-50 bg-gradient-to-br p-6 shadow-sm"
+              >
+                <div class="mb-4 flex items-center gap-3">
+                  <div class="rounded-lg bg-blue-100 p-2">
+                    <div class="i-carbon-book text-xl text-blue-600" />
+                  </div>
+                  <h4 class="text-lg text-gray-800 font-semibold">语文核心技能</h4>
+                </div>
+                <div class="space-y-4">
+                  <div class="border border-blue-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">文言文阅读理解</span>
+                      <span class="text-sm text-blue-600 font-bold">88%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="88" :height="8" :show-indicator="false" color="#3b82f6" />
+                      <NTag size="small" type="success">优秀</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-blue-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">现代文阅读分析</span>
+                      <span class="text-sm text-green-600 font-bold">92%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="92" :height="8" :show-indicator="false" color="#10b981" />
+                      <NTag size="small" type="success">优秀</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-blue-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">诗词鉴赏能力</span>
+                      <span class="text-sm text-yellow-600 font-bold">75%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="75" :height="8" :show-indicator="false" color="#f59e0b" />
+                      <NTag size="small" type="warning">良好</NTag>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 语文应用技能 -->
+              <section
+                class="border border-green-200 rounded-xl from-green-50 to-emerald-50 bg-gradient-to-br p-6 shadow-sm"
+              >
+                <div class="mb-4 flex items-center gap-3">
+                  <div class="rounded-lg bg-green-100 p-2">
+                    <div class="i-carbon-edit text-xl text-green-600" />
+                  </div>
+                  <h4 class="text-lg text-gray-800 font-semibold">语文应用技能</h4>
+                </div>
+                <div class="space-y-4">
+                  <div class="border border-green-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">记叙文写作</span>
+                      <span class="text-sm text-green-600 font-bold">90%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="90" :height="8" :show-indicator="false" color="#10b981" />
+                      <NTag size="small" type="success">优秀</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-green-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">议论文写作</span>
+                      <span class="text-sm text-yellow-600 font-bold">78%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="78" :height="8" :show-indicator="false" color="#f59e0b" />
+                      <NTag size="small" type="warning">良好</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-green-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">语言表达运用</span>
+                      <span class="text-sm text-blue-600 font-bold">85%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="85" :height="8" :show-indicator="false" color="#3b82f6" />
+                      <NTag size="small" type="info">良好</NTag>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- 语文基础技能 -->
+            <section
+              class="mt-8 border border-purple-200 rounded-xl from-purple-50 to-violet-50 bg-gradient-to-br p-6 shadow-sm"
+            >
+              <div class="mb-4 flex items-center gap-3">
+                <div class="rounded-lg bg-purple-100 p-2">
+                  <div class="i-carbon-character-patterns text-xl text-purple-600" />
+                </div>
+                <h4 class="text-lg text-gray-800 font-semibold">语文基础技能</h4>
+              </div>
+              <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2">
+                <div class="border border-purple-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-purple-600 font-bold">95%</div>
+                    <div class="text-sm text-gray-600 font-medium">字词积累</div>
+                    <NTag size="small" type="success" class="mt-2">优秀</NTag>
+                  </div>
+                </div>
+                <div class="border border-purple-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-blue-600 font-bold">82%</div>
+                    <div class="text-sm text-gray-600 font-medium">语法知识</div>
+                    <NTag size="small" type="info" class="mt-2">良好</NTag>
+                  </div>
+                </div>
+                <div class="border border-purple-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-green-600 font-bold">88%</div>
+                    <div class="text-sm text-gray-600 font-medium">文学常识</div>
+                    <NTag size="small" type="success" class="mt-2">优秀</NTag>
+                  </div>
+                </div>
+                <div class="border border-purple-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-yellow-600 font-bold">72%</div>
+                    <div class="text-sm text-gray-600 font-medium">修辞手法</div>
+                    <NTag size="small" type="warning" class="mt-2">待提升</NTag>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <!-- 资源类型导航 -->
-            <div class="mb-4">
-              <NTabs v-model:value="resourceTabValue" type="segment" size="small">
-                <NTabPane name="ai" tab="AI辅导" />
-                <NTabPane name="exercise" tab="习题" />
-                <NTabPane name="interactive" tab="互动" />
-                <NTabPane name="video" tab="视频" />
-                <NTabPane name="doc" tab="文档" />
-              </NTabs>
+            <!-- 语文技能关系图谱 -->
+            <section
+              class="mt-8 border border-gray-200 rounded-xl from-gray-50 to-slate-50 bg-gradient-to-br p-6 shadow-sm"
+            >
+              <div class="mb-4 flex items-center gap-3">
+                <div class="rounded-lg bg-gray-100 p-2">
+                  <div class="i-carbon-network-3 text-xl text-gray-600" />
+                </div>
+                <h4 class="text-lg text-gray-800 font-semibold">语文技能关系图谱</h4>
+              </div>
+              <div class="relative">
+                <!-- 按钮组绝对定位到右上角 -->
+                <div class="absolute right-0 top--12 z-10 flex items-center gap-2">
+                  <NButton size="small" type="primary">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-reset" />
+                    </template>
+                    重新分析
+                  </NButton>
+                  <NButton size="small" secondary>
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-download" />
+                    </template>
+                    导出图谱
+                  </NButton>
+                </div>
+                <!-- 其余内容正常显示 -->
+                <div
+                  class="h-80 flex items-center justify-center border-2 border-gray-300 rounded-lg border-dashed bg-white"
+                >
+                  <div class="text-center text-gray-500">
+                    <div class="i-carbon-network-3 mb-4 text-6xl text-blue-400" />
+                    <h5 class="mb-2 text-lg text-gray-700 font-medium">语文技能关系图谱</h5>
+                    <p class="mb-1 text-sm text-gray-500">展示语文各项技能之间的关联性和依赖关系</p>
+                    <p class="text-xs text-gray-400">基于学习数据分析的个性化技能发展路径</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </NTabPane>
+
+        <NTabPane name="knowledge-graph" tab="知识图谱">
+          <div class="p-6">
+            <!-- 页面标题区域 -->
+            <div class="mb-6 border border-indigo-100 rounded-lg from-indigo-50 to-purple-50 bg-gradient-to-r p-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="mb-2 text-xl text-gray-800 font-bold">初中语文知识图谱分析</h3>
+                  <p class="text-sm text-gray-600">
+                    基于{{ props.student.name }}的语文学习数据，构建个性化知识关联图谱
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <NTag type="primary" size="large">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-analytics text-sm" />
+                    </template>
+                    分析完成
+                  </NTag>
+                  <NTag type="info" size="large">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-network-3 text-sm" />
+                    </template>
+                    {{ props.student.name }}的语文知识体系
+                  </NTag>
+                </div>
+              </div>
             </div>
 
-            <!-- 资源匹配解释 -->
-            <div class="mb-4 rounded-md bg-blue-50 p-3">
-              <div class="flex items-start">
-                <div class="mr-2 flex-shrink-0">
-                  <NIcon size="20" color="#2080f0">
+            <!-- 知识掌握概览统计 -->
+            <div class="grid grid-cols-4 mb-8 gap-4">
+              <div class="border border-green-200 rounded-lg from-green-50 to-emerald-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-green-700 font-bold">85</div>
+                    <div class="text-sm text-green-600 font-medium">已掌握知识点</div>
+                  </div>
+                  <div class="i-carbon-checkmark-filled text-2xl text-green-500" />
+                </div>
+              </div>
+              <div class="border border-blue-200 rounded-lg from-blue-50 to-cyan-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-blue-700 font-bold">23</div>
+                    <div class="text-sm text-blue-600 font-medium">学习中知识点</div>
+                  </div>
+                  <div class="i-carbon-in-progress text-2xl text-blue-500" />
+                </div>
+              </div>
+              <div class="border border-yellow-200 rounded-lg from-yellow-50 to-amber-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-yellow-700 font-bold">12</div>
+                    <div class="text-sm text-yellow-600 font-medium">薄弱知识点</div>
+                  </div>
+                  <div class="i-carbon-warning text-2xl text-yellow-500" />
+                </div>
+              </div>
+              <div class="border border-purple-200 rounded-lg from-purple-50 to-violet-50 bg-gradient-to-br p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-2xl text-purple-700 font-bold">78%</div>
+                    <div class="text-sm text-purple-600 font-medium">整体掌握度</div>
+                  </div>
+                  <div class="i-carbon-chart-line text-2xl text-purple-500" />
+                </div>
+              </div>
+            </div>
+
+            <!-- 语文知识分类展示 -->
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              <!-- 文言文知识体系 -->
+              <section
+                class="border border-amber-200 rounded-xl from-amber-50 to-orange-50 bg-gradient-to-br p-6 shadow-sm"
+              >
+                <div class="mb-4 flex items-center gap-3">
+                  <div class="rounded-lg bg-amber-100 p-2">
+                    <div class="i-carbon-document-blank text-xl text-amber-600" />
+                  </div>
+                  <h4 class="text-lg text-gray-800 font-semibold">文言文知识体系</h4>
+                </div>
+                <div class="space-y-4">
+                  <div class="border border-amber-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">文言实词</span>
+                      <span class="text-sm text-green-600 font-bold">92%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="92" :height="8" :show-indicator="false" color="#10b981" />
+                      <NTag size="small" type="success">优秀</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-amber-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">文言虚词</span>
+                      <span class="text-sm text-yellow-600 font-bold">75%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="75" :height="8" :show-indicator="false" color="#f59e0b" />
+                      <NTag size="small" type="warning">良好</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-amber-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">文言句式</span>
+                      <span class="text-sm text-blue-600 font-bold">88%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="88" :height="8" :show-indicator="false" color="#3b82f6" />
+                      <NTag size="small" type="info">优秀</NTag>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 现代文知识体系 -->
+              <section
+                class="border border-cyan-200 rounded-xl from-cyan-50 to-blue-50 bg-gradient-to-br p-6 shadow-sm"
+              >
+                <div class="mb-4 flex items-center gap-3">
+                  <div class="rounded-lg bg-cyan-100 p-2">
+                    <div class="i-carbon-book text-xl text-cyan-600" />
+                  </div>
+                  <h4 class="text-lg text-gray-800 font-semibold">现代文知识体系</h4>
+                </div>
+                <div class="space-y-4">
+                  <div class="border border-cyan-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">记叙文阅读</span>
+                      <span class="text-sm text-green-600 font-bold">90%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="90" :height="8" :show-indicator="false" color="#10b981" />
+                      <NTag size="small" type="success">优秀</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-cyan-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">说明文阅读</span>
+                      <span class="text-sm text-blue-600 font-bold">85%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="85" :height="8" :show-indicator="false" color="#3b82f6" />
+                      <NTag size="small" type="info">良好</NTag>
+                    </div>
+                  </div>
+                  <div class="border border-cyan-100 rounded-lg bg-white p-4 shadow-sm">
+                    <div class="mb-2 flex items-center justify-between">
+                      <span class="text-sm text-gray-700 font-medium">议论文阅读</span>
+                      <span class="text-sm text-yellow-600 font-bold">72%</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <NProgress type="line" :percentage="72" :height="8" :show-indicator="false" color="#f59e0b" />
+                      <NTag size="small" type="warning">待提升</NTag>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- 诗词文学知识体系 -->
+            <section
+              class="mt-8 border border-rose-200 rounded-xl from-rose-50 to-pink-50 bg-gradient-to-br p-6 shadow-sm"
+            >
+              <div class="mb-4 flex items-center gap-3">
+                <div class="rounded-lg bg-rose-100 p-2">
+                  <div class="i-carbon-pen-fountain text-xl text-rose-600" />
+                </div>
+                <h4 class="text-lg text-gray-800 font-semibold">诗词文学知识体系</h4>
+              </div>
+              <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2">
+                <div class="border border-rose-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-rose-600 font-bold">88%</div>
+                    <div class="text-sm text-gray-600 font-medium">古诗词鉴赏</div>
+                    <NTag size="small" type="success" class="mt-2">优秀</NTag>
+                  </div>
+                </div>
+                <div class="border border-rose-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-blue-600 font-bold">82%</div>
+                    <div class="text-sm text-gray-600 font-medium">诗歌意象</div>
+                    <NTag size="small" type="info" class="mt-2">良好</NTag>
+                  </div>
+                </div>
+                <div class="border border-rose-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-green-600 font-bold">90%</div>
+                    <div class="text-sm text-gray-600 font-medium">诗歌情感</div>
+                    <NTag size="small" type="success" class="mt-2">优秀</NTag>
+                  </div>
+                </div>
+                <div class="border border-rose-100 rounded-lg bg-white p-4 shadow-sm">
+                  <div class="text-center">
+                    <div class="mb-1 text-2xl text-yellow-600 font-bold">75%</div>
+                    <div class="text-sm text-gray-600 font-medium">诗歌技法</div>
+                    <NTag size="small" type="warning" class="mt-2">良好</NTag>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 语文知识关联图谱 -->
+            <section
+              class="mt-8 border border-gray-200 rounded-xl from-gray-50 to-slate-50 bg-gradient-to-br p-6 shadow-sm"
+            >
+              <div class="mb-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="rounded-lg bg-gray-100 p-2">
+                    <div class="i-carbon-network-3 text-xl text-gray-600" />
+                  </div>
+                  <h4 class="text-lg text-gray-800 font-semibold">语文知识关联图谱</h4>
+                </div>
+                <div class="flex items-center gap-2">
+                  <NButton size="small" type="primary">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-reset" />
+                    </template>
+                    重新分析
+                  </NButton>
+                  <NButton size="small" secondary>
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <div class="i-carbon-download" />
+                    </template>
+                    导出图谱
+                  </NButton>
+                </div>
+              </div>
+              <div
+                class="h-96 flex items-center justify-center border-2 border-gray-300 rounded-lg border-dashed bg-white"
+              >
+                <div class="text-center text-gray-500">
+                  <div class="i-carbon-network-3 mb-4 text-6xl text-indigo-400" />
+                  <h5 class="mb-2 text-lg text-gray-700 font-medium">语文知识关联图谱</h5>
+                  <p class="mb-1 text-sm text-gray-500">展示语文各知识点之间的内在联系和学习路径</p>
+                  <p class="text-xs text-gray-400">基于{{ props.student.name }}的学习数据构建个性化知识网络</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </NTabPane>
+
+        <NTabPane name="resource-recommendation" tab="资源推荐">
+          <div class="p-6">
+            <!-- 页面标题区域 -->
+            <div class="mb-6">
+              <div class="mb-3 flex items-center justify-between">
+                <h3 class="text-xl text-gray-800 font-semibold">初中语文个性化资源推荐</h3>
+                <div class="flex items-center gap-3">
+                  <NTag type="primary" size="medium">
+                    <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                    <template #icon>
+                      <NIcon>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" />
+                        </svg>
+                      </NIcon>
+                    </template>
+                    推荐完成
+                  </NTag>
+                  <NTag type="info" size="medium">基于{{ props.student.name }}的学习数据</NTag>
+                </div>
+              </div>
+
+              <!-- 推荐统计信息 -->
+              <div class="grid grid-cols-1 mb-4 gap-4 md:grid-cols-3">
+                <div class="rounded-lg from-blue-50 to-blue-100 bg-gradient-to-r p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-blue-600 font-medium">推荐资源总数</p>
+                      <p class="text-2xl text-blue-700 font-bold">{{ recommendedResources.length }}</p>
+                    </div>
+                    <NIcon size="28" color="#1d4ed8">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22L12 18.77L5.82 22L7 14.14L2 9.27l6.91-1.01L12 2z"
+                        />
+                      </svg>
+                    </NIcon>
+                  </div>
+                </div>
+
+                <div class="rounded-lg from-green-50 to-green-100 bg-gradient-to-r p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-green-600 font-medium">高匹配度资源</p>
+                      <p class="text-2xl text-green-700 font-bold">
+                        {{ recommendedResources.filter(r => r.matchScore >= 90).length }}
+                      </p>
+                    </div>
+                    <NIcon size="28" color="#16a34a">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                        />
+                      </svg>
+                    </NIcon>
+                  </div>
+                </div>
+
+                <div class="rounded-lg from-purple-50 to-purple-100 bg-gradient-to-r p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm text-purple-600 font-medium">AI智能辅导</p>
+                      <p class="text-2xl text-purple-700 font-bold">
+                        {{ recommendedResources.filter(r => r.type === 'AI辅导').length }}
+                      </p>
+                    </div>
+                    <NIcon size="28" color="#9333ea">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3s-3-1.34-3-3s1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22c.03-1.99 4-3.08 6-3.08c1.99 0 5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+                        />
+                      </svg>
+                    </NIcon>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 推荐说明卡片 -->
+            <div class="mb-6 border border-blue-100 rounded-xl bg-blue-50 p-5">
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="h-10 w-10 flex items-center justify-center rounded-full bg-blue-500">
+                    <NIcon size="20" color="white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                        />
+                      </svg>
+                    </NIcon>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h4 class="mb-2 text-lg text-gray-800 font-semibold">智能推荐说明</h4>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    基于
+                    <span class="text-blue-600 font-medium">{{ props.student.name }}</span>
+                    的语文学习风格、能力水平和知识掌握情况，
+                    系统智能分析并推荐了以下初中语文学习资源。推荐算法重点关注学生的
+                    <span class="text-green-600 font-medium">优势能力</span>
+                    和
+                    <span class="text-orange-600 font-medium">待提升项</span>
+                    ，确保每个资源都能精准匹配学习需求。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 资源筛选器 -->
+            <div class="mb-6 border border-gray-200 rounded-lg bg-white p-4">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                <div class="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-x-6 sm:space-y-0">
+                  <div class="flex items-center space-x-3">
+                    <NIcon size="18" color="#6b7280">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
+                      </svg>
+                    </NIcon>
+                    <span class="text-sm text-gray-700 font-medium">筛选</span>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <NButton
+                      v-for="type in resourceTypes"
+                      :key="type.value"
+                      :type="resourceTabValue === type.value ? 'primary' : 'default'"
+                      size="small"
+                      round
+                      @click="resourceTabValue = type.value"
+                    >
+                      <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                      <template #icon>
+                        <NIcon size="14">
+                          <svg
+                            v-if="type.value === '视频'"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 24 24"
+                          >
+                            <path fill="currentColor" d="M8 5v14l11-7z" />
+                          </svg>
+                          <svg
+                            v-else-if="type.value === '习题'"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+                            />
+                          </svg>
+                          <svg v-else xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                            <path
+                              fill="currentColor"
+                              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2z"
+                            />
+                          </svg>
+                        </NIcon>
+                      </template>
+                      {{ type.label }}
+                    </NButton>
+                  </div>
+                </div>
+
+                <div class="flex items-center text-sm text-gray-500 space-x-2">
+                  <NIcon size="16">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                       <path
                         fill="currentColor"
-                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                        d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2-7h-3V2h-2v2H8V2H6v2H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H3V8h14v12z"
                       />
                     </svg>
                   </NIcon>
-                </div>
-                <div class="text-sm text-blue-700">
-                  <div class="font-medium">资源匹配说明</div>
-                  <div class="mt-1 text-xs text-blue-600">
-                    基于{{ props.student.name }}的学习风格({{
-                      studentPersonality.learningStyle
-                    }})和能力点分析，系统推荐了以下资源。 重点针对学生的待提升项（{{
-                      studentPersonality.weaknesses.join('、')
-                    }}）和优势项（{{ studentPersonality.strengths.slice(0, 2).join('、') }}）进行匹配。
-                  </div>
+                  <span>
+                    共找到
+                    <span class="text-blue-600 font-semibold">{{ filteredResources.length }}</span>
+                    个匹配资源
+                  </span>
                 </div>
               </div>
             </div>
 
             <!-- 资源列表 -->
-            <div class="space-y-4">
-              <div v-if="filteredResources.length === 0" class="py-8">
-                <NEmpty description="暂无匹配的资源" />
+            <div class="space-y-6">
+              <div v-if="filteredResources.length === 0" class="py-12">
+                <NEmpty description="暂无匹配的语文学习资源" />
               </div>
 
               <div
                 v-for="resource in filteredResources"
                 :key="resource.id"
-                class="flex flex-col cursor-pointer border border-gray-100 rounded-lg bg-white p-4 transition-shadow md:flex-row hover:shadow-md"
+                class="group relative cursor-pointer overflow-hidden border border-gray-200 rounded-xl bg-white p-6 shadow-sm transition-all duration-300 hover:border-blue-300 hover:shadow-lg"
                 @click="openResource(resource)"
               >
-                <!-- 资源缩略图 -->
-                <div class="mb-3 h-24 flex-shrink-0 md:mb-0 md:mr-4 md:w-32">
-                  <div
-                    class="h-full w-full flex items-center justify-center rounded-md text-white"
-                    :class="{
-                      'bg-blue-500': resource.type === '视频',
-                      'bg-green-500': resource.type === '文档',
-                      'bg-orange-500': resource.type === '习题',
-                      'bg-purple-500': resource.type === '互动课件',
-                      'bg-indigo-500': resource.type === '实验',
-                      'bg-teal-500': resource.type === 'AI辅导'
-                    }"
-                  >
-                    <div v-if="resource.type === '视频'" class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18a1 1 0 0 0 0-1.69L9.54 5.98A.998.998 0 0 0 8 6.82z"
-                        />
-                      </svg>
-                    </div>
-                    <div v-else-if="resource.type === '文档'" class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"
-                        />
-                      </svg>
-                    </div>
-                    <div v-else-if="resource.type === '习题'" class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
-                        />
-                      </svg>
-                    </div>
-                    <div v-else-if="resource.type === '互动课件'" class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"
-                        />
-                      </svg>
-                    </div>
-                    <div v-else-if="resource.type === '实验'" class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M13 6v3h3v2h-3v3h-2v-3H8V9h3V6h2zm6 13.59L14.41 15L8 21.41V15H2V4c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v13.59zM19 6.41V4H5v2.41l2.3 2.3l4.2-4.2l7.5 7.5V6.41zM5 14.59V16.1l3-3l-3-3v2.59z"
-                        />
-                      </svg>
-                    </div>
-                    <div v-else-if="resource.type === 'AI辅导'" class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1a6.875 6.875 0 0 0 0 9.79a7.02 7.02 0 0 0 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29c-3.51 3.48-9.21 3.48-12.72 0c-3.5-3.47-3.53-9.11-.02-12.58a8.987 8.987 0 0 1 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08l-.72 1.21L11 13V8h1.5z"
-                        />
-                      </svg>
-                    </div>
-                    <div v-else class="text-3xl">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M17.5 4.5c-1.95 0-4.05.4-5.5 1.5c-1.45-1.1-3.55-1.5-5.5-1.5c-1.45 0-2.99.22-4.28.79C1.49 5.62 1 6.33 1 7.14v11.28c0 1.3 1.22 2.26 2.48 1.94c.98-.25 2.02-.36 3.02-.36c1.56 0 3.22.26 4.56.92c.6.3 1.28.3 1.87 0c1.34-.67 3-.92 4.56-.92c1 0 2.04.11 3.02.36c1.26.32 2.48-.65 2.48-1.94V7.14c0-.81-.49-1.52-1.22-1.85c-1.28-.57-2.82-.79-4.27-.79zM21 17.23c0 .63-.58 1.09-1.2.98c-.75-.17-1.42-.22-2.3-.22c-1.78 0-3.22.4-4.5 1.08c-.25.13-.56.13-.81 0c-1.28-.68-2.73-1.08-4.5-1.08c-.88 0-1.55.04-2.3.22c-.62.11-1.2-.34-1.2-.98v-2.89c0-.46.37-.83.83-.83c.77 0 1.35.14 2.67.36c1.49.25 2.98-.16 4.5-1.08c.25-.13.56-.13.81 0c1.52.92 3.01 1.33 4.5 1.08c1.32-.22 1.9-.36 2.67-.36c.46 0 .83.37.83.83v2.89z"
-                        />
-                      </svg>
+                <!-- 资源卡片头部 -->
+                <div class="flex items-start space-x-6">
+                  <!-- 资源缩略图 -->
+                  <div class="flex-shrink-0">
+                    <div
+                      class="relative h-20 w-20 flex items-center justify-center rounded-xl text-white shadow-md transition-transform duration-300 group-hover:scale-105"
+                      :class="{
+                        'bg-blue-500': resource.type === '视频',
+                        'bg-green-500': resource.type === '习题',
+                        'bg-purple-500': resource.type === 'AI辅导',
+                        'bg-orange-500': resource.type === '互动课件',
+                        'bg-red-500': resource.type === '文档',
+                        'bg-teal-500': resource.type === '讨论'
+                      }"
+                    >
+                      <NIcon size="28">
+                        <svg
+                          v-if="resource.type === '视频'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                          viewBox="0 0 24 24"
+                        >
+                          <path fill="currentColor" d="M8 5v14l11-7z" />
+                        </svg>
+                        <svg
+                          v-else-if="resource.type === '习题'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+                          />
+                        </svg>
+                        <svg
+                          v-else-if="resource.type === 'AI辅导'"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3s-3-1.34-3-3s1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22c.03-1.99 4-3.08 6-3.08c1.99 0 5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
+                          />
+                        </svg>
+                        <svg v-else xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                          <path
+                            fill="currentColor"
+                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+                          />
+                        </svg>
+                      </NIcon>
+
+                      <!-- 匹配度徽章 -->
+                      <div class="absolute rounded-full bg-white px-2 py-1 shadow-md -right-2 -top-2">
+                        <span
+                          class="text-xs font-bold"
+                          :class="{
+                            'text-green-600': resource.matchScore >= 95,
+                            'text-blue-600': resource.matchScore >= 90 && resource.matchScore < 95,
+                            'text-orange-600': resource.matchScore >= 85 && resource.matchScore < 90,
+                            'text-gray-600': resource.matchScore < 85
+                          }"
+                        >
+                          {{ resource.matchScore }}%
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <!-- 资源信息 -->
-                <div class="flex-grow">
-                  <div class="flex items-start justify-between">
-                    <div>
-                      <h4 class="mb-1 text-base text-gray-800 font-medium">{{ resource.title }}</h4>
+                  <!-- 资源信息 -->
+                  <div class="min-w-0 flex-1">
+                    <!-- 标题和基本信息 -->
+                    <div class="mb-3">
+                      <h4 class="mb-2 text-lg text-gray-900 font-semibold transition-colors group-hover:text-blue-600">
+                        {{ resource.title }}
+                      </h4>
+
+                      <!-- 标签行 -->
                       <div class="mb-2 flex flex-wrap items-center gap-2">
+                        <NTag :type="getResourceMatchColor(resource.matchScore)" size="small" round>
+                          <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                          <template #icon>
+                            <NIcon size="12">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path
+                                  fill="currentColor"
+                                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22L12 18.77L5.82 22L7 14.14L2 9.27l6.91-1.01L12 2z"
+                                />
+                              </svg>
+                            </NIcon>
+                          </template>
+                          匹配度 {{ resource.matchScore }}%
+                        </NTag>
+
+                        <NTag type="primary" size="small" round>{{ resource.type }}</NTag>
+
                         <NTag
                           size="small"
-                          :color="
-                            resource.type === '视频'
-                              ? '#2080f0'
-                              : resource.type === '习题'
-                                ? '#d97706'
-                                : resource.type === 'AI辅导'
-                                  ? '#0ea5e9'
-                                  : '#10b981'
+                          round
+                          :type="
+                            resource.difficulty === '挑战'
+                              ? 'error'
+                              : resource.difficulty === '提高'
+                                ? 'warning'
+                                : 'default'
                           "
                         >
-                          {{ resource.type }}
+                          {{ resource.difficulty }}
                         </NTag>
-                        <div class="flex items-center text-xs text-gray-500">
-                          <span class="mr-1">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="1em"
-                              height="1em"
-                              viewBox="0 0 24 24"
-                              class="inline-block"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8z"
-                              />
-                              <path fill="currentColor" d="M12.5 7H11v6l5.25 3.15l.75-1.23l-4.5-2.67z" />
-                            </svg>
-                          </span>
+
+                        <NTag type="default" size="small" round>
+                          <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                          <template #icon>
+                            <NIcon size="12">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path
+                                  fill="currentColor"
+                                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5zM15 17.5h-6v-1h1.5v-4.5H9v-1h4.5v5.5H15v1z"
+                                />
+                              </svg>
+                            </NIcon>
+                          </template>
                           {{ resource.duration }}
-                        </div>
-                        <div class="flex items-center text-xs text-gray-500">
-                          <span class="mr-1">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="1em"
-                              height="1em"
-                              viewBox="0 0 24 24"
-                              class="inline-block"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M21 11.18V9.72c0-.47-.16-.92-.46-1.28L16.6 3.72c-.38-.46-.94-.72-1.54-.72H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-1.18c.31-.11.53-.39.53-.72v-3.18c0-.33-.22-.61-.53-.72V10.9c.31-.11.53-.39.53-.72zM15.59 4.59l3.82 4.41H15.59zM5 19V5h8.5v5h5.5v1.18c-.31.11-.53.39-.53.72v3.18c0 .33.22.61.53.72V19z"
-                              />
-                              <path
-                                fill="currentColor"
-                                d="M11.85 15.87c.15.15.34.22.53.22s.38-.07.53-.22l1.26-1.26l1.26 1.27c.29.29.77.29 1.06 0s.29-.77 0-1.06l-1.26-1.27l1.26-1.26a.754.754 0 0 0 0-1.06c-.29-.29-.77-.29-1.06 0l-1.26 1.26l-1.26-1.26a.754.754 0 0 0-1.06 0c-.29.29-.29.77 0 1.06l1.26 1.26l-1.26 1.26c-.29.3-.29.77 0 1.06z"
-                              />
-                            </svg>
-                          </span>
-                          难度: {{ resource.difficulty }}
-                        </div>
+                        </NTag>
                       </div>
-                      <div class="mb-1 flex flex-wrap gap-1">
-                        <NTag v-for="tag in resource.tags" :key="tag" size="small" type="default" class="text-xs">
+                    </div>
+
+                    <!-- 推荐理由 -->
+                    <div class="mb-4">
+                      <p
+                        class="border-l-4 border-blue-400 rounded-lg bg-gray-50 p-3 text-sm text-gray-600 leading-relaxed"
+                      >
+                        <span class="text-blue-600 font-medium">推荐理由：</span>
+                        {{ resource.reason }}
+                      </p>
+                    </div>
+
+                    <!-- 资源标签 -->
+                    <div class="mb-4">
+                      <div class="mb-2 flex items-center">
+                        <NIcon size="14" color="#6b7280" class="mr-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                            <path
+                              fill="currentColor"
+                              d="M5.5 7A1.5 1.5 0 0 1 4 5.5A1.5 1.5 0 0 1 5.5 4A1.5 1.5 0 0 1 7 5.5A1.5 1.5 0 0 1 5.5 7m15.91 4.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59c.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41c0-.56-.23-1.06-.59-1.42z"
+                            />
+                          </svg>
+                        </NIcon>
+                        <span class="text-xs text-gray-500 font-medium">相关标签</span>
+                      </div>
+                      <div class="flex flex-wrap gap-1.5">
+                        <NTag
+                          v-for="tag in resource.tags"
+                          :key="tag"
+                          type="default"
+                          size="small"
+                          round
+                          class="border-blue-200 bg-blue-50 text-xs text-blue-700"
+                        >
                           {{ tag }}
                         </NTag>
                       </div>
-                      <div class="mt-2 text-xs text-gray-600">
-                        <span class="font-medium">推荐理由:</span>
-                        {{ resource.reason }}
-                      </div>
+                    </div>
 
-                      <!-- 能力提升点 -->
-                      <div class="mt-2 flex flex-col text-xs sm:flex-row sm:items-center">
-                        <span class="mb-1 mr-2 text-gray-600 font-medium sm:mb-0">预计提升能力:</span>
+                    <!-- 预计提升能力 -->
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center space-x-2">
+                        <NIcon size="14" color="#10b981">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M7 14l5-5l5 5z" />
+                          </svg>
+                        </NIcon>
+                        <span class="text-xs text-gray-500 font-medium">预计提升：</span>
                         <div class="flex flex-wrap gap-1">
-                          <NTag
-                            v-for="(area, i) in getImprovementAreas(resource)"
-                            :key="i"
-                            size="small"
-                            class="border-0 bg-blue-50 text-blue-600"
+                          <span
+                            v-for="area in getImprovementAreas(resource)"
+                            :key="area"
+                            class="rounded-full bg-green-50 px-2 py-1 text-xs text-green-600 font-medium"
                           >
                             {{ area }}
-                          </NTag>
+                          </span>
                         </div>
                       </div>
-                    </div>
-                    <div class="flex flex-col items-end">
-                      <NTag :type="getResourceMatchColor(resource.matchScore)" class="mb-2">
-                        匹配度 {{ resource.matchScore }}%
-                      </NTag>
-                      <div class="mt-auto">
-                        <NButton size="small" type="primary" text>查看详情</NButton>
+
+                      <!-- 操作按钮 -->
+                      <div class="flex items-center opacity-0 transition-opacity space-x-2 group-hover:opacity-100">
+                        <NButton size="small" type="primary" ghost round>
+                          <!-- @vue-ignore: naive-ui 图标插槽类型提示兼容 -->
+                          <template #icon>
+                            <NIcon>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M8 5v14l11-7z" />
+                              </svg>
+                            </NIcon>
+                          </template>
+                          开始学习
+                        </NButton>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- 分页 -->
-            <div class="mt-4 flex justify-center">
-              <NPagination v-model:page="currentPage" :page-count="5" />
             </div>
           </div>
         </NTabPane>
@@ -1581,85 +2063,3 @@ onMounted(() => {
     </NCard>
   </NModal>
 </template>
-
-<style scoped>
-.radar-chart-container {
-  --uno: absolute inset-0 flex items-center justify-center;
-  perspective: 1000px;
-}
-
-.radar-circle {
-  --uno: absolute border border-gray-200 rounded-full;
-}
-
-.radar-scale-33 {
-  width: calc(100% * 0.33);
-  height: calc(100% * 0.33);
-  top: calc(50% - 50% * 0.33);
-  left: calc(50% - 50% * 0.33);
-}
-
-.radar-scale-66 {
-  width: calc(100% * 0.66);
-  height: calc(100% * 0.66);
-  top: calc(50% - 50% * 0.66);
-  left: calc(50% - 50% * 0.66);
-}
-
-.radar-scale-99 {
-  width: calc(100% * 0.99);
-  height: calc(100% * 0.99);
-  top: calc(50% - 50% * 0.99);
-  left: calc(50% - 50% * 0.99);
-}
-
-.radar-axis {
-  --uno: absolute top-1/2 left-0 w-full border-t border-gray-200;
-  transform-origin: center;
-}
-
-.radar-angle-0 {
-  transform: rotate(0deg);
-}
-
-.radar-angle-72 {
-  transform: rotate(72deg);
-}
-
-.radar-angle-144 {
-  transform: rotate(144deg);
-}
-
-.radar-angle-216 {
-  transform: rotate(216deg);
-}
-
-.radar-angle-288 {
-  transform: rotate(288deg);
-}
-
-.radar-label {
-  --uno: absolute text-xs font-medium text-gray-500;
-  top: var(--top);
-  left: var(--left);
-  transform: translate(-50%, -50%);
-  white-space: pre-line;
-  text-align: center;
-}
-
-.radar-label:nth-child(1) {
-  transform: translate(-50%, -100%);
-}
-
-.radar-label:nth-child(2) {
-  transform: translate(-50%, 0);
-}
-
-.radar-label:nth-child(3) {
-  transform: translate(-100%, -50%);
-}
-
-.radar-label:nth-child(4) {
-  transform: translate(0, -50%);
-}
-</style>

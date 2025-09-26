@@ -171,7 +171,6 @@ const local: App.I18n.Schema = {
     system2: 'system 2',
     system2_child1: 'system 2 child 1',
     system2_child2: 'system 2 child 2',
-    system2_child3: 'system 2 child 3',
     system3: 'system 3',
     system3_child1: 'system 3 child 1',
     system3_child2: 'system 3 child 2',
