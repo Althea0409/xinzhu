@@ -34,19 +34,19 @@ interface TagOption {
 // 学习分析标签
 const analysisTagOptions: Record<string, TagOption[]> = {
   基础层: [
-    { label: '基础薄弱', value: '基础薄弱', color: '#4161fe', bgColor: '#edf1ff' },
-    { label: '计算需加强', value: '计算需加强', color: '#ff9f43', bgColor: '#fff8ee' },
-    { label: '几何优势', value: '几何优势', color: '#a259ff', bgColor: '#f7f0ff' }
+    { label: '字词基础薄弱', value: '字词基础薄弱', color: '#4161fe', bgColor: '#edf1ff' },
+    { label: '拼音需加强', value: '拼音需加强', color: '#ff9f43', bgColor: '#fff8ee' },
+    { label: '现代文阅读优势', value: '现代文阅读优势', color: '#a259ff', bgColor: '#f7f0ff' }
   ],
   提高层: [
-    { label: '稳定中等', value: '稳定中等', color: '#4161fe', bgColor: '#edf1ff' },
-    { label: '应用题优势', value: '应用题优势', color: '#ff9f43', bgColor: '#fff8ee' },
-    { label: '代数需加强', value: '代数需加强', color: '#a259ff', bgColor: '#f7f0ff' }
+    { label: '语文基础稳定', value: '语文基础稳定', color: '#4161fe', bgColor: '#edf1ff' },
+    { label: '古诗文理解佳', value: '古诗文理解佳', color: '#ff9f43', bgColor: '#fff8ee' },
+    { label: '作文表达需提升', value: '作文表达需提升', color: '#a259ff', bgColor: '#f7f0ff' }
   ],
   拓展层: [
-    { label: '逻辑思维强', value: '逻辑思维强', color: '#4161fe', bgColor: '#edf1ff' },
-    { label: '创新思维佳', value: '创新思维佳', color: '#ff9f43', bgColor: '#fff8ee' },
-    { label: '全面发展', value: '全面发展', color: '#a259ff', bgColor: '#f7f0ff' }
+    { label: '文学素养高', value: '文学素养高', color: '#4161fe', bgColor: '#edf1ff' },
+    { label: '语言运用灵活', value: '语言运用灵活', color: '#ff9f43', bgColor: '#fff8ee' },
+    { label: '综合能力强', value: '综合能力强', color: '#a259ff', bgColor: '#f7f0ff' }
   ]
 };
 

@@ -62,9 +62,9 @@ const generationParams = reactive({
     comprehensive: '综合题' // 综合题
   },
   algorithms: {
-    basic: '基于核心知识点分布自动生成',
-    improve: '基于学生易错点和关联知识点生成',
-    extension: '基于知识应用和创新能力生成'
+    basic: '基于语文基础知识点和字词拼音生成',
+    improve: '基于古诗文理解和现代文阅读生成',
+    extension: '基于文学素养和语言运用能力生成'
   }
 });
 
@@ -74,10 +74,10 @@ const analysisData = reactive({
     covered: 42, // 已覆盖知识点
     total: 50, // 总知识点
     distribution: [
-      { name: '数与代数', value: 35 },
-      { name: '几何与测量', value: 30 },
-      { name: '统计与概率', value: 20 },
-      { name: '综合应用', value: 15 }
+      { name: '字词拼音', value: 35 },
+      { name: '古诗文阅读', value: 30 },
+      { name: '现代文阅读', value: 20 },
+      { name: '作文写作', value: 15 }
     ]
   },
   difficulty: {
@@ -90,10 +90,10 @@ const analysisData = reactive({
   },
   cognitive: {
     distribution: [
-      { name: '知识记忆', value: 20 },
-      { name: '理解应用', value: 45 },
-      { name: '分析综合', value: 25 },
-      { name: '评价创造', value: 10 }
+      { name: '字词记忆', value: 20 },
+      { name: '理解分析', value: 45 },
+      { name: '语言运用', value: 25 },
+      { name: '文学鉴赏', value: 10 }
     ]
   }
 });
