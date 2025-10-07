@@ -46,7 +46,7 @@ interface LearningRecommendation {
 const recommendations = ref<LearningRecommendation[]>([
   {
     id: '1',
-    studentName: '张小明',
+    studentName: '陈晓明',
     weaknessArea: '现代文阅读理解',
     currentLevel: '基础层',
     targetLevel: '提高层',
@@ -295,7 +295,7 @@ function getCompletionRate(exercises: Exercise[]) {
         <div class="card-header">
           <h3 class="card-title">
             <NIcon :component="BookOutline" class="card-icon" />
-            补救练习方案
+            个性化练习方案
           </h3>
           <div class="completion-info">
             <span class="completion-text">完成度</span>

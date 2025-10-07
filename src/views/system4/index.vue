@@ -3,6 +3,9 @@ import { computed, ref } from 'vue';
 import RadarChart from './modules/RadarChart.vue';
 import AssessmentMatrix from './modules/AssessmentMatrix.vue';
 import PersonalizedPlan from './modules/PersonalizedPlan.vue';
+import TeacherPortrait from './modules/TeacherPortrait.vue';
+import StudentFeedback from './modules/StudentFeedback.vue';
+import QualityReport from './modules/QualityReport.vue';
 // 导入图标库
 import '@vicons/carbon';
 
@@ -62,6 +65,14 @@ const progressData = ref([
 const latestProgress = computed(() => {
   return progressData.value[progressData.value.length - 1];
 });
+
+const feedbackSnapshot = ref({ count: 2, avgRating: 4.5 });
+function onFeedbackSubmitted(payload: { rating: number }) {
+  // 简单更新平均分（示例：加入一条新评分）
+  const total = feedbackSnapshot.value.avgRating * feedbackSnapshot.value.count + payload.rating;
+  feedbackSnapshot.value.count += 1;
+  feedbackSnapshot.value.avgRating = Number((total / feedbackSnapshot.value.count).toFixed(2));
+}
 </script>
 
 <template>
@@ -163,6 +174,17 @@ const latestProgress = computed(() => {
           />
         </div>
       </div>
+    </div>
+    <div class="grid grid-cols-1 mb-6 gap-5 md:grid-cols-2">
+      <TeacherPortrait />
+      <QualityReport
+        :progress="{ completion: 85, activity: latestProgress.score, score: 88 }"
+        :feedback="{ count: feedbackSnapshot.count, avgRating: feedbackSnapshot.avgRating }"
+      />
+    </div>
+
+    <div class="mb-6 rounded-lg bg-white shadow-sm">
+      <StudentFeedback @submitted="onFeedbackSubmitted" />
     </div>
   </div>
 </template>

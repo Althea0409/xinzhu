@@ -17,7 +17,11 @@ const stats = ref<AnalysisStats>({
   accuracyRate: 94.2
 });
 
-const emit = defineEmits(['startOCR', 'viewAnalysis', 'exportReport']);
+const emit = defineEmits<{
+  startOCR: [];
+  viewAnalysis: [];
+  exportReport: [];
+}>();
 </script>
 
 <template>
@@ -74,12 +78,14 @@ const emit = defineEmits(['startOCR', 'viewAnalysis', 'exportReport']);
     <!-- 操作按钮 -->
     <div class="action-section">
       <NButton type="primary" size="large" class="primary-btn" @click="emit('startOCR')">
+        <!-- @vue-ignore: naive-ui 按钮图标插槽类型提示兼容 -->
         <template #icon>
           <NIcon :component="CameraOutline" />
         </template>
         开始OCR识别
       </NButton>
       <NButton size="large" class="secondary-btn" @click="emit('viewAnalysis')">
+        <!-- @vue-ignore: naive-ui 按钮图标插槽类型提示兼容 -->
         <template #icon>
           <NIcon :component="AnalyticsOutline" />
         </template>
