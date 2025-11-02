@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { NIcon, NTabPane, NTabs, NTag } from 'naive-ui';
 import {
   AnalyticsOutline,
@@ -100,11 +100,6 @@ const errorStats = ref<ErrorStatistics[]>([
   }
 ]);
 
-const totalQuestions = computed(() => analysisData.value.length);
-const totalScore = computed(() => analysisData.value.reduce((sum, item) => sum + item.score, 0));
-const totalMaxScore = computed(() => analysisData.value.reduce((sum, item) => sum + item.maxScore, 0));
-const accuracyRate = computed(() => ((totalScore.value / totalMaxScore.value) * 100).toFixed(1));
-
 function getScoreColor(score: number, maxScore: number) {
   const rate = score / maxScore;
   if (rate >= 0.9) return 'success';
@@ -141,12 +136,12 @@ function getErrorTypeColor(errorType: string) {
       </div>
       <div class="header-stats">
         <div class="stat-item">
-          <span class="stat-label">总分</span>
-          <span class="stat-value">{{ totalScore }}/{{ totalMaxScore }}</span>
+          <span class="stat-label">学生个人得分</span>
+          <span class="stat-value">108/120</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">正确率</span>
-          <span class="stat-value">{{ accuracyRate }}%</span>
+          <span class="stat-value">88%</span>
         </div>
       </div>
     </div>
@@ -289,28 +284,28 @@ function getErrorTypeColor(errorType: string) {
                 <div class="stat-card">
                   <NIcon :component="TrendingUpOutline" class="stat-icon" />
                   <div class="stat-content">
-                    <div class="stat-value">{{ (totalScore / totalQuestions).toFixed(1) }}</div>
+                    <div class="stat-value">88</div>
                     <div class="stat-label">平均分</div>
                   </div>
                 </div>
                 <div class="stat-card">
                   <NIcon :component="BookOutline" class="stat-icon" />
                   <div class="stat-content">
-                    <div class="stat-value">{{ Math.max(...analysisData.map(item => item.score)) }}</div>
+                    <div class="stat-value">106</div>
                     <div class="stat-label">最高分</div>
                   </div>
                 </div>
                 <div class="stat-card">
                   <NIcon :component="AnalyticsOutline" class="stat-icon" />
                   <div class="stat-content">
-                    <div class="stat-value">{{ Math.min(...analysisData.map(item => item.score)) }}</div>
+                    <div class="stat-value">40</div>
                     <div class="stat-label">最低分</div>
                   </div>
                 </div>
                 <div class="stat-card">
                   <NIcon :component="PeopleOutline" class="stat-icon" />
                   <div class="stat-content">
-                    <div class="stat-value">85.7%</div>
+                    <div class="stat-value">86%</div>
                     <div class="stat-label">及格率</div>
                   </div>
                 </div>

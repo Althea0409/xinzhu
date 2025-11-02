@@ -38,21 +38,21 @@ function getSectionTitle() {
           <div class="stat-item">
             <div class="stat-icon">📊</div>
             <div class="stat-content">
-              <div class="stat-number">156</div>
+              <div class="stat-number">42</div>
               <div class="stat-label">总试卷数</div>
             </div>
           </div>
           <div class="stat-item">
             <div class="stat-icon">✅</div>
             <div class="stat-content">
-              <div class="stat-number">142</div>
+              <div class="stat-number">39</div>
               <div class="stat-label">已批改</div>
             </div>
           </div>
           <div class="stat-item">
             <div class="stat-icon">📈</div>
             <div class="stat-content">
-              <div class="stat-number">85.6</div>
+              <div class="stat-number">88</div>
               <div class="stat-label">平均分</div>
             </div>
           </div>
